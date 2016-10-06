@@ -14,6 +14,6 @@ app.get('/',function(req, res){
 });
 
 
-server.listen(port,'127.0.0.1',function(){
+server.listen(port,'localhost',function(){
     console.log('port on ' + port);
 });
