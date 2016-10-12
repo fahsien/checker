@@ -4,7 +4,6 @@ var http = require('http'),
 	path = require('path'),
 	bodyParser = require('body-parser'),
 	multer = require('multer'),
-	methodOverride = require('method-override'),
 	server = app,
 	mongoose = require('mongoose');
 
@@ -21,7 +20,6 @@ app.use(express.static(path.resolve('./public')));
 // Request body parsing middleware should be above methodOverride
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 app.use(bodyParser.json());  // for parsing application/json
-app.use(methodOverride());
 app.use(function (req, res, next) { // when multpart, json parse nest object
     if (req.files && req.body._body) {
         req.body = JSON.parse(req.body._body);
