@@ -33,7 +33,7 @@ app.get('/',function(req, res){
 });
 
 // set up the RESTful API, handler methods are defined in api.js
-var api = require(path.resolve('./controllers/api.js'));
+var api = require('./public/controllers/api.js');
 app.post('/postUser', api.postUser);
 app.post('/postHR', api.postHR);
 
