@@ -27,15 +27,23 @@ app.use(function (req, res, next) { // when multpart, json parse nest object
     next();
 });
 
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'html');
+app.set('views', './public/views');
+
 // Routes
 app.get('/',function(req, res){ 
-	res.sendfile('./public/view/index.html');
+	res.render('index', {
+			        alert: ''
+			    });
 });
 
 // set up the RESTful API, handler methods are defined in api.js
-var api = require('./public/controllers/api.js');
+var api = require('./controllers/api.js');
 app.post('/postUser', api.postUser);
 app.post('/postHR', api.postHR);
+app.post('/vote', api.vote);
+app.get('/voteResult',api.voteResult);
 
 server.listen(port,'localhost',function(){
     console.log('port on ' + port);
