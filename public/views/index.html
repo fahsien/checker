@@ -30,6 +30,26 @@
      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
      <script src="../js/index.js"></script>
 
+     <script src="http://phuonghuynh.github.io/js/bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="http://phuonghuynh.github.io/js/bower_components/d3/d3.min.js"></script>
+  <script src="http://phuonghuynh.github.io/js/bower_components/d3-transform/src/d3-transform.js"></script>
+  <script src="http://phuonghuynh.github.io/js/bower_components/cafej/src/extarray.js"></script>
+  <script src="http://phuonghuynh.github.io/js/bower_components/cafej/src/misc.js"></script>
+  <script src="http://phuonghuynh.github.io/js/bower_components/cafej/src/micro-observer.js"></script>
+  <script src="http://phuonghuynh.github.io/js/bower_components/microplugin/src/microplugin.js"></script>
+  <script src="http://phuonghuynh.github.io/js/bower_components/bubble-chart/src/bubble-chart.js"></script>
+  <script src="http://phuonghuynh.github.io/js/bower_components/bubble-chart/src/plugins/central-click/central-click.js"></script>
+  <script src="http://phuonghuynh.github.io/js/bower_components/bubble-chart/src/plugins/lines/lines.js"></script>
+  <script src="../js/bubblechart.js"></script>
+  <style>
+    .bubbleChart {
+      min-width: 60%;
+      /*min-width: 700px;*/
+      height: 500px;
+      
+    }
+    
+  </style>
 
 </head>
 
@@ -148,11 +168,16 @@
 
                 <div class="row">
                     <div class="col-lg-6 col-sm-6">
-                        我是年輕人
-                        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                          訂閱
+                        <h3>我是年輕人</h3>
+                        <p>
+                            如果你是年輕人，留下 email 信箱訂閱本活動，
+                            您將可以第一時間收到我們最新的採訪結果，
+                            了解業界人資對年輕人的看法，及早為未來做準備！
+                        </p>
+                        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#contactYoung" aria-expanded="false" aria-controls="collapseExample">
+                        立即訂閱
                         </button>
-                        <div class="collapse" id="collapseExample">
+                        <div class="collapse" id="contactYoung">
                           <div class="well">
                             <div class="input-group">
                                 <form action="postUser" method="post">
@@ -170,7 +195,29 @@
                         <h1> <%= alert %> </h1>
                     </div>
                     <div class="col-lg-6 col-sm-6">
-                        我是HR
+                        <h3>我是HR</h3>
+                        <p>
+                            如果您是公司人資主管並且願意接受我們採訪，分享您對年輕人的看法，歡迎留下您的email，我們會盡快與您聯絡！
+                        </p>
+                        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#contactHR" aria-expanded="false" aria-controls="collapseExample">
+                        來訪問我
+                        </button>
+                        <div class="collapse" id="contactHR">
+                          <div class="well">
+                            <div class="input-group">
+                                <form action="postUser" method="post">
+                        
+                                  <input type="text" class="form-control" name="name"  required="required" placeholder="姓名" aria-describedby="basic-addon1">
+                                  <input type="text" class="form-control" name="age" placeholder="產業別" aria-describedby="basic-addon1">
+                                  <input type="text" class="form-control" name="job" placeholder="年齡" aria-describedby="basic-addon1">
+                                  <input type="email" class="form-control" name="email" placeholder="Email" aria-describedby="basic-addon1">
+                                 
+                                <button type="submit">送出</button>
+                                </form>
+                            </div>
+                          </div>
+                        </div>
+                        <h1> <%= alert %> </h1>
                     </div>
                 </div>
 
@@ -189,14 +236,12 @@
                         選擇你最想了解的企業
                     </h3>
                 </div>
-                <div>
-                    <button ng-click="showme=false">投票去</button><button ng-click="showme=true;result()">看結果</button>
-                </div>
+                
                 <div>
                     <h5>
                         （名單不定期更新）
                     </h5>
-                    <div ng-hide="showme">
+                    <div ng-show="showme">
                         <form action="vote" method="post">
                             <div class="row">
                                 <div data-ng-repeat="company in companies" class="col-xs-4">
@@ -219,23 +264,23 @@
 
                         </form>
                     </div>
-                    <div class="row" ng-show="showme">
-                            <div data-ng-repeat="vote in votes" class="col-xs-4">
-                                
-                                
-                                    <li >{{vote.company}}{{vote.vote}}</li>  
-                                
-                            </div>
+                  
+                    <div ng-hide="showme" class="bubbleChart"></div>
+                    
+                    <div class="text-center">
+                        <a href="#vote" ng-hide="showme" ng-click="showme=true">投票去</a>
                     </div>
                 </div>
 
             </div>
             <!-- /.container -->
-
+            
         </div>
     </section>
 
+
     <!-- <section class="no-padding" id="portfolio">
+
         <div class="container-fluid">
             <div class="row no-gutter popup-gallery">
                 <div class="col-lg-4 col-sm-6">
@@ -360,9 +405,6 @@
             </div>
         </div>
     </section>
-
-    <!-- jQuery -->
-    <script src="../js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="../js/bootstrap.js"></script>

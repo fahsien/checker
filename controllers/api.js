@@ -12,7 +12,7 @@ exports.postUser = function(req, res) {
             if (email) {
                 // error: user already exists  
 			    // res.write("<script>alert('您已登入一個小時，系統將重新登入');location.href='/';</script>");
-			    res.redirect('/#contact');
+			    res.redirect('/#book');
             } else {
                 // create new user
                 callback(null, req.body);
@@ -25,7 +25,7 @@ exports.postUser = function(req, res) {
 	    		job: req.body.job,
 	    		email: req.body.email
 	    	}).save();
-	    	res.redirect('/#contact');
+	    	res.redirect('/#book');
         }
 
     ])
@@ -46,7 +46,7 @@ exports.vote = function(req, res) {
             if (email) {
                 // error: user already exists  
 			    // res.write("<script>alert('您已登入一個小時，系統將重新登入');location.href='/';</script>");
-			    res.redirect('/#contact');
+			    res.redirect('/#vote');
             } else {
                 // create new user
                 callback(null, req.body);
@@ -74,7 +74,7 @@ exports.vote = function(req, res) {
 	    		eslite: req.body.eslite==='true'?'true':'false'
 	    		
 	    	}).save();
-	    	res.redirect('/#contact');
+	    	res.redirect('/#vote');
         }
 
     ])
