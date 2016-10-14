@@ -29,7 +29,7 @@ app.use(function (req, res, next) { // when multpart, json parse nest object
 
 // Routes
 app.get('/',function(req, res){ 
-	res.sendfile('./public/views/index.html');
+	res.sendfile('./public/view/index.html');
 });
 
 // set up the RESTful API, handler methods are defined in api.js

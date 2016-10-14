@@ -1,0 +1,32 @@
+.bgsettings {
+    background-color: #f8f8f8;
+    font-family: "Noto Sans TC";
+}
+
+.header-logo {
+    height: 30px;
+}
+
+@font-face {
+    font-family: "Noto Sans TC";
+    src: url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Regular.woff2) format('woff2'),
+        url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Regular.woff) format('woff'),
+        url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Regular.otf) format('opentype');
+    // src: url(http://fonts.googleapis.com/earlyaccess/notosanstc.css);
+}
+
+@font-face {
+    font-family: "Noto Sans TC L";
+    src: url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Light.woff2) format('woff2'),
+        url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Light.woff) format('woff'),
+        url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Light.otf) format('opentype');
+    // src: url(http://fonts.googleapis.com/earlyaccess/notosanstc.css);
+}
+
+@font-face {
+    font-family: "Noto Sans TC B";
+    src: url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Bold.woff2) format('woff2'),
+        url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Bold.woff) format('woff'),
+        url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Bold.otf) format('opentype');
+    // src: url(http://fonts.googleapis.com/earlyaccess/notosanstc.css);
+}
