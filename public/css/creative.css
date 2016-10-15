@@ -595,3 +595,26 @@ img::-moz-selection {
 .contact-button{
     margin-top:10px;
 }
+
+.why-contnet{
+    overflow: scroll;
+    height: 400px;
+}
+.why-contnet p{
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+
+}
+.why-header {
+    background-color: #71b8e6;
+    text-align: center;
+    color: #ffffff;
+    width: 300px;
+}
+.how-header {
+    background-color: #fbcea3;
+    text-align: center;
+    color: #ffffff;
+    width: 300px;
+}
