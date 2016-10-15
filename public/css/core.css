@@ -14,7 +14,7 @@
 }
 
 .whimg {
-    width: 100%
+    width: 100%;
     -webkit-filter: blur(2px);
     filter: blur(2px);
 }
