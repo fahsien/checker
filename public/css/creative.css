@@ -42,7 +42,7 @@ h6 {
 
 p {
     font-size: 16px;
-    line-height: 1.5;
+    line-height: 1.9;
     margin-bottom: 20px;
 }
 
@@ -581,4 +581,17 @@ img::-moz-selection {
 .footer{
     padding: 20px;
     border-top: 1px solid rgba(113, 113, 113, 0.2);
+}
+.privacy-modal-content p{
+    
+    line-height: 1.9;
+}
+.young-form{
+    padding-bottom: 39px;
+}
+.clear{
+    clear: both;
+}
+.contact-button{
+    margin-top:10px;
 }

@@ -129,7 +129,7 @@ angular.module('index', [])
 
         // checkbox limit
         $scope.checked = 0;
-        $scope.limit = 3;
+        $scope.limit = 5;
         $scope.checkChanged = function(item){
         if(item.winner) $scope.checked++;
         else $scope.checked--;

@@ -22,8 +22,8 @@ var VoteSchema = new Schema({
     ogilvymather:  String,
     gogoro:  String,
     kkbox:  String,
-    eslite:  String
-    
+    eslite:  String,
+    other: String
     
 });
 

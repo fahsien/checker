@@ -104,7 +104,8 @@ exports.vote = function(req, res) {
 	    		ogilvymather: req.body.ogilvymather==='true'?'true':'false',
 	    		gogoro: req.body.gogoro==='true'?'true':'false',
 	    		kkbox: req.body.kkbox==='true'?'true':'false',
-	    		eslite: req.body.eslite==='true'?'true':'false'
+	    		eslite: req.body.eslite==='true'?'true':'false',
+	    		other: req.body.other
 	    		
 	    	}).save();
 	    	res.redirect('/#vote');
@@ -119,16 +120,16 @@ exports.voteResult = function(req, res) {
 			function(callback){
 				var data = [];
 			    Vote.find({google: 'true'}).count(function(err, count){
-			    		data[0] = { "company": "GOOGLE/谷歌", "vote": count };
+			    		data[0] = { "company": "GOOGLE", "vote": count };
 			    	}
 			    );
 			    Vote.find({asus: 'true'}).count(function(err, count){
-			    		data[1] = { "company": "Asus/華碩", "vote": count };
+			    		data[1] = { "company": "Asus", "vote": count };
 			    		
 			    	}
 			    );
 			    Vote.find({acer: 'true'}).count(function(err, count){
-			    		data[2] = { "company": "Acer/宏碁", "vote": count };
+			    		data[2] = { "company": "Acer", "vote": count };
 			    		
 			    	}
 			    );
@@ -138,7 +139,7 @@ exports.voteResult = function(req, res) {
 			    	}
 			    );
 			    Vote.find({htc: 'true'}).count(function(err, count){
-			    		data[4] = { "company": "HTC/宏達電", "vote": count };
+			    		data[4] = { "company": "HTC", "vote": count };
 			    		
 			    	}
 			    );
@@ -148,42 +149,42 @@ exports.voteResult = function(req, res) {
 			    	}
 			    );
 			    Vote.find({gucci: 'true'}).count(function(err, count){
-			    		data[6] = { "company": "Gucci/古馳", "vote": count };
+			    		data[6] = { "company": "Gucci", "vote": count };
 			    		
 			    	}
 			    );
 			    Vote.find({citibank: 'true'}).count(function(err, count){
-			    		data[7] = { "company": "Citibank/花旗銀行", "vote": count };
+			    		data[7] = { "company": "花旗銀行", "vote": count };
 			    		
 			    	}
 			    );
 			    Vote.find({hsbc: 'true'}).count(function(err, count){
-			    		data[8] = { "company": "HSBC/匯豐銀行", "vote": count };
+			    		data[8] = { "company": "匯豐銀行", "vote": count };
 			    		
 			    	}
 			    );
 			    Vote.find({chanel: 'true'}).count(function(err, count){
-			    		data[9] = { "company": "Chanel/香奈兒", "vote": count };
+			    		data[9] = { "company": "Chanel", "vote": count };
 			    		
 			    	}
 			    );
 			    Vote.find({mckinseycompany: 'true'}).count(function(err, count){
-			    		data[10] = { "company": "McKinsey&Company/麥肯錫", "vote": count };
+			    		data[10] = { "company": "麥肯錫", "vote": count };
 			    		
 			    	}
 			    );
 			    Vote.find({muji: 'true'}).count(function(err, count){
-			    		data[11] = { "company": "MUJI/無印良品", "vote": count };
+			    		data[11] = { "company": "無印良品", "vote": count };
 			    		
 			    	}
 			    )
 			    Vote.find({unilever: 'true'}).count(function(err, count){
-			    		data[12] = { "company": "Unilever/聯合利華", "vote": count };
+			    		data[12] = { "company": "聯合利華", "vote": count };
 			    		
 			    	}
 			    )
 			    Vote.find({ogilvymather: 'true'}).count(function(err, count){
-			    		data[13] = { "company": "Ogilvy&Mather/奧美", "vote": count };
+			    		data[13] = { "company": "奧美", "vote": count };
 			    		
 			    	}
 			    )
@@ -198,7 +199,7 @@ exports.voteResult = function(req, res) {
 			    	}
 			    )
 			    Vote.find({eslite: 'true'}).count(function(err, count){
-			    		data[16] = { "company": "eslite/誠品", "vote": count };
+			    		data[16] = { "company": "誠品", "vote": count };
 			    		setTimeout(function(){ callback(null,data); }, 100);
 			    		
 			    	}
