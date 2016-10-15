@@ -1,4 +1,5 @@
 var User = require('../models/user.js'),
+	HR = require('../models/hr.js'),
 	Vote = require('../models/vote.js'),
 	async = require('async');
 
@@ -7,6 +8,42 @@ exports.postUser = function(req, res) {
 	async.waterfall([
 		function (callback) {
 			User.findOne({email: req.body.email}, callback);
+        },
+        function (email, callback) {
+
+            if (email) {
+            	
+                // error: user already exists  
+			    res.redirect('/#book');
+			    
+            } else {
+                // create new user
+                callback(null, req.body);
+            }
+        },
+        function () {
+            new User({
+	    		age: req.body.age, 
+	    		advice: req.body.advice, 
+	    		email: req.body.email,
+	    		it: req.body.it==='true'?'true':'false', 
+	    		tradition: req.body.tradition==='true'?'true':'false', 
+	    		business: req.body.business==='true'?'true':'false', 
+	    		services: req.body.services==='true'?'true':'false', 
+	    		culture: req.body.culture==='true'?'true':'false', 
+	    		startup: req.body.startup==='true'?'true':'false'
+	    	}).save();
+	    	res.redirect('/#book');
+        }
+
+    ])
+
+}
+
+exports.postHR = function(req, res) {
+    async.waterfall([
+		function (callback) {
+			HR.findOne({email: req.body.email}, callback);
         },
         function (email, callback) {
             if (email) {
@@ -19,21 +56,17 @@ exports.postUser = function(req, res) {
             }
         },
         function () {
-            new User({
+            new HR({
 	    		name: req.body.name, 
-	    		age: req.body.age, 
-	    		job: req.body.job,
+	    		company: req.body.company,
+	    		jobtitle: req.body.jobtitle,
+	    		advice: req.body.advice,
 	    		email: req.body.email
 	    	}).save();
 	    	res.redirect('/#book');
         }
 
     ])
-
-}
-
-exports.postHR = function(req, res) {
-    new Thread({title: req.body.title, author: req.body.author}).save();
 }
 
 exports.vote = function(req, res) {
