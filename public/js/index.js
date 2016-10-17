@@ -117,14 +117,52 @@ angular.module('index', [])
             }).error(function(data) {   
                 
             }); 
+        $scope.processYoungForm = function() {
+          $http({
+          method  : 'POST',
+          url     : 'postUser',
+          data    : $scope.youngForm  // pass in data as strings
+           // set the headers so angular passing info as form data (not request payload)
+         })
+          .success(function(data) {
+            $scope.youngMessage = data.message;
+          });
+        };
 
-        $scope.jobs=[
-            {label:'資訊科技',name:'it'},{label:'傳產製造',name:'tradition'},{label:'商業服務',name:'business'},{label:'民生服務',name:'services'},{label:'文創教育',name:'culture'},{label:'新創產業',name:'startup'}
+        $scope.processHRForm = function() {
+          $http({
+          method  : 'POST',
+          url     : 'postHR',
+          data    : $scope.hrForm  // pass in data as strings
+           // set the headers so angular passing info as form data (not request payload)
+         })
+          .success(function(data) {
+            $scope.hrMessage = data.message;
+          });
+        };
+
+        $scope.processVoteForm = function() {
+          $http({
+          method  : 'POST',
+          url     : 'vote',
+          data    : $scope.voteForm  // pass in data as strings
+           // set the headers so angular passing info as form data (not request payload)
+         })
+          .success(function(data) {
+            $scope.showme = data.message.show;
+            $scope.voteMessage = data.message;
+            $scope.voted = true;
+          });
+        };
+
+        $scope.youngForm=[
+            {label:'資訊科技',name:'it'},{label:'傳產製造',name:'tradition'},{label:'商業服務',name:'business'},{label:'民生服務',name:'services'},{label:'文創教育',name:'culture'},{label:'新創產業',name:'startup'},{},{advice:''}
         ]
+        $scope.hrForm={}
 
-        $scope.companies=[
+        $scope.voteForm=[
             {label:'GOOGLE/谷歌',name:'google'},{label:'Asus/華碩',name:'asus'},{label:'Acer/宏碁',name:'acer'},{label:'Line',name:'line'},{label:'HTC/宏達電',name:'htc'},{label:'BCG Taiwan',name:'bcgtaiwan'},{label:'Gucci/古馳',name:'gucci'},{label:'Citibank/花旗銀行',name:'citibank'},
-            {label:'HSBC/匯豐銀行',name:'hsbc'},{label:'Chanel/香奈兒',name:'chanel'},{label:'McKinsey&Company/麥肯錫',name:'mckinseycompany'},{label:'MUJI/無印良品',name:'muji'},{label:'Unilever/聯合利華',name:'unilever'},{label:'Ogilvy&Mather/奧美',name:'ogilvymather'},{label:'Gogoro',name:'gogoro'},{label:'KKBOX',name:'kkbox'},{label:'eslite/誠品',name:'eslite'}
+            {label:'HSBC/匯豐銀行',name:'hsbc'},{label:'Chanel/香奈兒',name:'chanel'},{label:'McKinsey&Company/麥肯錫',name:'mckinseycompany'},{label:'MUJI/無印良品',name:'muji'},{label:'Unilever/聯合利華',name:'unilever'},{label:'Ogilvy&Mather/奧美',name:'ogilvymather'},{label:'Gogoro',name:'gogoro'},{label:'KKBOX',name:'kkbox'},{label:'eslite/誠品',name:'eslite'},{other:''}
         ]
 
         // checkbox limit

@@ -518,7 +518,9 @@ img::-moz-selection {
   color: white;
   background: transparent;
 }
-
+.book .row{
+    margin: 0;
+}
 .book-section-young{
     background-color: #71b8e6;
     min-height: 489px;
@@ -528,6 +530,7 @@ img::-moz-selection {
     min-height: 489px;
 
 }
+
 .book-title{
     color: #ffffff;
     font-family: NotoSansCJKtc;
@@ -550,6 +553,17 @@ img::-moz-selection {
     padding: 40px;
     text-align: center;
     line-height: 1.9;
+}
+.book-form .well{
+    min-height: 400px;
+}
+.book-success{
+    background-color: #d8f0df;
+    border-radius: 20px;
+}
+.book-fail{
+    background-color: #FFDEDE;
+    border-radius: 20px;
 }
 .vote-form{
     background-color: #ffffff;
@@ -586,14 +600,18 @@ img::-moz-selection {
     
     line-height: 1.9;
 }
-.young-form{
-    padding-bottom: 39px;
+.hr-form{
+    padding-bottom: 34px;
 }
 .clear{
     clear: both;
 }
-.contact-button{
-    margin-top:10px;
+.young-button{
+    margin: 20px;
+}
+.hr-button{
+    margin-top: 61px;
+    margin-bottom: 20px;
 }
 
 .why-contnet{

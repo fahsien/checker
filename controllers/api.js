@@ -7,14 +7,14 @@ exports.postUser = function(req, res) {
 
 	async.waterfall([
 		function (callback) {
-			User.findOne({email: req.body.email}, callback);
+			User.findOne({email: req.body[8].email}, callback);
         },
         function (email, callback) {
 
             if (email) {
             	
                 // error: user already exists  
-			    res.redirect('/#book');
+				res.send({message: {fail:'這個Email已經訂閱過了唷！'}});
 			    
             } else {
                 // create new user
@@ -23,17 +23,17 @@ exports.postUser = function(req, res) {
         },
         function () {
             new User({
-	    		age: req.body.age, 
-	    		advice: req.body.advice, 
-	    		email: req.body.email,
-	    		it: req.body.it==='true'?'true':'false', 
-	    		tradition: req.body.tradition==='true'?'true':'false', 
-	    		business: req.body.business==='true'?'true':'false', 
-	    		services: req.body.services==='true'?'true':'false', 
-	    		culture: req.body.culture==='true'?'true':'false', 
-	    		startup: req.body.startup==='true'?'true':'false'
+	    		age: req.body[6].age, 
+	    		advice: req.body[7].advice, 
+	    		email: req.body[8].email,
+	    		it: req.body[0].value, 
+	    		tradition: req.body[1].value, 
+	    		business: req.body[2].value, 
+	    		services: req.body[3].value, 
+	    		culture: req.body[4].value, 
+	    		startup: req.body[5].value, 
 	    	}).save();
-	    	res.redirect('/#book');
+	    	res.send({message: {success:'訂閱成功！'}});
         }
 
     ])
@@ -49,7 +49,7 @@ exports.postHR = function(req, res) {
             if (email) {
                 // error: user already exists  
 			    // res.write("<script>alert('您已登入一個小時，系統將重新登入');location.href='/';</script>");
-			    res.redirect('/#book');
+			    res.send({message: {fail:'這個Email使用過了唷！'}});
             } else {
                 // create new user
                 callback(null, req.body);
@@ -63,7 +63,7 @@ exports.postHR = function(req, res) {
 	    		advice: req.body.advice,
 	    		email: req.body.email
 	    	}).save();
-	    	res.redirect('/#book');
+	    	res.send({message: {success:'成功，將會儘快聯絡您！'}});
         }
 
     ])
@@ -73,13 +73,13 @@ exports.vote = function(req, res) {
 
 	async.waterfall([
 		function (callback) {
-			Vote.findOne({email: req.body.email}, callback);
+			Vote.findOne({email: req.body[18].email}, callback);
         },
         function (email, callback) {
             if (email) {
                 // error: user already exists  
 			    // res.write("<script>alert('您已登入一個小時，系統將重新登入');location.href='/';</script>");
-			    res.redirect('/#vote');
+			    res.send({message: {fail:'這個Email已經投票過了唷！',show : true }});
             } else {
                 // create new user
                 callback(null, req.body);
@@ -87,28 +87,29 @@ exports.vote = function(req, res) {
         },
         function () {
             new Vote({
-            	email: req.body.email, 
-	    		google: req.body.google==='true'?'true':'false', 
-	    		asus: req.body.asus==='true'?'true':'false', 
-	    		acer: req.body.acer==='true'?'true':'false',
-	    		line: req.body.line==='true'?'true':'false',
-	    		htc: req.body.htc==='true'?'true':'false',
-	    		bcgtaiwan: req.body.bcgtaiwan==='true'?'true':'false',
-	    		gucci: req.body.gucci==='true'?'true':'false',
-	    		citibank: req.body.citibank==='true'?'true':'false',
-	    		hsbc: req.body.hsbc==='true'?'true':'false',
-	    		chanel: req.body.chanel==='true'?'true':'false',
-	    		mckinseycompany: req.body.mckinseycompany==='true'?'true':'false',
-	    		muji: req.body.muji==='true'?'true':'false',
-	    		unilever: req.body.unilever==='true'?'true':'false',
-	    		ogilvymather: req.body.ogilvymather==='true'?'true':'false',
-	    		gogoro: req.body.gogoro==='true'?'true':'false',
-	    		kkbox: req.body.kkbox==='true'?'true':'false',
-	    		eslite: req.body.eslite==='true'?'true':'false',
-	    		other: req.body.other
+            	email: req.body[18].email, 
+	    		google: req.body[0].winner, 
+	    		asus: req.body[1].winner, 
+	    		acer: req.body[2].winner,
+	    		line: req.body[3].winner,
+	    		htc: req.body[4].winner,
+	    		bcgtaiwan: req.body[5].winner,
+	    		gucci: req.body[6].winner,
+	    		citibank: req.body[7].winner,
+	    		hsbc: req.body[8].winner,
+	    		chanel: req.body[9].winner,
+	    		mckinseycompany: req.body[10].winner,
+	    		muji: req.body[11].winner,
+	    		unilever: req.body[12].winner,
+	    		ogilvymather: req.body[13].winner,
+	    		gogoro: req.body[14].winner,
+	    		kkbox: req.body[15].winner,
+	    		eslite: req.body[16].winner,
+	    		other: req.body[17].other
 	    		
 	    	}).save();
-	    	res.redirect('/#vote');
+	    	res.send({message: {success:'投票成功！' , show : false}});
+	    	
         }
 
     ])

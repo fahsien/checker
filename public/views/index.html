@@ -277,7 +277,7 @@
         </div>
     </section> -->
     <div class="s-line"></div>
-    <div id="book">
+    <div id="book" class="book">
         <div class="row">
             <div class="col-lg-6 col-sm-6 book-section-young">
                 <div class="book-section-young">
@@ -307,17 +307,17 @@
                     <div class="collapse book-form" id="contactYoung">
                         <div class="well">
                             <div class="input-group">
-                                <form action="postUser" method="post">
+                                <form ng-submit="processYoungForm()">
                                     <div>請勾選感興趣產業</div>
                                     <div class="row">
-                                        <div data-ng-repeat="job in jobs" class="col-md-4 col-xs-6">
-                                            <input type="checkbox" name="{{job.name}}" value="true" id="checkbox1" data-toggle="checkbox" >
+                                        <div data-ng-repeat="job in youngForm|limitTo:6" class="col-md-4 col-xs-6">
+                                            <input type="checkbox" name="{{job.name}}" value="true" id="checkbox1" data-toggle="checkbox" ng-model="job.value">
                                                 {{job.label}}
                                         </div>
                                     </div>
                                     <br>
                                    
-                                        <select name="age" required="required" class="pull-left">
+                                        <select name="age" required="required" class="pull-left" ng-model="youngForm[6].age">
                                             <option value="" disabled selected>請選擇年齡層</option>
                                             <option >15 - 18</option>
                                             <option >19 - 24</option>
@@ -330,12 +330,21 @@
                                             <option >61 - 70</option>
                                             <option >71 以上</option>
                                         </select>
-                                        <input type="text" class="form-control" name="advice" placeholder="我想給建議或想說的話" aria-describedby="basic-addon1" >
-                                        <input type="email" class="form-control" name="email" placeholder="請輸入有效Email才能夠收到資訊唷！" aria-describedby="basic-addon1" required="required">
+                                        <input type="text" class="form-control" name="advice" placeholder="我想給建議或想說的話" aria-describedby="basic-addon1" ng-model="youngForm[7].advice">
+                                        <input type="email" class="form-control" name="email" placeholder="請輸入有效Email才能夠收到資訊唷！" aria-describedby="basic-addon1" required="required" ng-model="youngForm[8].email">
                                         
                                     
                                     <br>
-                                    <button class="contact-button btn btn-default" type="submit">確認送出</button>
+                                    <button class="young-button btn btn-default" type="submit">確認送出</button>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-xs-4"></div>
+                                        <div ng-show="youngMessage.success" class="book-success col-xs-4 ">{{youngMessage.success}}</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-3"></div>
+                                        <div ng-show="youngMessage.fail" class="book-fail col-xs-6 ">{{youngMessage.fail}}</div>
+                                    </div>
                                     
                                 </form>
                             </div>
@@ -351,13 +360,13 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-2"></div>
-                            <div class="col-xs-8">
-                                <div class="book-content">
-                                    <p>
-                                        如果您是公司人資主管並且願意接受我們採訪報導，分享您對年輕人的看法，歡迎留下您的email，我們會盡快與您聯絡！
-                                    </p>
-                                </div>
+                        <div class="col-xs-8">
+                            <div class="book-content">
+                                <p>
+                                    如果您是公司人資主管並且願意接受我們採訪報導，分享您對年輕人的看法，歡迎留下您的email，我們會盡快與您聯絡！
+                                </p>
                             </div>
+                        </div>
                     </div>
                     <div class="col-xs-offset-5">
                         
@@ -372,16 +381,24 @@
                     <div class="collapse book-form" id="contactHR">
                         <div class="well">
                             <div class="input-group">
-                                <form action="postHR" method="post">
-                                    <div class="young-form">
-                                        <input type="text" class="form-control" name="name"  required="required" placeholder="怎麼稱呼您" aria-describedby="basic-addon1" required="required">
-                                        <input type="text" class="form-control" name="company" placeholder="所屬公司或產業" aria-describedby="basic-addon1" required="required">
-                                        <input type="text" class="form-control" name="jobtitle" placeholder="職位職稱" aria-describedby="basic-addon1" required="required">
-                                        <input type="text" class="form-control" name="advice" placeholder="我想給建議或想說的話" aria-describedby="basic-addon1" >
-                                        <input type="email" class="form-control" name="email" placeholder="請輸入有效Email才能夠聯絡到您唷！" aria-describedby="basic-addon1" required="required">
+                                <form ng-submit="processHRForm()">
+                                    <div class="hr-form">
+                                        <input type="text" class="form-control" name="name"  required="required" placeholder="怎麼稱呼您" aria-describedby="basic-addon1" required="required" ng-model="hrForm.name">
+                                        <input type="text" class="form-control" name="company" placeholder="所屬公司或產業" aria-describedby="basic-addon1" required="required" ng-model="hrForm.company">
+                                        <input type="text" class="form-control" name="jobtitle" placeholder="職位職稱" aria-describedby="basic-addon1" required="required" ng-model="hrForm.jobtitle">
+                                        <input type="text" class="form-control" name="advice" placeholder="我想給建議或想說的話" aria-describedby="basic-addon1" ng-model="hrForm.advice">
+                                        <input type="email" class="form-control" name="email" placeholder="請輸入有效Email才能夠聯絡到您唷！" aria-describedby="basic-addon1" required="required" ng-model="hrForm.email">
                                     
                                     
-                                    <button class="contact-button btn btn-default" type="submit">確認送出</button>
+                                    <button class="hr-button btn btn-default" type="submit">確認送出</button>
+                                    <div class="row">
+                                        <div class="col-xs-3"></div>
+                                        <div ng-show="hrMessage.success" class="book-success col-xs-6 ">{{hrMessage.success}}</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-3"></div>
+                                        <div ng-show="hrMessage.fail" class="book-fail col-xs-6 ">{{hrMessage.fail}}</div>
+                                    </div>
                                     <div class="clear"></div>
                                     </div>
                                 </form>
@@ -415,13 +432,13 @@
                                 選擇你最想了解的企業，得票高者我們會為你進行邀約拜訪
                             </h3>
                             <h5>
-                                （名單不定期更新｜一組 Email 最多三票）
+                                （名單不定期更新｜一組 Email 最多五票）
                             </h5>
                         </div>
                         <div class="col-md-offset-2">
-                            <form action="vote" method="post">
+                            <form ng-submit="processVoteForm()">
                                 <div class="row vote-checkbox">
-                                    <div data-ng-repeat="company in companies" class="col-sm-4 col-xs-12">
+                                    <div data-ng-repeat="company in voteForm|limitTo:17" class="col-sm-4 col-xs-12">
                                         
                                         
                                             <input type="checkbox" name="{{company.name}}" value="true" id="checkbox1" data-toggle="checkbox" ng-model="company.winner" ng-change="checkChanged(company)" ng-disabled="checked==limit && !company.winner">
@@ -429,7 +446,8 @@
                                             
                                     </div>
                                     <div class="col-sm-4 col-xs-12">
-                                        <input name="other" placeholder="寫下其他想了解的企業">
+                                        <input type="text" name="other" placeholder="寫下其他想了解的企業" ng-model="voteForm[17].other">
+                                        
                                     </div>
                                 </div>
                                 <br>
@@ -439,13 +457,17 @@
                                     <div class="col-xs-6">
                                         <div class="form-group">
 
-                                            <input type="email" name="email" value="" placeholder="請輸入有效Email開始投票" class="form-control" required="required" >
+                                            <input type="email" name="email" value="" placeholder="請輸入有效Email開始投票" class="form-control" required="required" ng-model="voteForm[18].email">
                                             
                                         </div>
                                     </div>
-                                    <button class="btn btn-primary">送出</button>
+                                    <button class="btn btn-primary" type="submit">送出</button>
                                 </div>
 
+                                <div class="row">
+                                    <div class="col-xs-3"></div>
+                                    <div ng-show="voteMessage.fail" class="book-fail col-xs-4 ">{{voteMessage.fail}}</div>
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -453,7 +475,11 @@
                     <div ng-hide="showme" class="bubbleChart"></div>
                     <br>
                     <div class="text-center">
-                        <a href="#vote" class="btn btn-primary" ng-hide="showme" ng-click="showme=true">投票去</a>
+                        <a href="#vote" class="btn btn-primary" ng-hide="showme||voted" ng-click="showme=true" >投票去</a>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-5"></div>
+                        <div ng-show="voteMessage.success" class="book-success col-xs-2 text-center">{{voteMessage.success}}</div>
                     </div>
                 </div>
 
@@ -464,113 +490,6 @@
     </section>
 
     <div class="s-line"></div>
-
-    <!-- <section class="no-padding" id="portfolio">
-
-        <div class="container-fluid">
-            <div class="row no-gutter popup-gallery">
-                <div class="col-lg-4 col-sm-6">
-                    <a href="../img/portfolio/fullsize/1.jpg" class="portfolio-box">
-                        <img src="../img/portfolio/thumbnails/1.jpg" class="img-responsive" alt="">
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded">
-                                    Category
-                                </div>
-                                <div class="project-name">
-                                    Project Name
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <a href="../img/portfolio/fullsize/2.jpg" class="portfolio-box">
-                        <img src="../img/portfolio/thumbnails/2.jpg" class="img-responsive" alt="">
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded">
-                                    Category
-                                </div>
-                                <div class="project-name">
-                                    Project Name
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <a href="../img/portfolio/fullsize/3.jpg" class="portfolio-box">
-                        <img src="../img/portfolio/thumbnails/3.jpg" class="img-responsive" alt="">
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded">
-                                    Category
-                                </div>
-                                <div class="project-name">
-                                    Project Name
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <a href="../img/portfolio/fullsize/4.jpg" class="portfolio-box">
-                        <img src="../img/portfolio/thumbnails/4.jpg" class="img-responsive" alt="">
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded">
-                                    Category
-                                </div>
-                                <div class="project-name">
-                                    Project Name
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <a href="../img/portfolio/fullsize/5.jpg" class="portfolio-box">
-                        <img src="../img/portfolio/thumbnails/5.jpg" class="img-responsive" alt="">
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded">
-                                    Category
-                                </div>
-                                <div class="project-name">
-                                    Project Name
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <a href="../img/portfolio/fullsize/6.jpg" class="portfolio-box">
-                        <img src="../img/portfolio/thumbnails/6.jpg" class="img-responsive" alt="">
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded">
-                                    Category
-                                </div>
-                                <div class="project-name">
-                                    Project Name
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section> -->
-
-    <!-- <aside class="bg-dark">
-        <div class="container text-center">
-            <div class="call-to-action">
-                <h2>Free Download at Start Bootstrap!</h2>
-                <a href="http://startbootstrap.com/template-overviews/creative/" class="btn btn-default btn-xl sr-button">Download Now!</a>
-            </div>
-        </div>
-    </aside> -->
 
     <section id="about">
         <div class="container">
@@ -604,8 +523,8 @@
     <footer class="footer">
         <div class="container">
             <div class="row">
-                <div class="col-lg-4">
-                   <div class="fb-like" data-href="https://www.facebook.com/100HR100HR/?fref=ts" data-layout="standard" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+                <div class="col-xs-4">
+                   <div class="fb-like" data-href="https://www.facebook.com/100HR100HR/" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
                 </div>
                 <div class="col-lg-1">
                     
@@ -620,7 +539,7 @@
                         
                         <li class="footer-menu-divider">&sdot;</li>
                         <li>
-                            <a data-toggle="modal" data-target=".privacy-modal">隱私申明</a>
+                            <a data-toggle="modal" data-target=".privacy-modal">隱私聲明</a>
                         </li>
                         <li class="footer-menu-divider">&sdot;</li>
                         <li>
@@ -670,7 +589,7 @@
                             1. 我們向已簽署保密協議書之代表 100HR 執行業務或與我們共事的值得信賴的合作夥伴提供這些資料。這些公司可能會將您的個人資料用於協助 100HR 就我們和行銷夥伴所提供產品及服務的事宜，與您進行溝通。但這些公司無獨立權利分享這些資料。<br><br>
                             2. 我們對傳票、法院命令或法律程序作出回應、取得或行使法律權利，或對訴訟上之請求提出防禦。<br><br>
                             3. 我們認為為了調查和防止非法活動、涉嫌詐欺、對人身安全有潛在威脅的狀況、對 100HR 服務條款的違反，或為了對上述情形採取應對措施，或法律另有規定，而有必要分享您的個人資料時。<br><br>
-                            4. 如果 100HR 被其他公司收購或合併，我們會將您的個人資料移轉給該公司。<br><br>如果發生這種情況，100HR 會在您的個人資料被移轉且將適用不同的隱私權政策前通知您。<br>
+                            4. 如果 100HR 被其他公司收購或合併，我們會將您的個人資料移轉給該公司。<br>如果發生這種情況，100HR 會在您的個人資料被移轉且將適用不同的隱私權政策前通知您。<br><br>
                             5. 在您瀏覽精準式行銷廣告或與廣告發生互動時，100HR 不會向廣告主提供您的任何個人資料。然而，一旦瀏覽廣告或與廣告發生互動，即表示您同意廣告主可能會假定您符合展示型廣告所使用的精準式行銷標準。<br></p>
                             <h4>機密性和安全性</h4>
                             <p>我們會將有權存取您個人資料之員工限於我們合理相信是為了向您提供產品或服務或為了完成工作而需要取得這些資料的員工。<br> 
