@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="index">
+<html lang="en" ng-app="index" >
 
 <head>
 
@@ -46,6 +46,9 @@
       <script src="http://phuonghuynh.github.io/js/bower_components/bubble-chart/src/plugins/central-click/central-click.js"></script>
       <script src="http://phuonghuynh.github.io/js/bower_components/bubble-chart/src/plugins/lines/lines.js"></script>
       
+      <script src="../js/sticky.js"></script>
+    
+
   <style>
     .bubbleChart {
       min-width: 60%;
@@ -66,7 +69,7 @@
 
 </head>
 
-<body id="page-top" class ="bgsettings" ng-controller="indexController">
+<body id="page-top" class ="bgsettings" >
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T4XKML"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -126,15 +129,17 @@
     
     <div class="s-line"></div>
 
+    <div ng-controller="demoCtrl" >
     <section id="why" class="hv-sec">
         <div class="row">
             <div class="why-content col-lg-5 col-sm-5">
-                <h2 class="why-header section-heading">為什麼做這件事情</h2>
+                <h2 class="why-header section-heading" sticky offset="60" confine="true">為什麼做這件事情</h2>
                 <div class="why-content-bg">
                     <div class="why-content-top">
                     </div>
                     <p class="lead">
                         台灣的年輕人很努力<br>
+
                         可是台灣的年輕人<br>
                         跟企業的距離很遠<br><br>
 
@@ -161,7 +166,10 @@
                         撰寫100篇報導<br>
                         拉近年輕人與企業的距離。
                     </p>
+
                 </div>
+
+                 
             </div>
             <div class="col-lg-7 col-sm-7">
                 <img class="img-responsive whimg" src="../img/core/why-to-do.jpg" alt="">
@@ -203,65 +211,12 @@
             </div>
         </div>
     </section>
-    <!-- <section class="bg-primary" id="123">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <h2 class="section-heading">We've got what you need!</h2>
-                    <hr class="light">
-                    <p class="text-faded">Start Bootstrap has everything you need to get your new website up and running in no time! All of the templates and themes on Start Bootstrap are open source, free to download, and easy to use. No strings attached!</p>
-                    <a href="#how" class="page-scroll btn btn-default btn-xl sr-button">Get Started!</a>
-                </div>
-            </div>
-        </div>
-    </section> -->
-
-
-    <!-- <section id="how">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">怎麼做</h2>
-                    <hr class="primary">
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-md-6 text-center">
-                    <div class="service-box">
-                        <i class="fa fa-4x fa-diamond text-primary sr-icons"></i>
-                        <h3>Sturdy Templates</h3>
-                        <p class="text-muted">Our templates are updated regularly so they don't break.</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 text-center">
-                    <div class="service-box">
-                        <i class="fa fa-4x fa-paper-plane text-primary sr-icons"></i>
-                        <h3>Ready to Ship</h3>
-                        <p class="text-muted">You can use this theme as is, or you can make changes!</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 text-center">
-                    <div class="service-box">
-                        <i class="fa fa-4x fa-newspaper-o text-primary sr-icons"></i>
-                        <h3>Up to Date</h3>
-                        <p class="text-muted">We update dependencies to keep things fresh.</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 text-center">
-                    <div class="service-box">
-                        <i class="fa fa-4x fa-heart text-primary sr-icons"></i>
-                        <h3>Made with Love</h3>
-                        <p class="text-muted">You have to make your websites with love these days!</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> -->
+    </div>
 
     <div class="s-line"></div>
     
+
+    <div ng-controller="indexController">
     <div id="book" class="book">
         <div class="row">
             <div class="col-lg-6 col-sm-6 book-section-young hv-sec">
@@ -301,7 +256,7 @@
                                     </div>
                                     <br>
                                    
-                                        <select name="age" required="required" class="pull-left" ng-model="youngForm[6].age">
+                                        <select name="age"  class="pull-left" ng-model="youngForm[6].age">
                                             <option value="" disabled selected>請選擇年齡層</option>
                                             <option >15 - 18</option>
                                             <option >19 - 24</option>
@@ -314,8 +269,11 @@
                                             <option >61 - 70</option>
                                             <option >71 以上</option>
                                         </select>
-                                        <input type="email" class="form-control" name="email" placeholder="請輸入有效Email才能夠收到資訊唷！" aria-describedby="basic-addon1" required="required" ng-model="youngForm[8].email">
-                                        <input type="text" class="form-control" name="advice" placeholder="我想給建議或想說的話（非必填）" aria-describedby="basic-addon1" ng-model="youngForm[7].advice">
+
+                                        <input type="text" class="form-control" name="advice" placeholder="我想給建議或想說的話" aria-describedby="basic-addon1" ng-model="youngForm[7].advice">
+                                        <input type="email" class="form-control" name="email" placeholder="請輸入有效Email才能夠收到資訊唷！" aria-describedby="basic-addon1"  ng-model="youngForm[8].email">
+                                        
+
                                     
                                     <br>
                                     <button class="young-button btn btn-primary btn-xl" type="submit">確認送出</button>
@@ -367,11 +325,11 @@
                             <div class="input-group">
                                 <form ng-submit="processHRForm()">
                                     <div class="hr-form">
-                                        <input type="text" class="form-control" name="name"  required="required" placeholder="怎麼稱呼您" aria-describedby="basic-addon1" required="required" ng-model="hrForm.name">
-                                        <input type="text" class="form-control" name="company" placeholder="所屬公司或產業" aria-describedby="basic-addon1" required="required" ng-model="hrForm.company">
-                                        <input type="text" class="form-control" name="jobtitle" placeholder="職位職稱" aria-describedby="basic-addon1" required="required" ng-model="hrForm.jobtitle">
+                                        <input type="text" class="form-control" name="name"  placeholder="怎麼稱呼您" aria-describedby="basic-addon1"  ng-model="hrForm.name">
+                                        <input type="text" class="form-control" name="company" placeholder="所屬公司或產業" aria-describedby="basic-addon1"  ng-model="hrForm.company">
+                                        <input type="text" class="form-control" name="jobtitle" placeholder="職位職稱" aria-describedby="basic-addon1" ng-model="hrForm.jobtitle">
                                         <input type="text" class="form-control" name="advice" placeholder="我想給建議或想說的話" aria-describedby="basic-addon1" ng-model="hrForm.advice">
-                                        <input type="email" class="form-control" name="email" placeholder="請輸入有效Email才能夠聯絡到您唷！" aria-describedby="basic-addon1" required="required" ng-model="hrForm.email">
+                                        <input type="email" class="form-control" name="email" placeholder="請輸入有效Email才能夠聯絡到您唷！" aria-describedby="basic-addon1" ng-model="hrForm.email">
                                     
                                     
                                     <button class="hr-button btn btn-primary btn-xl" type="submit">確認送出</button>
@@ -422,7 +380,7 @@
                         <div class="col-md-offset-2">
                             <form ng-submit="processVoteForm()">
                                 <div class="row vote-checkbox">
-                                    <div data-ng-repeat="company in voteForm|limitTo:17" class="col-sm-4 col-xs-12">
+                                    <div data-ng-repeat="company in voteForm|limitTo:17" class="col-md-4 col-sm-6 col-xs-12">
                                         
                                         
                                             <input type="checkbox" name="{{company.name}}" value="true" id="checkbox1" data-toggle="checkbox" ng-model="company.winner" ng-change="checkChanged(company)" ng-disabled="checked==limit && !company.winner">
@@ -441,7 +399,7 @@
                                     <div class="col-xs-6">
                                         <div class="form-group">
 
-                                            <input type="email" name="email" value="" placeholder="請輸入有效Email開始投票" class="form-control" required="required" ng-model="voteForm[18].email">
+                                            <input type="email" name="email" value="" placeholder="請輸入有效Email開始投票" class="form-control" ng-model="voteForm[18].email">
                                             
                                         </div>
                                     </div>
@@ -472,6 +430,7 @@
             
         </div>
     </section>
+    </div>
 
     <div class="s-line"></div>
 
@@ -523,7 +482,7 @@
                         
                         <li class="footer-menu-divider">&sdot;</li>
                         <li>
-                            <a data-toggle="modal" data-target=".privacy-modal">隱私聲明</a>
+                            <a href="#" data-toggle="modal" data-target=".privacy-modal">隱私聲明</a>
                         </li>
                         <li class="footer-menu-divider">&sdot;</li>
                         <li>
@@ -564,7 +523,7 @@
                             <h3>資料蒐集及使用</h3>
                             <h4>總論</h4>
                             <p>在您訂閱100HR、使用 100HR產品或服務、瀏覽100HR網頁或某些合作夥伴的網頁，以及參加宣傳活動或贈獎遊戲時，100HR會蒐集您的個人資料。<br>100HR 也可能從商業夥伴或其他公司處取得您的個人資料，並將這些資料與 100HR 所擁有的您的個人資料相結合。<br><br>
-                            當您訂閱100HR時，我們可能會詢問您的姓名、電子郵件地址、出生日期、性別、職位、行業及個人興趣等資料。<br>INSIDE 蒐集您與我們或我們的商業夥伴交易的資料。<br>
+                            當您訂閱100HR時，我們可能會詢問您的姓名、電子郵件地址、出生日期、性別、職位、行業及個人興趣等資料。<br>
                             100HR 也自動接收並記錄您電腦和瀏覽器上的資料，包括 IP 位址、100HR cookie 中的資料、軟體和硬體屬性以及您瀏覽的網頁紀錄。<br><br>
                             100HR 一般將資料用作以下用途：客製化廣告及您看到的網頁內容、滿足您對產品和服務的要求、改進我們的服務、聯絡您、相關行銷需求、進行研究，以及提供內部及外部客戶匿名報告。
                             </p>
