@@ -2969,6 +2969,7 @@ select[multiple].input-lg {
     font-size: 12px;
   }
 }
+
 .btn {
   display: inline-block;
   padding: 6px 12px;
@@ -2987,6 +2988,7 @@ select[multiple].input-lg {
   border: 1px solid transparent;
   border-radius: 4px;
 }
+
 .btn:focus,
 .btn:active:focus,
 .btn.active:focus,
