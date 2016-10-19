@@ -26,11 +26,119 @@
     filter: blur(2px);
     margin-top: 20px;
     text-align: center;
+    border-radius: 10px;
+}
+
+.well-paddign-none {
+    padding: 0 0 20px 0;
+}
+
+.well-paddign-none-hr {
+    padding: 20px 0;
+}
+
+.hr-input {
+    width: 100%;
+}
+
+.book-margin {
+    margin: 0 20px;
 }
 
 .button-y-hr {
     margin-left: 0;
     text-align: center;
+}
+
+.vote-title {
+    background-color: #fff000;
+    color: #595857;
+    width: 170px;
+    height: 50px;
+    letter-spacing: 2.5px;
+    font-size: 32px;
+    margin: 0 auto;
+    font-family: "Noto Sans TC L", "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+.bubbleChart {
+    min-width: 60%;
+    max-height: 650px;
+    margin: 20px auto;
+}
+
+.vote-intro {
+    font-size: 26px;
+    letter-spacing: 2px;
+    text-align: center;
+    color: #9d9d9e;
+    font-family: "Noto Sans TC L", "Open Sans", "Helvetica Neue", sans-serif;
+    margin: 20px auto 25px;
+}
+
+.vote-subline {
+    font-size: 18px;
+    letter-spacing: 1px;
+    color: #9d9d9e;
+    text-align: center;
+    font-family: "Noto Sans TC L", "Open Sans", "Helvetica Neue", sans-serif;
+    margin: 0 auto 40px;
+}
+
+.vote-option-other {
+    font-size: 14px;
+    letter-spacing: 1px;
+    border: 1.5px solid #979797;  
+    font-family: "Noto Sans TC L", "Open Sans", "Helvetica Neue", sans-serif;  
+}
+
+@media (max-width: 768px) {
+    .vote-title {
+        background-color: #fff000;
+        color: #595857;
+        width: 145px;
+        height: 43px;
+        letter-spacing: 2px;
+        font-size: 26px;
+        margin: 0 auto;
+        font-family: "Noto Sans TC L", "Open Sans", "Helvetica Neue", sans-serif;
+    }
+
+    .vote-intro {
+        font-size: 22px;
+        letter-spacing: 1px;
+        text-align: center;
+        color: #9d9d9e;
+        font-family: "Noto Sans TC L", "Open Sans", "Helvetica Neue", sans-serif;
+        margin: 15px auto 25px;
+    }
+
+}
+
+@media (max-width: 380px) {
+    .vote-title {
+        background-color: #fff000;
+        color: #595857;
+        width: 145px;
+        height: 43px;
+        letter-spacing: 2px;
+        font-size: 26px;
+        margin: 0 auto;
+        font-family: "Noto Sans TC L", "Open Sans", "Helvetica Neue", sans-serif;
+    }
+    .vote-intro {
+        font-size: 18px;
+        letter-spacing: 1px;
+        text-align: center;
+        color: #9d9d9e;
+        font-family: "Noto Sans TC L", "Open Sans", "Helvetica Neue", sans-serif;
+        margin: 10px auto 25px;
+    }
+
+}
+
+.vote-button {
+    margin: 20px auto 10px; 
 }
 
 @font-face {
@@ -55,4 +163,321 @@
         url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Bold.woff) format('woff'),
         url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Bold.otf) format('opentype');
     // src: url(http://fonts.googleapis.com/earlyaccess/notosanstc.css);
+}
+
+/*checkbox*//*checkbox*//*checkbox*//*checkbox*//*checkbox*//*checkbox*/
+/*checkbox*//*checkbox*//*checkbox*//*checkbox*//*checkbox*//*checkbox*/
+/*checkbox*//*checkbox*//*checkbox*//*checkbox*//*checkbox*//*checkbox*/
+
+.checkheight {
+    padding-bottom: 20px;
+}
+
+.checkspan {
+    font-size: 14px;
+    color: #9d9d9e;
+    font-family: "Noto Sans TC L", "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+/* Checkmark style starts */
+@-moz-keyframes dothabottomcheck {
+  0% {
+    height: 0; }
+  100% {
+    height: 12px; } }
+@-webkit-keyframes dothabottomcheck {
+  0% {
+    height: 0; }
+  100% {
+    height: 12px; } }
+@keyframes dothabottomcheck {
+  0% {
+    height: 0; }
+  100% {
+    height: 12px; } }
+@keyframes dothatopcheck {
+  0% {
+    height: 0; }
+  50% {
+    height: 0; }
+  100% {
+    height: 28.8px; } }
+@-webkit-keyframes dothatopcheck {
+  0% {
+    height: 0; }
+  50% {
+    height: 0; }
+  100% {
+    height: 28.8px; } }
+@-moz-keyframes dothatopcheck {
+  0% {
+    height: 0; }
+  50% {
+    height: 0; }
+  100% {
+    height: 28.8px; } }
+input[type=checkbox] {
+  display: none; }
+
+.check-box {
+  height: 24px;
+  width: 24px;
+  margin-right: 7px;
+  vertical-align: middle;
+  background-color: transparent;
+  border: 2px solid #979797;
+  border-radius: 5px;
+  position: relative;
+  display: inline-block;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -moz-transition: border-color ease 0.15s;
+  -o-transition: border-color ease 0.15s;
+  -webkit-transition: border-color ease 0.15s;
+  transition: border-color ease 0.15s;
+  cursor: pointer; }
+  .check-box::before, .check-box::after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    position: absolute;
+    height: 0;
+    width: 4.8px;
+    background-color: #71b8e6;
+    display: inline-block;
+    -moz-transform-origin: left top;
+    -ms-transform-origin: left top;
+    -o-transform-origin: left top;
+    -webkit-transform-origin: left top;
+    transform-origin: left top;
+    border-radius: 5px;
+    content: ' ';
+    -webkit-transition: opacity ease .5;
+    -moz-transition: opacity ease .5;
+    transition: opacity ease .5; }
+  .check-box::before {
+    top: 17.28px;
+    left: 9.84px;
+    box-shadow: 0 0 0 1.2px white;
+    -moz-transform: rotate(-135deg);
+    -ms-transform: rotate(-135deg);
+    -o-transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+    transform: rotate(-135deg); }
+  .check-box::after {
+    top: 8.88px;
+    left: 1.2px;
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg); }
+
+input[type=checkbox]:checked + .check-box,
+.check-box.checked {
+  border-color: #71b8e6; }
+  input[type=checkbox]:checked + .check-box::after,
+  .check-box.checked::after {
+    height: 12px;
+    -moz-animation: dothabottomcheck 0.15s ease 0s forwards;
+    -o-animation: dothabottomcheck 0.15s ease 0s forwards;
+    -webkit-animation: dothabottomcheck 0.15s ease 0s forwards;
+    animation: dothabottomcheck 0.15s ease 0s forwards; }
+  input[type=checkbox]:checked + .check-box::before,
+  .check-box.checked::before {
+    height: 28.8px;
+    -moz-animation: dothatopcheck 0.3s ease 0s forwards;
+    -o-animation: dothatopcheck 0.3s ease 0s forwards;
+    -webkit-animation: dothatopcheck 0.3s ease 0s forwards;
+    animation: dothatopcheck 0.3s ease 0s forwards; }
+
+
+/** Custom Select **//** Custom Select **//** Custom Select **//** Custom Select **/
+/** Custom Select **//** Custom Select **//** Custom Select **//** Custom Select **/
+/** Custom Select **//** Custom Select **//** Custom Select **//** Custom Select **/
+
+.select-upup {
+    position: relative;
+    z-index: 50;
+    text-align: left;
+    padding: 10px 0 25px; 
+}
+
+.custom-select-wrapper {
+    position: relative;
+    display: inline-block;
+    user-select: none;
+    width: 100%
+}
+.custom-select-wrapper select {
+    display: none;
+    width: 100%
+}
+.custom-select {
+    position: relative;
+    display: inline-block;
+    width: 100%
+}
+.custom-select-trigger {
+    position: relative;
+    display: block;
+    /*margin-right: 20px;*/
+    padding-left: 20px;
+    font-size: 14px;
+    color: #979797;
+    letter-spacing: 1px;
+    line-height: 40px;
+    background: white;
+    border: 1.5px solid #979797;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: "Noto Sans TC L", "Open Sans", "Helvetica Neue", sans-serif;
+}
+.custom-select-trigger:after {
+    position: absolute;
+    display: block;
+    content: '';
+    width: 10px; height: 10px;
+    top: 50%; right: 25px;
+    margin-top: -3px;
+    border-bottom: 2px solid #979797;
+    border-right: 2px solid #979797;
+    transform: rotate(45deg) translateY(-50%);
+    transition: all .4s ease-in-out;
+    transform-origin: 50% 0;
+}
+.custom-select.opened .custom-select-trigger:after {
+    margin-top: 3px;
+    transform: rotate(-135deg) translateY(-50%);
+}
+.custom-options {
+    position: absolute;
+    display: block;
+    top: 100%; left: 0; right: 0;
+    min-width: 100%;
+    margin: 15px 0;
+    border: 1px solid #979797;
+    border-radius: 4px;
+    box-sizing: border-box;
+    box-shadow: 0 2px 1px rgba(0,0,0,.07);
+    background: white;
+    transition: all .4s ease-in-out;
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-15px);
+}
+.custom-select.opened .custom-options {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+    transform: translateY(0);
+}
+.custom-options:before {
+    position: absolute;
+    display: block;
+    content: '';
+    bottom: 100%; right: 25px;
+    width: 7px; height: 7px;
+    margin-bottom: -4px;
+    border-top: 1px solid #979797;
+    border-left: 1px solid #979797;
+    background: white;
+    transform: rotate(45deg);
+    transition: all .4s ease-in-out;
+}
+.option-hover:before {
+    background: #f9f9f9;
+}
+.custom-option {
+    position: relative;
+    display: block;
+    padding: 0 22px;
+    border-bottom: 1px solid #979797;
+    font-size: 14px;
+    color: #979797;
+    letter-spacing: 1px;
+    line-height: 40px;
+    cursor: pointer;
+    transition: all .4s ease-in-out;
+    font-family: "Noto Sans TC L", "Open Sans", "Helvetica Neue", sans-serif;
+}
+.custom-option:first-of-type {
+    border-radius: 4px 4px 0 0;
+}
+.custom-option:last-of-type {
+    border-bottom: 0;
+    border-radius: 0 0 4px 4px;
+}
+.custom-option:hover,
+.custom-option.selection {
+    background: #f9f9f9;
+}
+
+
+
+/*form-input*//*form-input*//*form-input*//*form-input*//*form-input*/
+/*form-input*//*form-input*//*form-input*//*form-input*//*form-input*/
+/*form-input*//*form-input*//*form-input*//*form-input*//*form-input*/
+
+
+form label {
+    position: relative;
+    display: block; 
+}
+
+form label input {
+    box-sizing: border-box;
+    display: block;
+    border: 1.5px solid #979797;
+    border-radius: 5px;
+    padding: 20px;
+    width: 100%;
+    margin-bottom: 25px;
+    font-size: 14px;
+    letter-spacing: 1px;
+    outline: none;
+    transition: all 0.2s ease-in-out; 
+    font-family: "Noto Sans TC L", "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+form label input::placeholder {
+    transition: all 0.2s ease-in-out;
+    color: red;
+    font-size: 14px; 
+    letter-spacing: 1px;
+    font-family: "Noto Sans TC L", "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+form label input:focus, form label input.populated {
+    padding-top: 28px;
+    padding-bottom: 12px; 
+}
+
+form label input:focus::placeholder, 
+form label input.populated::placeholder {
+    color: transparent; 
+}
+
+form label input:focus + span, form label input.populated + span {
+    opacity: 1;
+    top: 10px; 
+}
+
+form label span {
+    letter-spacing: 1px;
+    color: #71b8e6;
+    font-size: 14px;
+    position: absolute;
+    top: 0px;
+    left: 20px;
+    opacity: 0;
+    transition: all 0.2s ease-in-out; 
+    font-family: "Noto Sans TC", "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+.hr-span {
+    color: #fbcea3;
 }

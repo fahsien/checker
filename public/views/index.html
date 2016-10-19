@@ -14,11 +14,13 @@
     <!-- FlatUI CSS -->
     <!-- <link href="../css/flat-ui.css" rel="stylesheet"> -->
 
-    <!-- Core CSS -->
-    <link href="../css/core.css" rel="stylesheet">
+    
 
     <!-- Bootstrap Core CSS -->
     <link href="../css/bootstrap.css" rel="stylesheet">
+
+    <!-- Core CSS -->
+    <link href="../css/core.css" rel="stylesheet">
 
     <!-- Plugin CSS -->
     <link href="../css/magnific-popup.css" rel="stylesheet">
@@ -49,15 +51,6 @@
       <script src="../js/sticky.js"></script>
     
 
-  <style>
-    .bubbleChart {
-      min-width: 60%;
-      /*min-width: 700px;*/
-      height: 500px;
-      
-    }
-    
-  </style>
     <!-- GTM -->
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -133,9 +126,11 @@
     <section id="why" class="hv-sec">
         <div class="row">
             <div class="why-content col-lg-5 col-sm-5">
-                <h2 class="why-header section-heading" sticky offset="60" confine="true">為什麼做這件事情</h2>
+                <h2 class="why-header section-heading" sticky offset="62" confine="true">為什麼做這件事情</h2>
                 <div class="why-content-bg">
-                    <div class="why-content-top">
+                    <div class="why-content-supertop" sticky offset="62" confine="true">
+                    </div>
+                    <div class="why-content-top" sticky offset="82" confine="true">
                     </div>
                     <p class="lead">
                         台灣的年輕人很努力<br>
@@ -182,9 +177,11 @@
     <section id="how" class="hv-sec">
         <div class="row">
             <div class="how-content col-lg-5 col-sm-push-7  col-sm-5">
-                <h2 class="how-header section-heading">要怎麼做這件事情</h2>
+                <h2 class="how-header section-heading" sticky offset="62" confine="true">要怎麼做這件事情</h2>
                 <div class="why-content-bg">
-                    <div class="why-content-top">
+                    <div class="why-content-supertop" sticky offset="62" confine="true">
+                    </div>
+                    <div class="why-content-top" sticky offset="82" confine="true">
                     </div>
                     <p class="lead">這是一個為期一年不斷進行的計畫。<br><br>
 
@@ -244,50 +241,57 @@
                     </div>
 
                     <div class="collapse book-form" id="contactYoung">
-                        <div class="well">
-                            <div class="input-group">
-                                <form ng-submit="processYoungForm()">
-                                    <div>請勾選感興趣產業</div>
-                                    <div class="row">
-                                        <div data-ng-repeat="job in youngForm|limitTo:6" class="col-md-4 col-xs-6">
-                                            <input type="checkbox" name="{{job.name}}" value="true" id="checkbox1" data-toggle="checkbox" ng-model="job.value">
-                                                {{job.label}}
+                        <div class="well well-paddign-none">
+                            <div class="book-margin">
+                                <div class="input-group">
+                                    <form ng-submit="processYoungForm()">
+                                        <div class="booktitle">｜勾選感興趣產業吧</div>
+                                        <div class="row">
+                                            <div data-ng-repeat="job in youngForm|limitTo:6" class="col-md-4 col-xs-6 checkheight">
+                                                <input type="checkbox" name="{{job.name}}" value="true" id="{{job.name}}" data-toggle="checkbox" ng-model="job.value" >
+                                                <label for="{{job.name}}" class="check-box"></label>
+                                                    <span class="checkspan">{{job.label}}
+                                            </div>
                                         </div>
-                                    </div>
-                                    <br>
-                                   
-                                        <select name="age"  class="pull-left" ng-model="youngForm[6].age">
-                                            <option value="" disabled selected>請選擇年齡層</option>
-                                            <option >15 - 18</option>
-                                            <option >19 - 24</option>
-                                            <option >25 - 30</option>
-                                            <option >31 - 35</option>
-                                            <option >36 - 40</option>
-                                            <option >41 - 45</option>
-                                            <option >46 - 50</option>
-                                            <option >51 - 60</option>
-                                            <option >61 - 70</option>
-                                            <option >71 以上</option>
-                                        </select>
-
-                                        <input type="text" class="form-control" name="advice" placeholder="我想給建議或想說的話" aria-describedby="basic-addon1" ng-model="youngForm[7].advice">
-                                        <input type="email" class="form-control" name="email" placeholder="請輸入有效Email才能夠收到資訊唷！" aria-describedby="basic-addon1"  ng-model="youngForm[8].email">
+                                        <!-- <div class="booktitle">｜讓我們知道你的年齡層</div> -->
+                                        <div class="select-upup">
+                                            <select name="age"  class="custom-select sources" ng-model="youngForm[6].age" placeholder="選擇年齡區間">
+                                                <option value="" disabled selected>請選擇年齡層</option>
+                                                <option >15 - 18</option>
+                                                <option >19 - 24</option>
+                                                <option >25 - 30</option>
+                                                <option >31 - 35</option>
+                                                <option >36 - 40</option>
+                                                <option >41 - 50</option>
+                                                <option >51 - 60</option>
+                                                <option >61 - 70</option>
+                                                <option >71 以上</option>
+                                            </select>
+                                        </div>
+                                        <form>
+                                            <label>
+                                                <input id="fname" type="text" name="advice" placeholder="我想給建議或想說的話" aria-describedby="basic-addon1" ng-model="youngForm[7].advice">
+                                                    <span>我想給建議或想說的話</span>
+                                            </label>
+                                        </form>
+                                        <form>
+                                            <label>
+                                                <input id="fname" type="email" name="email" placeholder="Email" aria-describedby="basic-addon1"  ng-model="youngForm[8].email">
+                                                    <span>有效 Email 才能收到資訊唷！</span>
+                                            </label>  
+                                        </form>  
+                                        <button class="young-button btn btn-primary btn-xl" type="submit">確認送出</button>
+                                        <div class="row">
+                                            <div class="col-xs-4"></div>
+                                            <div ng-show="youngMessage.success" class="book-success col-xs-4 ">{{youngMessage.success}}</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-3"></div>
+                                            <div ng-show="youngMessage.fail" class="book-fail col-xs-6 ">{{youngMessage.fail}}</div>
+                                        </div>
                                         
-
-                                    
-                                    <br>
-                                    <button class="young-button btn btn-primary btn-xl" type="submit">確認送出</button>
-                                    <br>
-                                    <div class="row">
-                                        <div class="col-xs-4"></div>
-                                        <div ng-show="youngMessage.success" class="book-success col-xs-4 ">{{youngMessage.success}}</div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-xs-3"></div>
-                                        <div ng-show="youngMessage.fail" class="book-fail col-xs-6 ">{{youngMessage.fail}}</div>
-                                    </div>
-                                    
-                                </form>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -318,32 +322,57 @@
                        
                     </div>
                 
-                    
-
                     <div class="collapse book-form" id="contactHR">
-                        <div class="well">
-                            <div class="input-group">
-                                <form ng-submit="processHRForm()">
-                                    <div class="hr-form">
-                                        <input type="text" class="form-control" name="name"  placeholder="怎麼稱呼您" aria-describedby="basic-addon1"  ng-model="hrForm.name">
-                                        <input type="text" class="form-control" name="company" placeholder="所屬公司或產業" aria-describedby="basic-addon1"  ng-model="hrForm.company">
-                                        <input type="text" class="form-control" name="jobtitle" placeholder="職位職稱" aria-describedby="basic-addon1" ng-model="hrForm.jobtitle">
-                                        <input type="text" class="form-control" name="advice" placeholder="我想給建議或想說的話" aria-describedby="basic-addon1" ng-model="hrForm.advice">
-                                        <input type="email" class="form-control" name="email" placeholder="請輸入有效Email才能夠聯絡到您唷！" aria-describedby="basic-addon1" ng-model="hrForm.email">
-                                    
-                                    
-                                    <button class="hr-button btn btn-primary btn-xl" type="submit">確認送出</button>
-                                    <div class="row">
-                                        <div class="col-xs-3"></div>
-                                        <div ng-show="hrMessage.success" class="book-success col-xs-6 ">{{hrMessage.success}}</div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-xs-3"></div>
-                                        <div ng-show="hrMessage.fail" class="book-fail col-xs-6 ">{{hrMessage.fail}}</div>
-                                    </div>
-                                    <div class="clear"></div>
-                                    </div>
-                                </form>
+                        <div class="well well-paddign-none-hr">
+                            <div class="book-margin">
+                                <div class="input-group hr-input">
+                                    <form ng-submit="processHRForm()">
+                                        <form>
+                                            <label>
+                                                <input id="fname" type="text" name="name"  placeholder="怎麼稱呼您" aria-describedby="basic-addon1"  ng-model="hrForm.name">
+                                                    <span class="hr-span">怎麼稱呼您</span>
+                                            </label>  
+                                        </form>
+
+                                        <form>
+                                            <label>
+                                                <input id="fname" type="text" name="company"  placeholder="所屬的公司或產業別" aria-describedby="basic-addon1"  ng-model="hrForm.company">
+                                                    <span class="hr-span">所屬的公司或產業別</span>
+                                            </label>  
+                                        </form>         
+                                        
+                                        <form>
+                                            <label>
+                                                <input id="fname" type="text" name="jobtitle"  placeholder="職位職稱" aria-describedby="basic-addon1"  ng-model="hrForm.jobtitle">
+                                                    <span class="hr-span">職位職稱</span>
+                                            </label>  
+                                        </form>      
+                                            
+                                        <form>
+                                            <label>
+                                                <input id="fname" type="text" name="advice"  placeholder="想給建議或想說的話" aria-describedby="basic-addon1"  ng-model="hrForm.advice">
+                                                    <span class="hr-span">想給建議或想說的話</span>
+                                            </label>  
+                                        </form>
+
+                                        <form>
+                                            <label>
+                                                <input id="fname" type="email" name="email"  placeholder="Email" aria-describedby="basic-addon1"  ng-model="hrForm.email">
+                                                    <span class="hr-span">有效 Email 才能聯絡到您唷！</span>
+                                            </label>  
+                                        </form>                                        
+                                        <button class="hr-button btn btn-primary btn-xl" type="submit">確認送出</button>
+                                        <div class="row">
+                                            <div class="col-xs-3"></div>
+                                            <div ng-show="hrMessage.success" class="book-success col-xs-6 ">{{hrMessage.success}}</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-3"></div>
+                                            <div ng-show="hrMessage.fail" class="book-fail col-xs-6 ">{{hrMessage.fail}}</div>
+                                        </div>
+                                        <div class="clear"></div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div> 
@@ -358,76 +387,71 @@
 
     <section id="vote">    
         <div>
-
-            <div class="container">
-
-                <div class="text-center" ng-hide="showme">
-                    <h3>
-                        企業票選，得票高者我們會為您進行邀約拜訪
-                    </h3>
-                </div>
-                
-                <div>
-                    <div class="vote-form" ng-show="showme">
-                        <div class="text-center">
-                            <h3>
-                                選擇你最想了解的企業，得票高者我們會為你進行邀約拜訪
-                            </h3>
-                            <h5>
-                                （名單不定期更新｜一組 Email 最多五票）
-                            </h5>
-                        </div>
-                        <div class="col-md-offset-2">
-                            <form ng-submit="processVoteForm()">
-                                <div class="row vote-checkbox">
-                                    <div data-ng-repeat="company in voteForm|limitTo:17" class="col-md-4 col-sm-6 col-xs-12">
-                                        
-                                        
-                                            <input type="checkbox" name="{{company.name}}" value="true" id="checkbox1" data-toggle="checkbox" ng-model="company.winner" ng-change="checkChanged(company)" ng-disabled="checked==limit && !company.winner">
-                                            {{company.label}}
-                                            
-                                    </div>
-                                    <div class="col-sm-4 col-xs-12">
-                                        <input type="text" name="other" placeholder="寫下其他想了解的企業" ng-model="voteForm[17].other">
-                                        
-                                    </div>
-                                </div>
-                                <br>
-                                
-                                <div class="row">
-                                    <div class="col-sm-2"></div>
-                                    <div class="col-xs-6">
-                                        <div class="form-group">
-
-                                            <input type="email" name="email" value="" placeholder="請輸入有效Email開始投票" class="form-control" ng-model="voteForm[18].email">
-                                            
-                                        </div>
-                                    </div>
-                                    <button class="btn btn-primary btn-xl" type="submit">送出</button>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-xs-3"></div>
-                                    <div ng-show="voteMessage.fail" class="book-fail col-xs-4 ">{{voteMessage.fail}}</div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                  
-                    <div ng-hide="showme" class="bubbleChart"></div>
-                    <br>
-                    <div class="text-center">
-                        <a href="#vote" class="btn btn-primary btn-xl" ng-hide="showme||voted" ng-click="showme=true" >投票去</a>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-5"></div>
-                        <div ng-show="voteMessage.success" class="book-success col-xs-2 text-center">{{voteMessage.success}}</div>
-                    </div>
-                </div>
-
+            <div class="text-center">
+                <h3 class="vote-title">
+                    企業票選
+                </h3>
             </div>
-            <!-- /.container -->
             
+            <div>
+                <div class="vote-form" ng-show="showme">
+                    <div class="text-center">
+                        <h3 class="vote-intro">
+                            選擇你最想了解的企業，得票高者我們會為你進行邀約拜訪
+                        </h3>
+                        <h5 class="vote-subline">
+                            （名單不定期更新｜一組 Email 最多五票）
+                        </h5>
+                    </div>
+                    <div class="col-md-offset-2">
+                        <form ng-submit="processVoteForm()">
+                            <div class="row vote-checkbox">
+                                <div data-ng-repeat="company in voteForm|limitTo:17" class="col-md-4 col-sm-6 col-xs-12 checkheight">
+                                   
+                                    <input type="checkbox" name="{{company.name}}" value="true" data-toggle="checkbox" id="{{company.name}}" ng-model="company.winner" ng-change="checkChanged(company)" ng-disabled="checked==limit && !company.winner">
+                                        <label for="{{company.name}}" class="check-box"></label>
+                                        <span class="checkspan">{{company.label}}
+                                    
+                                    <!-- <input type="checkbox" name="{{company.name}}" value="true" id="checkbox1" data-toggle="checkbox" ng-model="company.winner" ng-change="checkChanged(company)" ng-disabled="checked==limit && !company.winner">
+                                    {{company.label}} -->
+                                        
+                                </div>
+                                <div class="col-sm-4 col-xs-12">
+                                    <input type="text" name="other" class="vote-option-other" placeholder="其他想了解的企業" ng-model="voteForm[17].other">
+                                    
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-sm-2"></div>
+                                <div class="col-xs-6">
+                                    <div class="form-group">
+
+                                        <input type="email" name="email" value="" placeholder="請輸入有效Email開始投票" class="form-control" ng-model="voteForm[18].email">
+                                        
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary btn-xl" type="submit">送出</button>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xs-3"></div>
+                                <div ng-show="voteMessage.fail" class="book-fail col-xs-4 ">{{voteMessage.fail}}</div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+              
+                <div ng-hide="showme" class="bubbleChart"></div>
+                <br>
+                <div class="text-center vote-button">
+                    <a href="#vote" class="btn btn-primary btn-xl" ng-hide="showme||voted" ng-click="showme=true" >投票去</a>
+                </div>
+                <div class="row">
+                    <div class="col-xs-5"></div>
+                    <div ng-show="voteMessage.success" class="book-success col-xs-2 text-center">{{voteMessage.success}}</div>
+                </div>
+            </div>
         </div>
     </section>
     </div>
@@ -435,36 +459,33 @@
     <div class="s-line"></div>
 
     <section id="about">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2">
-                    <div class="row">
-                        <div class="col-md-4"></div>
-                        <div class="col-md-4">
-                            <div class="contact-header">我們是誰</div>
-                        </div>
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <div class="row">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4">
+                        <div class="contact-header" class="vote-title">關於&nbsp100HR</div>
                     </div>
-                    <div class="contact-centent">
-                        <p>
-                            我一直相信，每個人都可以為社會做一點事<br><br>
-                            先前發現年輕人在製作履歷上遇到諸多的困難，於是和一群夥伴在一年多前創辦Himelight.com，協助新鮮人輕鬆打造專業履歷，目前已協助超過兩萬名使用者使用Himelight打造專業履歷。<br><br>
-                            在運作Himelight的期間，發現年輕 人在求職上遇見的問題，不只是在履歷。年輕人因不清楚自身應該努力的方向，而對未來產生的茫然的情況，更是值得關注。<br><br>
-                            因此，希望透過訪問一百位各領域人力資源主管，了解各產業特性、解析各領域偏好的人才特性以及相關經歷、嘗試描述選才與晉升標準並撰寫成報導，讓年輕人可以更有努力方向，拉近企業與年輕人之間的距離。<br><br>
-                            當然，年輕人職場上面臨的挑戰不僅止於此，現今大環境十分嚴峻，謹希望可以先嘗試解決部分問題，拋磚引玉，讓更多人一起關注年輕人的求職問題，和年輕人站在一起，為彼此的未來努力。<br><br><br>
-                            <span class="pull-right">100HR發起人  諾貝爾</span>
-
-                        </p>
-                    </div>
-                
-                    <img class="img-rwd" src="../img/core/who-are-we.png" alt="100HR">
-                        
                 </div>
+                <div class="contact-centent">
+                    <p>
+                        我一直相信，每個人都可以為社會做一點事<br><br>
+                        先前發現年輕人在製作履歷上遇到諸多的困難，於是和一群夥伴在一年多前創辦Himelight.com，協助新鮮人輕鬆打造專業履歷，目前已協助超過兩萬名使用者使用Himelight打造專業履歷。<br><br>
+                        在運作Himelight的期間，發現年輕 人在求職上遇見的問題，不只是在履歷。年輕人因不清楚自身應該努力的方向，而對未來產生的茫然的情況，更是值得關注。<br><br>
+                        因此，希望透過訪問一百位各領域人力資源主管，了解各產業特性、解析各領域偏好的人才特性以及相關經歷、嘗試描述選才與晉升標準並撰寫成報導，讓年輕人可以更有努力方向，拉近企業與年輕人之間的距離。<br><br>
+                        當然，年輕人職場上面臨的挑戰不僅止於此，現今大環境十分嚴峻，謹希望可以先嘗試解決部分問題，拋磚引玉，讓更多人一起關注年輕人的求職問題，和年輕人站在一起，為彼此的未來努力。<br><br><br>
+                        <span class="pull-right">100HR發起人  諾貝爾</span>
+
+                    </p>
+                </div>
+            
+                <img class="img-rwd" src="../img/core/who-are-we.png" alt="100HR">
+                    
             </div>
         </div>
     </section>
 
     <footer class="footer">
-        <div class="container">
             <div class="row">
                 <div class="col-xs-4">
                    <div class="fb-like" data-href="https://www.facebook.com/100HR100HR/" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
@@ -494,14 +515,9 @@
                         </li>
                     </ul>
                     
-                    
-                    
-                    
                 </div>
-
                     
             </div>
-        </div>
     </footer>
 
     <!-- privacy modal -->
@@ -585,6 +601,63 @@
       ga('create', 'UA-59503585-2', 'auto');
       ga('send', 'pageview');
       ga('set', 'userId', {{USER_ID}}); // 使用已登入的 user_id 設定 User-ID。
+    </script>
+
+    <script>
+        $(".custom-select").each(function() {
+          var classes = $(this).attr("class"),
+              id      = $(this).attr("id"),
+              name    = $(this).attr("name");
+          var template =  '<div class="' + classes + '">';
+              template += '<span class="custom-select-trigger">' + $(this).attr("placeholder") + '</span>';
+              template += '<div class="custom-options">';
+              $(this).find("option").each(function() {
+                template += '<span class="custom-option ' + $(this).attr("class") + '" data-value="' + $(this).attr("value") + '">' + $(this).html() + '</span>';
+              });
+          template += '</div></div>';
+          
+          $(this).wrap('<div class="custom-select-wrapper"></div>');
+          $(this).hide();
+          $(this).after(template);
+        });
+
+        $(".custom-option:first-of-type").hover(function() {
+          $(this).parents(".custom-options").addClass("option-hover");
+        }, function() {
+          $(this).parents(".custom-options").removeClass("option-hover");
+        });
+
+        $(".custom-select-trigger").on("click", function() {
+          $('html').one('click',function() {
+            $(".custom-select").removeClass("opened");
+          });
+          $(this).parents(".custom-select").toggleClass("opened");
+          event.stopPropagation();
+        });
+        $(".custom-option").on("click", function() {
+          $(this).parents(".custom-select-wrapper").find("select").val($(this).data("value"));
+          $(this).parents(".custom-options").find(".custom-option").removeClass("selection");
+          $(this).addClass("selection");
+          $(this).parents(".custom-select").removeClass("opened");
+          $(this).parents(".custom-select").find(".custom-select-trigger").text($(this).text());
+        });
+    </script>
+
+    <script>
+        $(function() {
+          $('input').on('change', function() {
+            var input = $(this);
+            if (input.val().length) {
+              input.addClass('populated');
+            } else {
+              input.removeClass('populated');
+            }
+          });
+          
+          setTimeout(function() {
+            $('#fname').trigger('focus');
+          }, 500);
+        });
     </script>
 
 
