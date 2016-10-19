@@ -122,7 +122,7 @@ angular.module('index', [])
             $scope.youngMessage = {fail : "請選擇年齡層"};
             return;
 
-          } else if(!$scope.youngForm[7].email){
+          } else if(!$scope.youngForm[8].email){
             $scope.youngMessage = {fail : "請輸入Email"};
             return;
           }
@@ -370,8 +370,9 @@ angular.module('index', [])
             } else if (confine && !shouldStick) {
               // If we are confined to the parent, refresh, and past the stickyBottomLine
               // We should 'remember' the original offset and unstick the element which places it at the stickyBottomLine
-              originalOffset = elementsOffsetFromTop ($elem[0]);
-              unStickElement (closestLine, scrollbarPosition);
+              // originalOffset = elementsOffsetFromTop ($elem[0]);
+              // unStickElement (closestLine, scrollbarPosition);
+              // 暫時刪除
             }
           };
 

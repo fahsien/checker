@@ -66,6 +66,9 @@ section {
 .hv-sec {
     padding: 9% 0;
 }
+.hv-sec .row{
+    margin: 0;
+}
 
 aside {
   padding: 50px 0;
@@ -251,6 +254,12 @@ header .header-content .header-content-inner p {
         font-size: 16px;
         padding: 10px 40px;
     }
+    .why-content p{
+      overflow: scroll;
+    }
+    .how-content p{
+      overflow: scroll;
+    }
 
 }
 
@@ -294,6 +303,7 @@ header .header-content .header-content-inner p {
         font-size: 14px;
         padding: 8px 28px;
     }
+
 
 }
 
@@ -375,7 +385,33 @@ header .header-content .header-content-inner p {
   .portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-name {
     font-size: 22px;
   }
+  .why-content p{
+    padding: 0 25px 50px 25px;
+    border-radius: 10px;
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: #595857;
+    height: 435px;
+    font-family: "Noto Sans TC L", "Open Sans", "Helvetica Neue", sans-serif;
 }
+
+.how-content p{
+    padding: 0 25px 50px 25px;
+    border-radius: 10px;
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: #595857;
+    height: 230px;
+    font-family: "Noto Sans TC L", "Open Sans", "Helvetica Neue", sans-serif;
+}
+  .why-content-graph{
+    min-height: 500px;
+  }
+  .how-content-graph{
+      min-height: 300px;
+  }
+}
+
 
 .call-to-action h2 {
   margin: 0 auto 20px;
@@ -667,7 +703,7 @@ img::-moz-selection {
 
 .why-content-bg {
     background-color: #ffffff;
-    height: 420px;
+    min-height: 0px;
     border-radius: 10px;
     position: relative;
     z-index: 0;
@@ -682,6 +718,7 @@ img::-moz-selection {
     z-index: 20;
 }
 
+
 .why-content-top {
     height: 50px;
     background-color: white;
@@ -690,27 +727,16 @@ img::-moz-selection {
     z-index: 50;
 }
 
-.why-content p{
-    padding: 0 25px 50px 25px;
-    border-radius: 10px;
-    font-size: 16px;
-    letter-spacing: 1px;
-    color: #595857;
-    height: 325px;
-    overflow: scroll;
-    font-family: "Noto Sans TC L", "Open Sans", "Helvetica Neue", sans-serif;
-}
 
-.how-content p{
-    padding: 0 25px 50px 25px;
+.how-content-bg {
+    background-color: #ffffff;
+    min-height: 50px;
     border-radius: 10px;
-    font-size: 16px;
-    letter-spacing: 1px;
-    color: #595857;
-    height: 325px;
-    overflow: scroll;
-    font-family: "Noto Sans TC L", "Open Sans", "Helvetica Neue", sans-serif;
+    position: relative;
+    z-index: 0;
+    margin-top: -20px;
 }
+  
 
 .why-header {
     background-color: #71b8e6;

@@ -32,7 +32,7 @@
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
 
     <link href="../img/core/favicon.ico" rel="SHORTCUT ICON" >
-    
+
     <!-- Angularjs -->
      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
      <script src="../js/index.js"></script>
@@ -126,11 +126,13 @@
     <section id="why" class="hv-sec">
         <div class="row">
             <div class="why-content col-lg-5 col-sm-5">
-                <h2 class="why-header section-heading" sticky offset="62" confine="true">為什麼做這件事情</h2>
+
+                <h2 class="why-header section-heading" sticky offset="155" confine="true" media-query="min-width: 768px">為什麼做這件事情</h2>
                 <div class="why-content-bg">
                     <div class="why-content-supertop" sticky offset="62" confine="true">
                     </div>
-                    <div class="why-content-top" sticky offset="82" confine="true">
+                    <div class="why-content-top" sticky offset="200" media-query="min-width: 768px">
+
                     </div>
                     <p class="lead">
                         台灣的年輕人很努力<br>
@@ -166,9 +168,13 @@
 
                  
             </div>
-            <div class="col-lg-7 col-sm-7">
-                <img class="img-responsive whimg" src="../img/core/why-to-do.jpg" alt="">
+            
+            <div class="col-lg-7 col-sm-7" >
+                <img class="img-responsive whimg" sticky offset="175"  confine="true" media-query="min-width: 768px" src="../img/core/why-to-do.jpg"  alt="">
+                <div class="why-content-graph"></div>
             </div>
+
+            
         </div>
     </section>
 
@@ -177,11 +183,12 @@
     <section id="how" class="hv-sec">
         <div class="row">
             <div class="how-content col-lg-5 col-sm-push-7  col-sm-5">
-                <h2 class="how-header section-heading" sticky offset="62" confine="true">要怎麼做這件事情</h2>
-                <div class="why-content-bg">
+                <h2 class="how-header section-heading" sticky offset="155" confine="true" media-query="min-width: 768px">要怎麼做這件事情</h2>
+                <div class="how-content-bg">
                     <div class="why-content-supertop" sticky offset="62" confine="true">
                     </div>
-                    <div class="why-content-top" sticky offset="82" confine="true">
+                    <div class="why-content-top">
+
                     </div>
                     <p class="lead">這是一個為期一年不斷進行的計畫。<br><br>
 
@@ -203,8 +210,10 @@
                     </p>
                 </div>
             </div>
-            <div class="col-lg-7 col-sm-pull-5  col-sm-7">
-                <img class="img-responsive whimg" src="../img/core/how-to-do.jpg" alt="">
+            <div class="col-lg-7 col-sm-pull-5  col-sm-7" >
+                <img class="img-responsive whimg" sticky offset="175"  confine="true" media-query="min-width: 768px" src="../img/core/how-to-do.jpg" alt="">
+                <div class="how-content-graph">
+                </div>
             </div>
         </div>
     </section>
@@ -216,7 +225,7 @@
     <div ng-controller="indexController">
     <div id="book" class="book">
         <div class="row">
-            <div class="col-lg-6 col-sm-6 book-section-young hv-sec">
+            <div class="col-lg-6 col-sm-6 book-section-young why-sec">
                 <div class="book-section-young">
                     
                     <div class="book-title">
@@ -255,7 +264,7 @@
                                         </div>
                                         <!-- <div class="booktitle">｜讓我們知道你的年齡層</div> -->
                                         <div class="select-upup">
-                                            <select name="age"  class="custom-select sources" ng-model="youngForm[6].age" placeholder="選擇年齡區間">
+                                            <select name="age"  class="custom-select  sources" ng-model="youngForm[6].age" placeholder="選擇年齡區間">
                                                 <option value="" disabled selected>請選擇年齡層</option>
                                                 <option >15 - 18</option>
                                                 <option >19 - 24</option>
@@ -268,18 +277,17 @@
                                                 <option >71 以上</option>
                                             </select>
                                         </div>
-                                        <form>
+                                       
                                             <label>
                                                 <input id="fname" type="text" name="advice" placeholder="我想給建議或想說的話" aria-describedby="basic-addon1" ng-model="youngForm[7].advice">
                                                     <span>我想給建議或想說的話</span>
                                             </label>
-                                        </form>
-                                        <form>
+                                        
                                             <label>
                                                 <input id="fname" type="email" name="email" placeholder="Email" aria-describedby="basic-addon1"  ng-model="youngForm[8].email">
                                                     <span>有效 Email 才能收到資訊唷！</span>
                                             </label>  
-                                        </form>  
+                                       
                                         <button class="young-button btn btn-primary btn-xl" type="submit">確認送出</button>
                                         <div class="row">
                                             <div class="col-xs-4"></div>
@@ -298,7 +306,7 @@
                 </div>
                 <!-- /.content-section-a -->
             </div>
-            <div class="col-lg-6 col-sm-6 book-section-hr hv-sec">
+            <div class="col-lg-6 col-sm-6 book-section-hr how-sec">
                 <div class="book-section-hr">
                     <div class="book-title">
                         我是&nbsp<span>HR</span>
@@ -327,40 +335,40 @@
                             <div class="book-margin">
                                 <div class="input-group hr-input">
                                     <form ng-submit="processHRForm()">
-                                        <form>
+                                        
                                             <label>
                                                 <input id="fname" type="text" name="name"  placeholder="怎麼稱呼您" aria-describedby="basic-addon1"  ng-model="hrForm.name">
                                                     <span class="hr-span">怎麼稱呼您</span>
                                             </label>  
-                                        </form>
+                                        
 
-                                        <form>
+                                        
                                             <label>
                                                 <input id="fname" type="text" name="company"  placeholder="所屬的公司或產業別" aria-describedby="basic-addon1"  ng-model="hrForm.company">
                                                     <span class="hr-span">所屬的公司或產業別</span>
                                             </label>  
-                                        </form>         
+                                                
                                         
-                                        <form>
+                                        
                                             <label>
                                                 <input id="fname" type="text" name="jobtitle"  placeholder="職位職稱" aria-describedby="basic-addon1"  ng-model="hrForm.jobtitle">
                                                     <span class="hr-span">職位職稱</span>
                                             </label>  
-                                        </form>      
                                             
-                                        <form>
+                                            
+                                        
                                             <label>
                                                 <input id="fname" type="text" name="advice"  placeholder="想給建議或想說的話" aria-describedby="basic-addon1"  ng-model="hrForm.advice">
                                                     <span class="hr-span">想給建議或想說的話</span>
                                             </label>  
-                                        </form>
+                                        
 
-                                        <form>
+                                        
                                             <label>
                                                 <input id="fname" type="email" name="email"  placeholder="Email" aria-describedby="basic-addon1"  ng-model="hrForm.email">
                                                     <span class="hr-span">有效 Email 才能聯絡到您唷！</span>
                                             </label>  
-                                        </form>                                        
+                                                                              
                                         <button class="hr-button btn btn-primary btn-xl" type="submit">確認送出</button>
                                         <div class="row">
                                             <div class="col-xs-3"></div>
@@ -603,7 +611,7 @@
       ga('set', 'userId', {{USER_ID}}); // 使用已登入的 user_id 設定 User-ID。
     </script>
 
-    <script>
+    <!-- <script>
         $(".custom-select").each(function() {
           var classes = $(this).attr("class"),
               id      = $(this).attr("id"),
@@ -641,7 +649,7 @@
           $(this).parents(".custom-select").removeClass("opened");
           $(this).parents(".custom-select").find(".custom-select-trigger").text($(this).text());
         });
-    </script>
+    </script> -->
 
     <script>
         $(function() {
