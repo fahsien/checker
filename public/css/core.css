@@ -92,6 +92,17 @@
     font-family: "Noto Sans TC L", "Open Sans", "Helvetica Neue", sans-serif;  
 }
 
+.about-title {
+    background-color: #fff000;
+    color: #595857;
+    width: 210px;
+    height: 50px;
+    letter-spacing: 2.5px;
+    font-size: 32px;
+    margin: 0 auto;
+    font-family: "Noto Sans TC L", "Open Sans", "Helvetica Neue", sans-serif;
+}
+
 @media (max-width: 768px) {
     .vote-title {
         background-color: #fff000;
@@ -113,19 +124,20 @@
         margin: 15px auto 25px;
     }
 
-}
-
-@media (max-width: 380px) {
-    .vote-title {
+    .about-title {
         background-color: #fff000;
         color: #595857;
-        width: 145px;
+        width: 174px;
         height: 43px;
         letter-spacing: 2px;
         font-size: 26px;
         margin: 0 auto;
         font-family: "Noto Sans TC L", "Open Sans", "Helvetica Neue", sans-serif;
     }
+
+}
+
+@media (max-width: 380px) {
     .vote-intro {
         font-size: 18px;
         letter-spacing: 1px;
@@ -139,6 +151,18 @@
 
 .vote-button {
     margin: 20px auto 10px; 
+}
+
+.hr-copywrite {
+    text-align: center;
+    font-size: 14px;
+    color: #9d9d9e;
+}
+
+.footer-width {
+    width: 90%;
+    text-align: center;
+    margin: auto;
 }
 
 @font-face {

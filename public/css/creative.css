@@ -20,15 +20,23 @@ hr.light {
     border-color: white;
 }
 
-a {
+.footer a {
     -webkit-transition: all 0.35s;
     -moz-transition: all 0.35s;
     transition: all 0.35s;
-    color: #F05F40;
+    font-size: 14px;
+    letter-spacing: 1px;
+    color: #9D9D9E;
 }
+
 a:hover,
 a:focus {
-    color: #eb3812;
+    color: #595857;
+    text-decoration: none;
+}
+
+.footer button {
+    background-color: #595857;
 }
 
 h1,
@@ -639,6 +647,7 @@ img::-moz-selection {
     background-color: #FFDEDE;
     border-radius: 20px;
 }
+
 .vote-form{
     background-color: white;
     border-radius: 10px;
@@ -646,9 +655,11 @@ img::-moz-selection {
     margin: auto;
     width: 90%;
 }
+
 .vote-checkbox{
     line-height: 4;
 }
+
 .contact-header{
     text-align: center;
     color: #595857;
@@ -658,11 +669,31 @@ img::-moz-selection {
     padding: 10px;
 
 }
-.contact-centent{
-    background-color: #ffffff;
-    padding: 30px;
+
+.about-content {
+    background-color: white;
     border-radius: 10px;
+    padding: 25px 25px 50px;
+    margin: auto;
+    width: 90%;
 }
+
+.about-p {
+    font-size: 16px;
+    letter-spacing: 1px;
+    line-height: 1.8;
+    color: #595857;
+    margin: 0;
+    font-family: "Noto Sans TC L", "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+.about-span {
+    font-size: 18px;
+    letter-spacing: 1px;
+    color: #595857;
+    font-family: "Noto Sans TC L", "Open Sans", "Helvetica Neue", sans-serif;
+}
+
 .img-rwd{
     width: 100%;
     height: auto;
@@ -691,14 +722,6 @@ img::-moz-selection {
 .hr-button {
     margin-top: 15px;
     margin-bottom: 25px;
-}
-
-.why-content {
-    padding-left: 40px;
-}
-
-.how-content {
-    padding-right: 40px;
 }
 
 .why-content-bg {
