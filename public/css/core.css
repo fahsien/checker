@@ -15,6 +15,29 @@
     height: 30px;
 }
 
+@media (max-width: 768px) {
+    .header-logo {
+        height: 16px;
+    }
+}
+
+.footer-logo {
+    height: 20px;
+    vertical-align: middle;
+}
+
+.foot-fb-like {
+    vertical-align: middle;
+    margin-bottom: 20px;
+}
+
+.footer-fb-logo {
+    height: 30px;
+    border: 1px solid rgba(113, 113, 113, 0.2);
+    margin-right: 10px;
+    margin-bottom: 20px;
+}
+
 .s-line {
     width: 100%;
     height: 1px;
@@ -325,7 +348,7 @@ input[type=checkbox]:checked + .check-box,
     position: relative;
     z-index: 50;
     text-align: left;
-    padding: 10px 0 25px; 
+    padding: 14px 0 25px; 
 }
 
 .custom-select-wrapper {
@@ -343,8 +366,14 @@ input[type=checkbox]:checked + .check-box,
     display: inline-block;
     width: 100%;
     background-color: white;
-    color: #979797;
+    font-size: 14px;
+    letter-spacing: 1px;
+    padding-left: 20px;
+    font-family: "Noto Sans TC L", "Open Sans", "Helvetica Neue", sans-serif;
+    color: #9d9d9e;
+    border-color: #979797;
 }
+
 .custom-select-trigger {
     position: relative;
     display: block;

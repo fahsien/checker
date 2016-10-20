@@ -24,7 +24,7 @@ hr.light {
     -webkit-transition: all 0.35s;
     -moz-transition: all 0.35s;
     transition: all 0.35s;
-    font-size: 14px;
+    font-size: 13px;
     letter-spacing: 1px;
     color: #9D9D9E;
 }
@@ -76,6 +76,10 @@ section {
 }
 .hv-sec .row{
     margin: 0;
+}
+
+.wh-sec {
+    padding: 80px 0;
 }
 
 aside {
@@ -202,7 +206,7 @@ aside {
 header .header-content {
     position: relative;
     text-align: center;
-    padding-top: 8%;
+    padding-top: 9.5%;
     height: 100%;
     width: 100%;
 }
@@ -213,7 +217,8 @@ header .header-content .header-content-inner h1 {
     text-shadow: 2px 2px 4px rgba(113, 113, 113, 0.8);
     font-size: 40px;
     margin: 0;
-    letter-spacing: 10px;
+    letter-spacing: 9px;
+    font-weight: normal;
 }
 
 header .header-content .header-content-inner hr {
@@ -237,6 +242,7 @@ header .header-content .header-content-inner p {
         font-size: 32px;
         margin: 0;
         letter-spacing: 8px;
+        font-weight: normal;
     }
 
     header .header-content .header-content-inner hr {
@@ -263,10 +269,25 @@ header .header-content .header-content-inner p {
         padding: 10px 40px;
     }
     .why-content p{
-      overflow: scroll;
+        overflow: scroll;
+        padding: 0 25px 50px 25px;
+        border-radius: 10px;
+        font-size: 16px;
+        letter-spacing: 1px;
+        color: #595857;
+        height: 70%;
+        font-family: "Noto Sans TC L", "Open Sans", "Helvetica Neue", sans-serif;
     }
+
     .how-content p{
-      overflow: scroll;
+        overflow: scroll;
+        padding: 0 25px 50px 25px;
+        border-radius: 10px;
+        font-size: 16px;
+        letter-spacing: 1px;
+        color: #595857;
+        height: 70%;
+        font-family: "Noto Sans TC L", "Open Sans", "Helvetica Neue", sans-serif;
     }
 
 }
@@ -279,6 +300,7 @@ header .header-content .header-content-inner p {
         font-size: 20px;
         margin: 0;
         letter-spacing: 2px;
+        font-weight: normal;
     }
 
     header .header-content .header-content-inner hr {
@@ -387,37 +409,41 @@ header .header-content .header-content-inner p {
 }
 
 @media (min-width: 768px) {
-  .portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-category {
-    font-size: 16px;
-  }
-  .portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-name {
-    font-size: 22px;
-  }
-  .why-content p{
-    padding: 0 25px 50px 25px;
-    border-radius: 10px;
-    font-size: 16px;
-    letter-spacing: 1px;
-    color: #595857;
-    height: 435px;
-    font-family: "Noto Sans TC L", "Open Sans", "Helvetica Neue", sans-serif;
-}
+    .portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-category {
+        font-size: 16px;
+    }
+    .portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-name {
+        font-size: 22px;
+    }
+    .why-content p{
+        padding: 0 25px 50px 25px;
+        border-radius: 10px;
+        font-size: 16px;
+        letter-spacing: 1px;
+        color: #595857;
+        height: 830px;
+        background-color: white;
+        font-family: "Noto Sans TC L", "Open Sans", "Helvetica Neue", sans-serif;
+    }
 
-.how-content p{
-    padding: 0 25px 50px 25px;
-    border-radius: 10px;
-    font-size: 16px;
-    letter-spacing: 1px;
-    color: #595857;
-    height: 230px;
-    font-family: "Noto Sans TC L", "Open Sans", "Helvetica Neue", sans-serif;
-}
-  .why-content-graph{
-    min-height: 500px;
-  }
-  .how-content-graph{
-      min-height: 300px;
-  }
+    .how-content p{
+        padding: 0 25px 50px 25px;
+        border-radius: 10px;
+        font-size: 16px;
+        letter-spacing: 1px;
+        color: #595857;
+        height: 620px;
+        background-color: white;
+        font-family: "Noto Sans TC L", "Open Sans", "Helvetica Neue", sans-serif;
+    }
+
+    .why-content-graph{
+        min-height: 580px;
+    }
+
+    .how-content-graph{
+        min-height: 300px;
+    }
 }
 
 
@@ -637,7 +663,7 @@ img::-moz-selection {
 }
 
 .book-form .well{
-    min-height: 400px;
+    min-height: 578px;
 }
 .book-success{
     background-color: #d8f0df;
@@ -704,9 +730,19 @@ img::-moz-selection {
     border-top: 1px solid rgba(113, 113, 113, 0.2);
 }
 .privacy-modal-content p{
-    
+    color: #595857;
+    letter-spacing: 1px;    
     line-height: 1.9;
 }
+
+.modal-close {
+    margin: 25px;
+    height: 30px;
+    cursor: pointer;
+    position: relative;
+    z-index: 30;
+}
+
 .hr-form{
     padding-bottom: 34px;
 }
@@ -731,14 +767,18 @@ img::-moz-selection {
     position: relative;
     z-index: 0;
     margin-top: -40px;
+    height: 420px;
     border-radius: 10px;
 }
 
+
 .why-content-supertop {
-    height: 20px;
+    height: 100px;
     background-color: #f8f8f8;
     position: relative;
-    z-index: 20;
+    z-index: 50;
+    /*border: 1px solid black; */
+    margin-top: -120px;
 }
 
 
@@ -748,16 +788,19 @@ img::-moz-selection {
     border-radius: 10px;
     position: relative;
     z-index: 50;
+    /*border: 1px solid black;*/
 }
 
 
 .how-content-bg {
     background-color: #ffffff;
-    min-height: 50px;
+    min-height: 0px;
     border-radius: 10px;
     position: relative;
     z-index: 0;
-    margin-top: -20px;
+    margin-top: -40px;
+    height: 350px;
+    border-radius: 10px;
 }
   
 
