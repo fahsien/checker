@@ -6,6 +6,7 @@ var http = require('http'),
 	multer = require('multer'),
 	server = app,
 	mongoose = require('mongoose');
+	favicon = require('serve-favicon');
 
 //set port
 var port = process.env.PORT || 8080; 
@@ -26,6 +27,7 @@ app.use(function (req, res, next) { // when multpart, json parse nest object
     }
     next();
 });
+app.use(favicon(__dirname + '/public/img/core/favicon.ico'));
 
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
