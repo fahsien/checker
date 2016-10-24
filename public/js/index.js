@@ -371,8 +371,8 @@ angular.module('index', [])
               // If we are confined to the parent, refresh, and past the stickyBottomLine
               // We should 'remember' the original offset and unstick the element which places it at the stickyBottomLine
               // originalOffset = elementsOffsetFromTop ($elem[0]);
-              // unStickElement (closestLine, scrollbarPosition);
-              // 暫時刪除
+              unStickElement (closestLine, scrollbarPosition);
+              
             }
           };
 
@@ -646,6 +646,7 @@ angular.module('index', [])
               $elem.after(placeholder);
             }
           }
+
 
           /**
            * Are we bottomed out of the parent element?
