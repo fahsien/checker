@@ -420,20 +420,27 @@
                                     {{company.label}} -->
                                         
                                 </div>
-                                <div class="col-sm-4 col-xs-12">
-                                    <input type="text" name="other" class="vote-option-other" placeholder="沒有想要的嗎？創造你的選項！" ng-model="voteForm[17].other">
-                                    
-                                </div>
                             </div>
                             
-                            <div class="row">
-                                <div class="col-sm-2"></div>
-                                <div class="col-xs-6">
-                                    <div class="form-group">
+                            <div class="vote-option-create">
+                                <label>
+                                    <input type="text" name="other" class="vote-option-other" placeholder="沒有想要的企業嗎？創造你的選項！" ng-model="voteForm[17].other">
+                                        <span class="vote-span">我們會盡快為您增加選項</span>
+                                </label>  
+                            </div>
+                            
 
+                            <div class="row">
+                                <div class="vote-option-email">
+                                    <label>
+                                        <input type="email" name="email" class="vote-email" placeholder="請輸入有效 Email 開始投票吧！" ng-model="voteForm[18].email">
+                                            <span class="vote-span">一組帳號只能投一次唷！</span>
+                                    </label>
+                                    <!-- <div class="form-group">
+                                        
                                         <input type="email" name="email" value="" placeholder="請輸入有效Email開始投票" class="form-control" ng-model="voteForm[18].email">
                                         
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <button class="btn btn-primary btn-xl" type="submit">送出</button>
                             </div>
