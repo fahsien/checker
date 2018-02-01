@@ -9,10 +9,10 @@ var http = require('http'),
 	favicon = require('serve-favicon');
 
 //set port
-var port = process.env.PORT || 8080; 
+var port = process.env.PORT || 8080;
 
 //connect database
-mongoose.connect('mongodb://localhost/100hr');
+mongoose.connect('mongodb://localhost/checker');
 
 //static files' location
 // app.use(express.static(__dirname + '/public'));
@@ -34,18 +34,14 @@ app.set('view engine', 'html');
 app.set('views', './public/views');
 
 // Routes
-app.get('/',function(req, res){ 
-	res.render('index', {
-			        alert: ''
-			    });
+app.get('/',function(req, res){
+	res.render('index', {});
 });
 
 // set up the RESTful API, handler methods are defined in api.js
 var api = require('./controllers/api.js');
 app.post('/postUser', api.postUser);
-app.post('/postHR', api.postHR);
-app.post('/vote', api.vote);
-app.get('/voteResult',api.voteResult);
+// app.get('/voteResult',api.voteResult);
 
 server.listen(port,'localhost',function(){
     console.log('port on ' + port);
