@@ -37,6 +37,9 @@ app.set('views', './public/views');
 app.get('/',function(req, res){
 	res.render('index', {});
 });
+app.get('/login',function(req, res){
+	res.render('index', {});
+});
 
 // set up the RESTful API, handler methods are defined in api.js
 var api = require('./controllers/api.js');

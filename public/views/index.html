@@ -10,13 +10,6 @@
     <meta name="author" content="">
 
     <title>Checkers</title>
-
-    <!-- FlatUI CSS -->
-    <!-- <link href="../css/flat-ui.css" rel="stylesheet"> -->
-
-    <!-- Bootstrap Core CSS -->
-    <link href="../css/bootstrap.css" rel="stylesheet">
-
     <!-- Core CSS -->
     <link href="../css/core.css" rel="stylesheet">
 
@@ -33,8 +26,32 @@
 
 </head>
 
-<body>
-    <div class="test">測試</div>
+<body ng-controller="indexController">
+    <div class="checker-layout">
+        <div class="checker" ng-repeat="checker in checkers">
+            <div class="checker-arrow" ng-class="{blink: !checker.previous.finished && blink_animation}", ng-if="checker.previous.exist">➭</div>
+            <div class="checker-content">
+                <div class="checker-name">{{checker.name}}</div>
+                <div class="task-list">
+                    <div class="task" ng-repeat="task in checker.tasks">
+                        <div>{{task.name}}</div>
+                    </div>
+                    <div class="task" ng-hide="!task_input_display[checker.order]">
+                        <input type="text" ng-model="task_input_name[checker.order]">
+                        <button ng-click="saveTask(checker)">儲存</button>
+                    </div>
+                </div>
+                <button ng-click="addTask(checker.order)", ng-hide="task_input_display[checker.order]">新增任務</button>
+            </div>
+        </div>
+        <div class="checker" ng-hide="!check_input_display">
+            <div class="checker-content">
+                <input type="text" ng-model="check_input_name">
+                <button ng-click="saveChecker()">儲存</button>
+            </div>
+        </div>
+        <button ng-click="addChecker()">新增專案</button>
+    </div>
 </body>
 
 </html>

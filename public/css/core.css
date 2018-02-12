@@ -1,5 +1,35 @@
-.test{
-    padding: 100px;
-    background-color: black;
-    color:red;
+.checker-layout{
+    width: max-content;
 }
+
+.checker{
+    display: inline-block;
+    font-size: 16px;
+    text-align:center;
+    vertical-align: top;
+}
+.checker-arrow{
+    display: inline-block;
+    padding: 20px;
+    font-size: 30px;
+    vertical-align: top;
+}
+.checker-content{
+    display: inline-block;
+    line-height: 50px;
+    width: 200px;
+    border: 2px solid;
+    vertical-align: top;
+}
+.task{
+    padding: 10px;
+    background-color: #DCDCDC;
+}
+
+@keyframes blink {
+	0% {opacity: 0}
+	50% {opacity: 1}
+    100%{opacity: 0}
+}
+
+.blink{animation: blink 1s infinite;}
