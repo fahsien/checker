@@ -28,29 +28,33 @@
 
 <body ng-controller="indexController">
     <div class="checker-layout">
-        <div class="checker" ng-repeat="checker in checkers">
+        <div class="checker" ng-repeat="checker in checkers track by $index">
             <div class="checker-arrow" ng-class="{blink: !checker.previous.finished && blink_animation}", ng-if="checker.previous.exist">➭</div>
             <div class="checker-content">
-                <div class="checker-name">{{checker.name}}</div>
+                <div class="checker-name", ng-hide="checkerFunc.name_input_display[$index]">{{checker.name}}</div>
+                <input type="text" ng-model="checker.name", ng-hide="!checkerFunc.name_input_display[$index]" >
+                <button ng-click="checkerFunc.update(checker, $index)", ng-hide="!checkerFunc.name_input_display[$index]">儲存</button>
+                <button ng-click="checkerFunc.modify($index)", ng-hide="checkerFunc.name_input_display[$index]">Edit</button>
+                <button ng-click="checkerFunc.delete(checker, $index)">delete</button>
                 <div class="task-list">
                     <div class="task" ng-repeat="task in checker.tasks">
                         <div>{{task.name}}</div>
                     </div>
-                    <div class="task" ng-hide="!task_input_display[checker.order]">
-                        <input type="text" ng-model="task_input_name[checker.order]">
-                        <button ng-click="saveTask(checker)">儲存</button>
+                    <div class="task" ng-hide="!taskFunc.content_input_display[$index]">
+                        <input type="text" ng-model="taskFunc.content_input[$index]">
+                        <button ng-click="taskFunc.save(checker, $index)">儲存</button>
                     </div>
                 </div>
-                <button ng-click="addTask(checker.order)", ng-hide="task_input_display[checker.order]">新增任務</button>
+                <button ng-click="taskFunc.add($index)", ng-hide="taskFunc.content_input_display[$index]">新增任務</button>
             </div>
         </div>
-        <div class="checker" ng-hide="!check_input_display">
+        <div class="checker" ng-hide="!checkerFunc.content_input_display">
             <div class="checker-content">
-                <input type="text" ng-model="check_input_name">
-                <button ng-click="saveChecker()">儲存</button>
+                <input type="text" ng-model="checkerFunc.content_input">
+                <button ng-click="checkerFunc.save()">儲存</button>
             </div>
         </div>
-        <button ng-click="addChecker()">新增專案</button>
+        <button ng-click="checkerFunc.add()">新增專案</button>
     </div>
 </body>
 

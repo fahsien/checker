@@ -12,6 +12,7 @@ var http = require('http'),
 var port = process.env.PORT || 8080;
 
 //connect database
+mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/checker');
 
 //static files' location
@@ -43,8 +44,10 @@ app.get('/login',function(req, res){
 
 // set up the RESTful API, handler methods are defined in api.js
 var api = require('./controllers/api.js');
-app.post('/postUser', api.postUser);
-// app.get('/voteResult',api.voteResult);
+app.post('/postChecker', api.postChecker);
+app.get('/getCheckers',api.getCheckers);
+app.put('/putChecker',api.putChecker);
+app.post('/deleteChecker',api.deleteChecker);
 
 server.listen(port,'localhost',function(){
     console.log('port on ' + port);

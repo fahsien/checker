@@ -1,39 +1,33 @@
-var User = require('../models/user.js'),
+var Checker = require('../models/checker.js'),
 	async = require('async');
 
-exports.postUser = function(req, res) {
-
-	async.waterfall([
-		function (callback) {
-			User.findOne({email: req.body[8].email}, callback);
-        },
-        function (email, callback) {
-
-            if (email) {
-
-                // error: user already exists
-				res.send({message: {fail:'這個Email已經訂閱過了唷！'}});
-
-            } else {
-                // create new user
-                callback(null, req.body);
-            }
-        },
-        function () {
-            new User({
-	    		age: req.body[6].age,
-	    		advice: req.body[7].advice,
-	    		email: req.body[8].email,
-	    		it: req.body[0].value,
-	    		tradition: req.body[1].value,
-	    		business: req.body[2].value,
-	    		services: req.body[3].value,
-	    		culture: req.body[4].value,
-	    		startup: req.body[5].value,
+exports.getCheckers = function(req, res) {
+	Checker.find({})
+	.exec(function(err, checkers) {
+            if (err) return res.status(400).send(err);
+            res.send({checkers: checkers});
+		});
+}
+exports.postChecker = function(req, res) {
+	new Checker({
+				name: req.body.name,
+				tasks: req.body.tasks
 	    	}).save();
-	    	res.send({message: {success:'訂閱成功！'}});
-        }
 
-    ])
+	res.send({message: {success:'成功！'}});
+}
 
+exports.putChecker = function(req, res) {
+	Checker.update({_id:req.body._id}, {$set: {name: req.body.name}},
+    function (err, checker) {
+        if (err) return res.status(400).send(err);
+        res.send({message: {success:'成功！'}});
+    });
+}
+
+exports.deleteChecker = function(req, res) {
+	Checker.remove({_id:req.body._id}, function (err) {
+        if (err) return res.status(400).send(err);
+        res.send({message: {success:'成功！'}});
+    });
 }
