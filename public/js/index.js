@@ -3,7 +3,7 @@ angular.module('index', [])
         //** Initialize **//
         $http({
               method  : 'GET',
-              url     : 'getCheckers'
+              url     : '/api/checkers'
         }).success(function(data) {
             $scope.checkers = data.checkers;
             for(var i=0; i<$scope.checkers.length; i++){
@@ -25,13 +25,14 @@ angular.module('index', [])
                 if(!this.content_input) return;
                 $http({
                       method  : 'POST',
-                      url     : 'postChecker',
+                      url     : '/api/checker',
                       data    : {
                                     name: this.content_input,
                                     tasks: []
                                 }
                 }).success(function(data) {
-                    $scope.checkers.push({name: $scope.checkerFunc.content_input, tasks: [], previous: {exist:$scope.checkers.length > 0, finished:false}});
+                    data.checker.previous = {exist:$scope.checkers.length > 0, finished:false}
+                    $scope.checkers.push(data.checker);
                     $scope.checkerFunc.content_input = null;
                     $scope.checkerFunc.content_input_display = false;
                     $scope.blink_animation = true;
@@ -44,7 +45,7 @@ angular.module('index', [])
             update : function(checker, order){
                 $http({
                       method  : 'PUT',
-                      url     : 'putChecker',
+                      url     : '/api/checker',
                       data    : checker
                 }).success(function(data) {
                     $scope.checkerFunc.name_input_display[order] = false;
@@ -53,7 +54,7 @@ angular.module('index', [])
             delete : function(checker, order){
                 $http({
                       method  : 'POST',
-                      url     : 'deleteChecker',
+                      url     : '/api/deleteChecker',
                       data    : checker
                 }).success(function(data) {
                     $scope.checkers.splice(order,1);
@@ -66,14 +67,46 @@ angular.module('index', [])
         $scope.taskFunc = {
             content_input_display : [],
             content_input : [],
+            name_input_display : [],
             add : function(order){
                 this.content_input_display[order] = true;
             },
             save : function(checker, order){
                 if(!this.content_input[order]) return;
-                checker.tasks.push({name: this.content_input[order]});
-                this.content_input[order] = null;
-                this.content_input_display[order] = false;
+                $http({
+                      method  : 'POST',
+                      url     : '/api/task',
+                      data    : {
+                                    name: this.content_input[order],
+                                    checker: checker
+                                }
+                }).success(function(data) {
+                    checker.tasks.push(data.task);
+                    $scope.taskFunc.content_input[order] = null;
+                    $scope.taskFunc.content_input_display[order] = false;
+                });
+
+            },
+            modify : function(id){
+                this.name_input_display[id] = true;
+            },
+            update : function(task){
+                $http({
+                      method  : 'PUT',
+                      url     : '/api/task',
+                      data    : task
+                }).success(function(data) {
+                    $scope.taskFunc.name_input_display[task._id] = false;
+                });
+            },
+            delete : function(checker, task, order){
+                $http({
+                      method  : 'POST',
+                      url     : '/api/deleteTask',
+                      data    : task
+                }).success(function(data) {
+                    checker.tasks.splice(order,1);
+                });
             }
         };
     });

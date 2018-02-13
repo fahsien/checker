@@ -44,10 +44,23 @@ app.get('/login',function(req, res){
 
 // set up the RESTful API, handler methods are defined in api.js
 var api = require('./controllers/api.js');
-app.post('/postChecker', api.postChecker);
-app.get('/getCheckers',api.getCheckers);
-app.put('/putChecker',api.putChecker);
-app.post('/deleteChecker',api.deleteChecker);
+/** Checkers API **/
+app.route('/api/checkers')
+	.get(api.getCheckers);
+
+app.route('/api/checker')
+	.post(api.postChecker)
+	.put(api.putChecker);
+
+app.route('/api/deleteChecker')
+	.post(api.deleteChecker);
+
+/** Tasks API **/
+app.route('/api/task')
+	.post(api.postTask)
+	.put(api.putTask);
+app.route('/api/deleteTask')
+	.post(api.deleteTask);
 
 server.listen(port,'localhost',function(){
     console.log('port on ' + port);
