@@ -7,6 +7,7 @@
     font-size: 16px;
     text-align:center;
     vertical-align: top;
+    word-wrap: break-word;
 }
 .checker-arrow{
     display: inline-block;
@@ -20,14 +21,56 @@
     width: 200px;
     border: 2px solid;
     vertical-align: top;
+    margin: 10px 24px;
+}
+.checker-head{
+    padding: 10px;
 }
 .task{
     padding: 10px;
     background-color: #DCDCDC;
+    line-height: 30px;
+}
+
+.add-checker-button{
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    vertical-align: top;
+    margin: 71px 27px;
+    border: 1px solid;
+    padding: 54px;
+}
+.add-checker-button:hover{
+    background-color: #f7f7f7;
+}
+
+.add-task-button{
+    cursor: pointer;
+    width: 100%;
+}
+.add-task-button:hover{
+    background-color: #f7f7f7;
 }
 
 .edit-button{
-    width: 10px;
+    width: 16px;
+}
+.delete-button{
+    cursor: pointer;
+    padding: 5px;
+    font-size: 1px;
+}
+.delete-button:hover{
+    background-color: #f7f7f7;
+}
+.task-delete-button{
+    cursor: pointer;
+    padding: 5px;
+    font-size: 1px;
+}
+.task-delete-button:hover{
+    background-color: #f7f7f7;
 }
 
 @keyframes blink {
