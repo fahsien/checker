@@ -9,6 +9,10 @@ var TaskSchema = new Schema({
 		type: String,
 		default: null
 	},
+	finished: {
+		type: Boolean,
+		default: false
+	},
 	checker: {
 		type: Schema.Types.ObjectId,
 		ref: 'Checker'

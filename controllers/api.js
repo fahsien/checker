@@ -72,10 +72,10 @@ exports.postTask = function(req, res) {
 }
 
 exports.putTask = function(req, res) {
-	Task.update({_id:req.body._id}, {$set: {name: req.body.name}},
+	Task.update({_id:req.body._id}, {$set: {name: req.body.name, finished: req.body.finished}},
     function (err, task) {
         if (err) return res.status(400).send(err);
-        res.send({message: {success:'成功！'}});
+        res.send({task:task});
     });
 }
 

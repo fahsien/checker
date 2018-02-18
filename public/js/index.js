@@ -7,7 +7,10 @@ angular.module('index', [])
         }).success(function(data) {
             $scope.checkers = data.checkers;
             for(var i=0; i<$scope.checkers.length; i++){
-                $scope.checkers[i].previous = {exist: i !== 0, finished:false};
+                $scope.checkers[i].unfinished = 0;
+                for(var j=0; j<$scope.checkers[i].tasks.length; j++){
+                    if($scope.checkers[i].tasks[j].finished === false) $scope.checkers[i].unfinished++;
+                }
             }
         });
         $scope.blink_animation = true;
@@ -31,7 +34,7 @@ angular.module('index', [])
                                     tasks: []
                                 }
                 }).success(function(data) {
-                    data.checker.previous = {exist:$scope.checkers.length > 0, finished:false}
+                    data.checker.unfinished = 0;
                     $scope.checkers.push(data.checker);
                     $scope.checkerFunc.content_input = null;
                     $scope.checkerFunc.content_input_display = false;
@@ -58,7 +61,6 @@ angular.module('index', [])
                       data    : checker
                 }).success(function(data) {
                     $scope.checkers.splice(order,1);
-                    if(order === 0) $scope.checkers[0].previous = {exist: false, finished:false};
                 });
             }
         };
@@ -82,6 +84,7 @@ angular.module('index', [])
                                 }
                 }).success(function(data) {
                     checker.tasks.push(data.task);
+                    checker.unfinished++;
                     $scope.taskFunc.content_input[order] = null;
                     $scope.taskFunc.content_input_display[order] = false;
                 });
@@ -96,8 +99,17 @@ angular.module('index', [])
                       url     : '/api/task',
                       data    : task
                 }).success(function(data) {
+                    task = data.task;
                     $scope.taskFunc.name_input_display[task._id] = false;
+                    $scope.blink_animation = true;
                 });
+            },
+            updateFinished : function(checker, task){
+                $scope.blink_animation = false;
+                if(task.finished){checker.unfinished--;}else{
+                    checker.unfinished++;
+                };
+                this.update(task);
             },
             delete : function(checker, task, order){
                 $http({
@@ -105,6 +117,7 @@ angular.module('index', [])
                       url     : '/api/deleteTask',
                       data    : task
                 }).success(function(data) {
+                    if(!task.finished){checker.unfinished--;}
                     checker.tasks.splice(order,1);
                 });
             }
