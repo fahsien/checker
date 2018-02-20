@@ -104,7 +104,6 @@ angular.module('index', [])
                       url     : '/api/task',
                       data    : task
                 }).success(function(data) {
-                    task = data.task;
                     $scope.taskFunc.name_input_display[task._id] = false;
                     $scope.blink_animation = true;
                 });
@@ -143,6 +142,7 @@ angular.module('index', [])
                         alert("截止日期設定成功");
                     }else{
                         alert("截止日期設定失敗，請重新檢查日期");
+                        task.due_date = "";
                     }
                     $scope.taskFunc.duedate_input_display[task._id] = false;
                 });

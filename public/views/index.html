@@ -28,13 +28,14 @@
 
 <body ng-controller="indexController">
     <div class="checker-layout">
+        <div class="header"></div>
         <div class="checker" ng-repeat="checker in checkers track by $index">
             <div class="checker-content">
                 <div class="checker-head">
                     <div class="pure-g">
                         <div class="pure-u-5-6">
-                            <div class="checker-name", ng-click="checkerFunc.modify($index)", ng-hide="checkerFunc.name_input_display[$index]">{{checker.name}}</div>
-                            <input type="text" ng-model="checker.name", ng-blur="checkerFunc.update(checker, $index)", ng-hide="!checkerFunc.name_input_display[$index]">
+                            <div ng-click="checkerFunc.modify($index)", ng-hide="checkerFunc.name_input_display[$index]">{{checker.name}}</div>
+                            <input class="checker-name" type="text" ng-model="checker.name", ng-blur="checkerFunc.update(checker, $index)", ng-hide="!checkerFunc.name_input_display[$index]">
                         </div>
                         <div class="pure-u-1-6">
                             <a class="delete-button", ng-click="checkerFunc.delete(checker, $index)">x</a>
@@ -53,7 +54,7 @@
                                     <div class="pure-u-5-6">
                                         <div ng-click="taskFunc.modify(task._id)", ng-hide="taskFunc.name_input_display[task._id]">{{task.name}}</div>
                                         <textarea ng-model="task.name", ng-blur="taskFunc.update(task)", ng-hide="!taskFunc.name_input_display[task._id]" ></textarea>
-                                        <span class="" ng-hide="taskFunc.duedate_input_display[task._id]">{{task.due_date.toLocaleDateString()}}</span>
+                                        <span class="due-date" ng-hide="taskFunc.duedate_input_display[task._id]">{{task.due_date.toLocaleDateString()}}</span>
                                     </div>
                                 </div>
                             </div>
@@ -68,19 +69,19 @@
                     </div>
                     <div class="task" ng-hide="!taskFunc.content_input_display[$index]">
                         <textarea type="text" ng-model="taskFunc.content_input[$index]"></textarea>
-                        <button ng-click="taskFunc.save(checker, $index)">儲存</button>
+                        <a class="save-button" ng-click="taskFunc.save(checker, $index)">儲存</a>
                     </div>
                 </div>
                 <a ng-click="taskFunc.add($index)", ng-hide="taskFunc.content_input_display[$index]">
                     <div class="add-task-button">新增任務</div>
                 </a>
             </div>
-            <div class="checker-arrow" ng-class="{blink: checker.unfinished && blink_animation}", ng-if="$index!==checkers.length-1">➭</div>
+            <div class="checker-arrow" ng-class="{blink: checker.unfinished && blink_animation}", ng-if="$index!==checkers.length-1"></div>
         </div>
         <div class="checker" ng-hide="!checkerFunc.content_input_display">
             <div class="checker-content">
                 <input type="text" ng-model="checkerFunc.content_input">
-                <button ng-click="checkerFunc.save()">儲存</button>
+                <a class="save-button" ng-click="checkerFunc.save()">儲存</a>
             </div>
         </div>
         <a ng-click="checkerFunc.add()" ng-hide="checkerFunc.content_input_display">
