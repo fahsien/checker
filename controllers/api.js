@@ -1,7 +1,50 @@
 var Checker = require('../models/checker.js'),
 	Task = require('../models/task.js'),
 	_ = require('lodash'),
-	async = require('async');
+	async = require('async'),
+	moment = require('moment'),
+	nodemailer = require('nodemailer'),
+    smtpPool = require('nodemailer-smtp-pool'),
+	mail_pool_options = {
+		service: 'Gmail',
+		auth: {
+			user: 'no-reply@hgcagroup.com',
+			pass: 'hgnoreply'
+		}
+	},
+	transporter = nodemailer.createTransport(smtpPool(mail_pool_options));
+
+exports.setDueDate = function(req, res){
+	var diff = (new Date(req.body.due_date) - new Date());
+	if(diff <= 0){
+		res.send({success: false});
+	}else{
+		setTimeout(function(){
+			Task.find({_id:req.body._id})
+			.exec(function(err, task) {
+				//Make sure this is the newest date.
+		        if(new Date(task[0].due_date).valueOf() === new Date(req.body.due_date).valueOf()){
+					transporter.sendMail({
+					  from: 'hg-no-reply <no-reply@hgcagroup.com>',
+					  to: 'fahsien0815@gmail.com',
+					  subject: '[通知]任務已達截止日期',
+					  html: '<p>你好，</p><br><p>任務已達截止日期,請儘速完成任務</p>'
+					}, function(err){
+					  if(err) {
+					    console.log('Unable to send email: ' + err);
+						return res.status(400).send(err);
+					  }
+					});
+				}
+			});
+		}, diff);
+		Task.update({_id:req.body._id}, {$set: {due_date: req.body.due_date}},
+	    function (err, task) {
+	        if (err) return res.status(400).send(err);
+	        res.send({success: true});
+	    });
+	};
+}
 
 exports.getCheckers = function(req, res) {
 	async.parallel([

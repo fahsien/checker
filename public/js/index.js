@@ -9,6 +9,10 @@ angular.module('index', [])
             for(var i=0; i<$scope.checkers.length; i++){
                 $scope.checkers[i].unfinished = 0;
                 for(var j=0; j<$scope.checkers[i].tasks.length; j++){
+                    if($scope.checkers[i].tasks[j].due_date){
+                        $scope.checkers[i].tasks[j].due_date = new Date($scope.checkers[i].tasks[j].due_date);
+                    }
+
                     if($scope.checkers[i].tasks[j].finished === false) $scope.checkers[i].unfinished++;
                 }
             }
@@ -70,6 +74,7 @@ angular.module('index', [])
             content_input_display : [],
             content_input : [],
             name_input_display : [],
+            duedate_input_display : [],
             add : function(order){
                 this.content_input_display[order] = true;
             },
@@ -119,6 +124,27 @@ angular.module('index', [])
                 }).success(function(data) {
                     if(!task.finished){checker.unfinished--;}
                     checker.tasks.splice(order,1);
+                });
+            },
+            switchDateSet : function(id){
+                this.duedate_input_display[id] = !this.duedate_input_display[id];
+            },
+            setDueDate : function(task){
+                if(!task.due_date){
+                    $scope.taskFunc.duedate_input_display[task._id] = false;
+                    return;
+                }
+                $http({
+                      method  : 'POST',
+                      url     : '/api/setDueDate',
+                      data    : task
+                }).success(function(data) {
+                    if(data.success){
+                        alert("截止日期設定成功");
+                    }else{
+                        alert("截止日期設定失敗，請重新檢查日期");
+                    }
+                    $scope.taskFunc.duedate_input_display[task._id] = false;
                 });
             }
         };

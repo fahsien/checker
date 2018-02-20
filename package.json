@@ -14,8 +14,11 @@
     "ejs": "^2.5.2",
     "express": "^4.14.0",
     "lodash": "^4.17.5",
+    "moment": "^2.20.1",
     "mongoose": "^4.6.3",
     "multer": "^1.2.0",
+    "nodemailer": "^4.4.2",
+    "nodemailer-smtp-pool": "^2.8.3",
     "serve-favicon": "^2.3.0"
   },
   "devDependencies": {

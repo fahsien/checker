@@ -61,6 +61,8 @@ app.route('/api/task')
 	.put(api.putTask);
 app.route('/api/deleteTask')
 	.post(api.deleteTask);
+app.route('/api/setDueDate')
+	.post(api.setDueDate);
 
 server.listen(port,'localhost',function(){
     console.log('port on ' + port);

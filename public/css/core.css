@@ -18,7 +18,7 @@
 .checker-content{
     display: inline-block;
     line-height: 50px;
-    width: 200px;
+    width: 260px;
     border: 2px solid;
     vertical-align: top;
     margin: 10px 24px;
@@ -31,7 +31,10 @@
     background-color: #DCDCDC;
     line-height: 30px;
 }
-
+.date-set-block{
+    padding: 10px 33px 10px 10px;
+    background-color: whitesmoke;
+}
 .add-checker-button{
     cursor: pointer;
     display: inline-block;
@@ -68,6 +71,10 @@
     cursor: pointer;
     padding: 5px;
     font-size: 1px;
+}
+.task-alarm-button{
+    width: 20px;
+    cursor: pointer;
 }
 .task-delete-button:hover{
     background-color: #f7f7f7;

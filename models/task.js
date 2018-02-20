@@ -13,6 +13,9 @@ var TaskSchema = new Schema({
 		type: Boolean,
 		default: false
 	},
+	due_date: {
+		type: Date
+	},
 	checker: {
 		type: Schema.Types.ObjectId,
 		ref: 'Checker'
