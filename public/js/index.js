@@ -18,6 +18,12 @@ angular.module('index', [])
             }
         });
         $scope.blink_animation = true;
+        $http({
+              method  : 'GET',
+              url     : '/api/users'
+        }).success(function(data) {
+            $scope.users = data.users;
+        });
 
         //** Checker **//
         $scope.checkerFunc = {
@@ -145,6 +151,18 @@ angular.module('index', [])
                         task.due_date = "";
                     }
                     $scope.taskFunc.duedate_input_display[task._id] = false;
+                });
+            },
+            setTaskOwner : function(task, user){
+                $http({
+                      method  : 'POST',
+                      url     : '/api/setTaskOwner',
+                      data    : {
+                                    task: task,
+                                    user: user
+                                }
+                }).success(function(data) {
+                    task.owner = user;
                 });
             }
         };

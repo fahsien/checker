@@ -9,6 +9,10 @@ body{
     background-color: #026aa7;
     height: 40px;
 }
+.icon-button{
+    width: 20px;
+    cursor: pointer;
+}
 .checker-layout{
     width: max-content;
     height: 100%;
@@ -85,6 +89,36 @@ body{
 .add-task-button:hover{
     background-color: #026aa7;
 }
+.drop-button{
+    width: 20px;
+    cursor: pointer;
+}
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    cursor: pointer;
+
+}
+.dropdown-content a:hover {background-color: #ddd}
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
 .save-button{
     padding: 5px;
     border: 1px solid;
@@ -110,10 +144,6 @@ body{
     cursor: pointer;
     padding: 5px;
     font-size: 1px;
-}
-.task-alarm-button{
-    width: 20px;
-    cursor: pointer;
 }
 .task-delete-button:hover{
     background-color: #f7f7f7;

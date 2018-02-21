@@ -1,5 +1,6 @@
 var Checker = require('../models/checker.js'),
 	Task = require('../models/task.js'),
+	User = require('../models/user.js'),
 	_ = require('lodash'),
 	async = require('async'),
 	moment = require('moment'),
@@ -14,38 +15,14 @@ var Checker = require('../models/checker.js'),
 	},
 	transporter = nodemailer.createTransport(smtpPool(mail_pool_options));
 
-exports.setDueDate = function(req, res){
-	var diff = (new Date(req.body.due_date) - new Date());
-	if(diff <= 0){
-		res.send({success: false});
-	}else{
-		setTimeout(function(){
-			Task.find({_id:req.body._id})
-			.exec(function(err, task) {
-				//Make sure this is the newest date.
-		        if(new Date(task[0].due_date).valueOf() === new Date(req.body.due_date).valueOf()){
-					transporter.sendMail({
-					  from: 'hg-no-reply <no-reply@hgcagroup.com>',
-					  to: 'fahsien0815@gmail.com',
-					  subject: '[通知]任務已達截止日期',
-					  html: '<p>你好，</p><br><p>任務已達截止日期,請儘速完成任務</p>'
-					}, function(err){
-					  if(err) {
-					    console.log('Unable to send email: ' + err);
-						return res.status(400).send(err);
-					  }
-					});
-				}
-			});
-		}, diff);
-		Task.update({_id:req.body._id}, {$set: {due_date: req.body.due_date}},
-	    function (err, task) {
-	        if (err) return res.status(400).send(err);
-	        res.send({success: true});
-	    });
-	};
-}
 
+exports.getUsers = function(req, res) {
+	User.find({})
+	.exec(function(err, users) {
+		if (err) return res.status(400).send(err);
+		res.send({users: users});
+	});
+}
 exports.getCheckers = function(req, res) {
 	async.parallel([
 		function(callback){
@@ -54,7 +31,7 @@ exports.getCheckers = function(req, res) {
 		        callback(err, checkers)
 			});
 		},function(callback){
-			Task.find({})
+			Task.find({}).populate('owner')
 			.exec(function(err, tasks) {
 		        callback(err, tasks)
 			});
@@ -126,5 +103,49 @@ exports.deleteTask = function(req, res) {
 	Task.remove({_id:req.body._id}, function (err) {
 		if (err) return res.status(400).send(err);
 		res.send({message: {success:'成功！'}});
+	});
+}
+
+exports.setDueDate = function(req, res){
+	var diff = (new Date(req.body.due_date) - new Date());
+
+	if(diff <= 0){
+		res.send({success: false});
+	}else{
+		setTimeout(function(){
+			Task.find({_id:req.body._id})
+			.exec(function(err, task) {
+				//Make sure this is the newest date.
+				var dateCorrect = new Date(task[0].due_date).valueOf() === new Date(req.body.due_date).valueOf(),
+					notFinished = !req.body.finished;
+
+		        if(dateCorrect && notFinished){
+					transporter.sendMail({
+					  from: 'hg-no-reply <no-reply@hgcagroup.com>',
+					  to: req.body.owner.email,
+					  subject: '[通知]任務已達截止日期',
+					  html: '<p>你好，</p><br><p>任務已達截止日期,請儘速完成任務</p>'
+					}, function(err){
+					  if(err) {
+					    console.log('Unable to send email: ' + err);
+						return res.status(400).send(err);
+					  }
+					});
+				}
+			});
+		}, 1000);
+		Task.update({_id:req.body._id}, {$set: {due_date: req.body.due_date}},
+	    function (err, task) {
+	        if (err) return res.status(400).send(err);
+	        res.send({success: true});
+	    });
+	};
+}
+
+exports.setTaskOwner = function(req, res) {
+	Task.update({_id:req.body.task._id}, {$set: {owner: req.body.user}},
+	function (err, task) {
+		if (err) return res.status(400).send(err);
+		res.send({success: true});
 	});
 }

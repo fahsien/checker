@@ -63,7 +63,11 @@ app.route('/api/deleteTask')
 	.post(api.deleteTask);
 app.route('/api/setDueDate')
 	.post(api.setDueDate);
+app.route('/api/setTaskOwner')
+	.post(api.setTaskOwner);
 
+app.route('/api/users')
+	.get(api.getUsers);
 server.listen(port,'localhost',function(){
     console.log('port on ' + port);
 });

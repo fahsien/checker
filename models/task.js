@@ -19,6 +19,10 @@ var TaskSchema = new Schema({
 	checker: {
 		type: Schema.Types.ObjectId,
 		ref: 'Checker'
+	},
+	owner: {
+		type: Schema.Types.ObjectId,
+		ref: 'User'
 	}
 
 });
