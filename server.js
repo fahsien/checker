@@ -5,7 +5,9 @@ var http = require('http'),
 	bodyParser = require('body-parser'),
 	multer = require('multer'),
 	server = app,
-	mongoose = require('mongoose');
+	mongoose = require('mongoose'),
+	passport = require('passport'),
+	session = require('express-session');
 	favicon = require('serve-favicon');
 
 //set port
@@ -13,8 +15,14 @@ var port = process.env.PORT || 8080;
 
 //connect database
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/checker');
-
+mongoose.connect('mongodb://localhost/checker', {}, function (err) {
+	if (err) {
+		console.error('\x1b[31m', 'Could not connect to MongoDB!');
+		console.log(err);
+	} else {
+        console.log('connect to db');
+    }
+});
 //static files' location
 // app.use(express.static(__dirname + '/public'));
 app.use(express.static(path.resolve('./public')));
@@ -30,20 +38,37 @@ app.use(function (req, res, next) { // when multpart, json parse nest object
 });
 app.use(favicon(__dirname + '/public/img/core/favicon.ico'));
 
+//== Passport ==//
+app.use(session({
+  secret: 'checkersessionsecret',
+  resave: false,
+  saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+require('./config/passport')();
+
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 app.set('views', './public/views');
 
 // Routes
 app.get('/',function(req, res){
-	res.render('index', {});
-});
-app.get('/login',function(req, res){
-	res.render('index', {});
+	if (req.user) {
+		res.render('index', {});
+	}else{
+		res.render('loginpage', {});
+	}
 });
 
 // set up the RESTful API, handler methods are defined in api.js
-var api = require('./controllers/api.js');
+var api = require('./controllers/api.js'),
+	login = require('./controllers/login.js');
+/** Login API **/
+app.route('/api/login')
+	.post(login.loginValidator);
+
 /** Checkers API **/
 app.route('/api/checkers')
 	.get(api.getCheckers);
