@@ -1,6 +1,6 @@
-var Checker = require('../models/checker.js'),
-	Task = require('../models/task.js'),
-	User = require('../models/user.js'),
+var Checker = require('../../models/checker.js'),
+	Task = require('../../models/task.js'),
+	User = require('../../models/user.js'),
 	_ = require('lodash'),
 	async = require('async'),
 	moment = require('moment'),
@@ -14,7 +14,7 @@ var Checker = require('../models/checker.js'),
 		}
 	},
 	transporter = nodemailer.createTransport(smtpPool(mail_pool_options));
-
+console.log('a123sd');
 
 exports.getUsers = function(req, res) {
 	User.find({})

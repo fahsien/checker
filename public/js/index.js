@@ -154,15 +154,20 @@ angular.module('index', [])
                 });
             },
             setTaskOwner : function(task, user){
+                task.owner = user;
                 $http({
                       method  : 'POST',
                       url     : '/api/setTaskOwner',
                       data    : {
-                                    task: task,
-                                    user: user
-                                }
+                                task: t}
                 }).success(function(data) {
-                    task.owner = user;
+                    if(data.success){
+                        alert("截止日期設定成功");
+                    }else{
+                        alert("截止日期設定失敗，請重新檢查日期");
+                        task.due_date = "";
+                    }
+                    $scope.taskFunc.duedate_input_display[task._id] = false;
                 });
             }
         };

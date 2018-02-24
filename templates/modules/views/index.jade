@@ -1,0 +1,81 @@
+doctype html
+html(lang="en" ng-app="index")
+
+head
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible" content="IE=edge")
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    meta(name="description" content="")
+    meta(name="author" content="")
+
+    title Checkers
+    <!-- Core CSS -->
+    link(href="../css/core.css" rel="stylesheet")
+
+    <!-- Pure -->
+    link(rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css")
+
+
+
+    <!-- Angularjs -->
+    script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js")
+    script(src="../js/index.js")
+
+
+body(ng-controller="indexController")
+    .checker-layout
+        .header
+        .checker(ng-repeat="checker in checkers track by $index")
+            .checker-content
+                .checker-head
+                    .pure-g
+                        .pure-u-5-6
+                            div(ng-click="checkerFunc.modify($index)", ng-hide="checkerFunc.name_input_display[$index]") {{checker.name}}
+                            input.checker-name(type="text" ng-model="checker.name", ng-blur="checkerFunc.update(checker, $index)", ng-hide="!checkerFunc.name_input_display[$index]")
+                        
+                        .pure-u-1-6
+                            a.delete-button(ng-click="checkerFunc.delete(checker, $index)") x
+                        
+                .task-list
+                    .task(ng-repeat="task in checker.tasks track by $index")
+                        .pure-g
+                            .pure-u-5-6
+                                .pure-g
+                                    .pure-u-1-6
+                                        input(type="checkbox", ng-model="task.finished", ng-click="taskFunc.updateFinished(checker, task)")
+                                        img.icon-button(src="../img/core/alarm.png" ng-click="taskFunc.switchDateSet(task._id)", ng-hide="taskFunc.duedate_input_display[task._id]||!task.owner")
+
+                                    .pure-u-5-6
+                                        div(ng-click="taskFunc.modify(task._id)", ng-hide="taskFunc.name_input_display[task._id]") {{task.name}}
+                                        textarea(ng-model="task.name", ng-blur="taskFunc.update(task)", ng-hide="!taskFunc.name_input_display[task._id]")
+                                        span.due-date(ng-hide="taskFunc.duedate_input_display[task._id]") {{task.due_date.toLocaleDateString()}}
+                                    
+                            .pure-u-1-6
+                                a.task-delete-button(ng-click="taskFunc.delete(checker, task, $index)") x
+                                .dropdown
+                                    img.drop-button(ng-src="{{task.owner.profile_photo||'../img/core/user-black.png'}}")
+                                    .dropdown-content
+                                        a(ng-click="taskFunc.setTaskOwner(task, user)" ng-repeat="user in users track by $index")
+                                            img.icon-button(ng-src="{{user.profile_photo}}")
+                                            span {{user.name}}
+                                    
+                        .date-set-block(ng-hide="!taskFunc.duedate_input_display[task._id]")
+                            input(type="date" ng-model="task.due_date" ng-change="taskFunc.setDueDate(task)")
+                            a.task-delete-button(ng-click="taskFunc.switchDateSet(task._id)") x
+                        
+                    .task(ng-hide="!taskFunc.content_input_display[$index]")
+                        textarea(type="text" ng-model="taskFunc.content_input[$index]")
+                        a.save-button(ng-click="taskFunc.save(checker, $index)") 儲存
+                    
+                a(ng-click="taskFunc.add($index)", ng-hide="taskFunc.content_input_display[$index]")
+                    .add-task-button 新增任務
+                    
+            .checker-arrow(ng-class="{blink: checker.unfinished && blink_animation}", ng-if="$index!==checkers.length-1")
+        
+        .checker(ng-hide="!checkerFunc.content_input_display")
+            .checker-content
+                input(type="text" ng-model="checkerFunc.content_input")
+                a.save-button(ng-click="checkerFunc.save()") 儲存
+            
+        a(ng-click="checkerFunc.add()" ng-hide="checkerFunc.content_input_display")
+            .add-checker-button 新增專案

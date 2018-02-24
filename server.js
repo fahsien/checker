@@ -15,7 +15,7 @@ var port = process.env.PORT || 8080;
 
 //connect database
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/checker', {}, function (err) {
+mongoose.connect('mongodb://localhost/checker', { useMongoClient: true }, function (err) {
 	if (err) {
 		console.error('\x1b[31m', 'Could not connect to MongoDB!');
 		console.log(err);
@@ -51,7 +51,7 @@ require('./config/passport')();
 
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
-app.set('views', './public/views');
+app.set('views', './public/modules/views');
 
 // Routes
 app.get('/',function(req, res){
@@ -63,8 +63,8 @@ app.get('/',function(req, res){
 });
 
 // set up the RESTful API, handler methods are defined in api.js
-var api = require('./controllers/api.js'),
-	login = require('./controllers/login.js');
+var api = require('./app/controllers/api.js'),
+	login = require('./app/controllers/login.js');
 /** Login API **/
 app.route('/api/login')
 	.post(login.loginValidator);
