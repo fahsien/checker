@@ -39,3 +39,4 @@ body
                             .pure-u-5-6
                                 input(type="password" ng-model="password")
                         input.login-button(type="submit" value="登入")
+                        p(ng-if="fail_message") {{fail_message}}

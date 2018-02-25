@@ -27,7 +27,6 @@ angular.module('index', [])
         });
 
         $scope.logout = function(){
-            console.log('asd');
             $http({
                   method  : 'POST',
                   url     : '/api/logout'

@@ -9,7 +9,10 @@ angular.module('login', [])
                                 password: $scope.password
                             }
             }).success(function(data) {
+                $scope.fail_message = '';
                 window.location = '/';
+            }).error(function(data, status) {
+              $scope.fail_message = '登入失敗唷！';
             });
         }
     })
