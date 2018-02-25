@@ -26,6 +26,16 @@ angular.module('index', [])
             $scope.users = data.users;
         });
 
+        $scope.logout = function(){
+            console.log('asd');
+            $http({
+                  method  : 'POST',
+                  url     : '/api/logout'
+            }).success(function(data) {
+                window.location = '/';
+            });
+        };
+
         //** Checker **//
         $scope.checkerFunc = {
             content_input_display : false,

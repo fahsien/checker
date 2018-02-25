@@ -16,3 +16,8 @@ exports.loginValidator = function(req, res, next) {
         }
     })(req, res, next);
 }
+
+exports.logout = function (req, res) {
+    req.logout();
+    res.send({message: '登出成功！'});
+};

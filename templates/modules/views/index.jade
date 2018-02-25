@@ -25,6 +25,7 @@ head
 body(ng-controller="indexController")
     .checker-layout
         .header
+            .logout-button(ng-click="logout()") 登出
         .checker(ng-repeat="checker in checkers track by $index")
             .checker-content
                 .checker-head

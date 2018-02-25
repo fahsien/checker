@@ -68,7 +68,9 @@ var api = require('./app/controllers/api.js'),
 /** Login API **/
 app.route('/api/login')
 	.post(login.loginValidator);
-
+app.route('/api/logout')
+	.post(login.logout);
+	
 /** Checkers API **/
 app.route('/api/checkers')
 	.get(api.getCheckers);

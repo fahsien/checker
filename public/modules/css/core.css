@@ -5,6 +5,9 @@ body {
   height: 100%;
   background-color: #DCDCDC;
 }
+a {
+  cursor: pointer;
+}
 @keyframes blink {
   0% {
     opacity: 0;
@@ -23,6 +26,15 @@ body {
   width: 20px;
   cursor: pointer;
 }
+.logout-button {
+  color: white;
+  padding: 9px 50px;
+  cursor: pointer;
+  float: right;
+}
+.logout-button:hover {
+  background-color: #3c8dbc;
+}
 .checker-layout {
   width: max-content;
   height: 100%;
@@ -31,6 +43,11 @@ body {
 .checker-layout .header {
   background-color: #026aa7;
   height: 40px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
 }
 .checker-layout .checker {
   display: inline-block;
