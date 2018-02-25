@@ -36,6 +36,7 @@ a {
   background-color: #3c8dbc;
 }
 .checker-layout {
+  min-width: 100%;
   width: max-content;
   height: 100%;
   background-color: #3c8dbc;

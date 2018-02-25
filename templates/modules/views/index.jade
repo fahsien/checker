@@ -49,7 +49,7 @@ body(ng-controller="indexController")
                                     .pure-u-5-6
                                         div(ng-click="taskFunc.modify(task._id)", ng-hide="taskFunc.name_input_display[task._id]") {{task.name}}
                                         textarea(ng-model="task.name", ng-blur="taskFunc.update(task)", ng-hide="!taskFunc.name_input_display[task._id]")
-                                        span.due-date(ng-class="{overtime: task.due_date > now}", ng-hide="taskFunc.duedate_input_display[task._id]") {{task.due_date.toLocaleDateString()}}
+                                        span.due-date(ng-class="{overtime: (task.due_date < now)&&task.due_date}", ng-hide="taskFunc.duedate_input_display[task._id]||task.finished") {{task.due_date.toLocaleDateString()}}
                                     
                             .pure-u-1-6
                                 a.task-delete-button(ng-click="taskFunc.delete(checker, task, $index)") x

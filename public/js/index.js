@@ -78,7 +78,7 @@ angular.module('index', [])
                     $scope.checkerFunc.name_input_display[checker._id] = false;
                 });
             },
-            delete : function(checker){
+            delete : function(checker, order){
                 $http({
                       method  : 'POST',
                       url     : '/api/deleteChecker',
@@ -171,20 +171,15 @@ angular.module('index', [])
                 });
             },
             setTaskOwner : function(task, user){
-                task.owner = user;
                 $http({
                       method  : 'POST',
                       url     : '/api/setTaskOwner',
                       data    : {
-                                task: t}
+                                    task: task,
+                                    user: user
+                                }
                 }).success(function(data) {
-                    if(data.success){
-                        alert("截止日期設定成功");
-                    }else{
-                        alert("截止日期設定失敗，請重新檢查日期");
-                        task.due_date = "";
-                    }
-                    $scope.taskFunc.duedate_input_display[task._id] = false;
+                    task.owner = user;
                 });
             }
         };
