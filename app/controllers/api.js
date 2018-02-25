@@ -108,7 +108,7 @@ exports.deleteTask = function(req, res) {
 
 exports.setDueDate = function(req, res){
 	var diff = (new Date(req.body.due_date) - new Date());
-
+	
 	if(diff <= 0){
 		res.send({success: false});
 	}else{
@@ -133,7 +133,7 @@ exports.setDueDate = function(req, res){
 					});
 				}
 			});
-		}, 1000);
+		}, diff);
 		Task.update({_id:req.body._id}, {$set: {due_date: req.body.due_date}},
 	    function (err, task) {
 	        if (err) return res.status(400).send(err);
