@@ -14,7 +14,7 @@ var Checker = require('../../models/checker.js'),
 		}
 	},
 	transporter = nodemailer.createTransport(smtpPool(mail_pool_options));
-console.log('a123sd');
+
 
 exports.getUsers = function(req, res) {
 	User.find({})

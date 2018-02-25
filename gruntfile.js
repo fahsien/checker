@@ -3,7 +3,16 @@ module.exports = function (grunt) {
     var watchFiles = {
         serverJS: ['gruntfile.js', 'server.js', 'config/**/*.js', 'app/**/*.js'],
         clientViews: ['templates/**/views/**/*.jade'],
-    };
+        clientLESS: ['templates/**/*.less'],
+    },
+    lessFiles = [{
+        expand: true,
+        cwd: 'templates/modules/',
+        src: ['**/*.less'],
+        dest: 'public/modules/',
+        ext: '.css'
+    }];
+
     // Project Configuration
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
@@ -14,7 +23,14 @@ module.exports = function (grunt) {
                 options: {
                     livereload: true,
                 }
-            }
+            },
+            clientLESS: {
+                files: watchFiles.clientLESS,
+                tasks: ['less:dev'],
+                options: {
+                    livereload: true
+                }
+            },
         },
         jade: {
             compile: {
@@ -29,6 +45,20 @@ module.exports = function (grunt) {
                     dest: 'public/modules/',
                     ext: '.html'
                 }]
+            }
+        },
+        less: {
+            dev: {
+                files: lessFiles,
+                options: {
+                    modifyVars: {production: 'false'}
+                }
+            },
+            prod: {
+                files: lessFiles,
+                options: {
+                    modifyVars: {production: 'false'}
+                }
             }
         },
         nodemon: {
@@ -53,13 +83,10 @@ module.exports = function (grunt) {
     require('load-grunt-tasks')(grunt);
 
     // Default task(s).
-    grunt.registerTask('default', ['jade','concurrent:default']);
-
-    // Debug task.
-    grunt.registerTask('debug', ['concurrent:debug']);
+    grunt.registerTask('default', ['jade','less:dev','concurrent:default']);
 
     // Build task(s).
-    grunt.registerTask('build', ['jade']);
+    grunt.registerTask('build', ['jade','less:prod']);
 
 
 

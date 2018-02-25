@@ -1,0 +1,14 @@
+html {
+  height: 100%;
+}
+body {
+  height: 100%;
+  background-color: #DCDCDC;
+}
+.login-block {
+  text-align: center;
+  margin: 103px 248px;
+  padding: 62px;
+  background-color: white;
+  height: 300px;
+}
