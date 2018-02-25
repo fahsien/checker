@@ -3,3 +3,4 @@ node_modules
 
 # compiled files
 public/modules/*/views
+public/modules/*/css

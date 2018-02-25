@@ -30,8 +30,8 @@ body(ng-controller="indexController")
                 .checker-head
                     .pure-g
                         .pure-u-5-6
-                            div(ng-click="checkerFunc.modify($index)", ng-hide="checkerFunc.name_input_display[$index]") {{checker.name}}
-                            input.checker-name(type="text" ng-model="checker.name", ng-blur="checkerFunc.update(checker, $index)", ng-hide="!checkerFunc.name_input_display[$index]")
+                            div(ng-click="checkerFunc.modify(checker._id)", ng-hide="checkerFunc.name_input_display[checker._id]") {{checker.name}}
+                            input.checker-name(type="text" ng-model="checker.name", ng-blur="checkerFunc.update(checker)", ng-hide="!checkerFunc.name_input_display[checker._id]")
                         
                         .pure-u-1-6
                             a.delete-button(ng-click="checkerFunc.delete(checker, $index)") x
@@ -48,7 +48,7 @@ body(ng-controller="indexController")
                                     .pure-u-5-6
                                         div(ng-click="taskFunc.modify(task._id)", ng-hide="taskFunc.name_input_display[task._id]") {{task.name}}
                                         textarea(ng-model="task.name", ng-blur="taskFunc.update(task)", ng-hide="!taskFunc.name_input_display[task._id]")
-                                        span.due-date(ng-hide="taskFunc.duedate_input_display[task._id]") {{task.due_date.toLocaleDateString()}}
+                                        span.due-date(ng-class="{overtime: task.due_date > now}", ng-hide="taskFunc.duedate_input_display[task._id]") {{task.due_date.toLocaleDateString()}}
                                     
                             .pure-u-1-6
                                 a.task-delete-button(ng-click="taskFunc.delete(checker, task, $index)") x
@@ -63,18 +63,26 @@ body(ng-controller="indexController")
                             input(type="date" ng-model="task.due_date" ng-change="taskFunc.setDueDate(task)")
                             a.task-delete-button(ng-click="taskFunc.switchDateSet(task._id)") x
                         
-                    .task(ng-hide="!taskFunc.content_input_display[$index]")
-                        textarea(type="text" ng-model="taskFunc.content_input[$index]")
-                        a.save-button(ng-click="taskFunc.save(checker, $index)") 儲存
+                    .task(ng-hide="!taskFunc.content_input_display[checker._id]")
+                        .pure-g
+                            .pure-u-5-6
+                                textarea(type="text" ng-model="taskFunc.content_input[checker._id]")
+                            .pure-u-1-6
+                                a.cancel-button(ng-click="taskFunc.cancel(checker._id)") x
+                                a.save-button(ng-click="taskFunc.save(checker)") 儲存
                     
-                a(ng-click="taskFunc.add($index)", ng-hide="taskFunc.content_input_display[$index]")
+                a(ng-click="taskFunc.add(checker._id)", ng-hide="taskFunc.content_input_display[checker._id]")
                     .add-task-button 新增任務
                     
             .checker-arrow(ng-class="{blink: checker.unfinished && blink_animation}", ng-if="$index!==checkers.length-1")
         
         .checker(ng-hide="!checkerFunc.content_input_display")
             .checker-content
-                input(type="text" ng-model="checkerFunc.content_input")
+                .pure-g
+                    .pure-u-5-6
+                        input(type="text" ng-model="checkerFunc.content_input")
+                    .pure-u-1-6
+                        a.cancel-button(ng-click="checkerFunc.cancel(checker._id)") x
                 a.save-button(ng-click="checkerFunc.save()") 儲存
             
         a(ng-click="checkerFunc.add()" ng-hide="checkerFunc.content_input_display")

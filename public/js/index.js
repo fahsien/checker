@@ -18,6 +18,7 @@ angular.module('index', [])
             }
         });
         $scope.blink_animation = true;
+        $scope.now = new Date();
         $http({
               method  : 'GET',
               url     : '/api/users'
@@ -33,6 +34,10 @@ angular.module('index', [])
             add : function(){
                 this.content_input_display = true;
                 $scope.blink_animation = false;
+            },
+            cancel : function(){
+                this.content_input_display = !this.content_input_display;
+                $scope.blink_animation = true;
             },
             save : function(){
                 if(!this.content_input) return;
@@ -52,19 +57,19 @@ angular.module('index', [])
                 });
 
             },
-            modify : function(order){
-                this.name_input_display[order] = true;
+            modify : function(id){
+                this.name_input_display[id] = true;
             },
-            update : function(checker, order){
+            update : function(checker){
                 $http({
                       method  : 'PUT',
                       url     : '/api/checker',
                       data    : checker
                 }).success(function(data) {
-                    $scope.checkerFunc.name_input_display[order] = false;
+                    $scope.checkerFunc.name_input_display[checker._id] = false;
                 });
             },
-            delete : function(checker, order){
+            delete : function(checker){
                 $http({
                       method  : 'POST',
                       url     : '/api/deleteChecker',
@@ -81,23 +86,26 @@ angular.module('index', [])
             content_input : [],
             name_input_display : [],
             duedate_input_display : [],
-            add : function(order){
-                this.content_input_display[order] = true;
+            add : function(id){
+                this.content_input_display[id] = true;
             },
-            save : function(checker, order){
-                if(!this.content_input[order]) return;
+            cancel : function(id){
+                this.content_input_display[id] = !this.content_input_display[id];
+            },
+            save : function(checker){
+                if(!this.content_input[checker._id]) return;
                 $http({
                       method  : 'POST',
                       url     : '/api/task',
                       data    : {
-                                    name: this.content_input[order],
+                                    name: this.content_input[checker._id],
                                     checker: checker
                                 }
                 }).success(function(data) {
                     checker.tasks.push(data.task);
                     checker.unfinished++;
-                    $scope.taskFunc.content_input[order] = null;
-                    $scope.taskFunc.content_input_display[order] = false;
+                    $scope.taskFunc.content_input[checker._id] = null;
+                    $scope.taskFunc.content_input_display[checker._id] = false;
                 });
 
             },
