@@ -63,7 +63,9 @@ body(ng-controller="indexController")
                         .date-set-block(ng-hide="!taskFunc.duedate_input_display[task._id]")
                             input(type="date" ng-model="task.due_date" ng-change="taskFunc.setDueDate(task)")
                             a.task-delete-button(ng-click="taskFunc.switchDateSet(task._id)") x
-                        
+                    
+                        .task-arrow(ng-class="{blink: !task.finished && blink_animation}", ng-if="$index!==checker.tasks.length-1")
+
                     .task(ng-hide="!taskFunc.content_input_display[checker._id]")
                         .pure-g
                             .pure-u-5-6
@@ -74,8 +76,6 @@ body(ng-controller="indexController")
                     
                 a(ng-click="taskFunc.add(checker._id)", ng-hide="taskFunc.content_input_display[checker._id]")
                     .add-task-button 新增任務
-                    
-            .checker-arrow(ng-class="{blink: checker.unfinished && blink_animation}", ng-if="$index!==checkers.length-1")
         
         .checker(ng-hide="!checkerFunc.content_input_display")
             .checker-content

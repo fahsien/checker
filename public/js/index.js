@@ -5,15 +5,13 @@ angular.module('index', [])
               method  : 'GET',
               url     : '/api/checkers'
         }).success(function(data) {
+            console.log(data);
             $scope.checkers = data.checkers;
             for(var i=0; i<$scope.checkers.length; i++){
-                $scope.checkers[i].unfinished = 0;
                 for(var j=0; j<$scope.checkers[i].tasks.length; j++){
                     if($scope.checkers[i].tasks[j].due_date){
                         $scope.checkers[i].tasks[j].due_date = new Date($scope.checkers[i].tasks[j].due_date);
                     }
-
-                    if($scope.checkers[i].tasks[j].finished === false) $scope.checkers[i].unfinished++;
                 }
             }
         });
@@ -54,11 +52,9 @@ angular.module('index', [])
                       method  : 'POST',
                       url     : '/api/checker',
                       data    : {
-                                    name: this.content_input,
-                                    tasks: []
+                                    name: this.content_input
                                 }
                 }).success(function(data) {
-                    data.checker.unfinished = 0;
                     $scope.checkers.push(data.checker);
                     $scope.checkerFunc.content_input = null;
                     $scope.checkerFunc.content_input_display = false;
@@ -112,7 +108,6 @@ angular.module('index', [])
                                 }
                 }).success(function(data) {
                     checker.tasks.push(data.task);
-                    checker.unfinished++;
                     $scope.taskFunc.content_input[checker._id] = null;
                     $scope.taskFunc.content_input_display[checker._id] = false;
                 });
@@ -133,9 +128,6 @@ angular.module('index', [])
             },
             updateFinished : function(checker, task){
                 $scope.blink_animation = false;
-                if(task.finished){checker.unfinished--;}else{
-                    checker.unfinished++;
-                };
                 this.update(task);
             },
             delete : function(checker, task, order){
@@ -144,7 +136,6 @@ angular.module('index', [])
                       url     : '/api/deleteTask',
                       data    : task
                 }).success(function(data) {
-                    if(!task.finished){checker.unfinished--;}
                     checker.tasks.splice(order,1);
                 });
             },

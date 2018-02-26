@@ -48,8 +48,7 @@ exports.getCheckers = function(req, res) {
 }
 exports.postChecker = function(req, res) {
 	new Checker({
-				name: req.body.name,
-				tasks: req.body.tasks
+				name: req.body.name
 	    	}).save(function (err, checker) {
                 if (err) return res.status(400).send(err);
                 res.send({checker: checker});
@@ -108,7 +107,7 @@ exports.deleteTask = function(req, res) {
 
 exports.setDueDate = function(req, res){
 	var diff = (new Date(req.body.due_date) - new Date());
-	
+
 	if(diff <= 0){
 		res.send({success: false});
 	}else{

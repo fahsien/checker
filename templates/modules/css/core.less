@@ -102,6 +102,18 @@ a{
                     background-color: #f2f8fc;
                     line-height: 30px;
 
+                    .task-arrow{
+                        display: inline-block;
+                        vertical-align: top;
+                        position: relative;
+                        width: 14px;
+                        height: 14px;
+                        border-top: 5px solid black;
+                        border-right: 5px solid;
+                        transform: rotate(135deg);
+                        margin: 2px 20px;
+                    }
+
                     .due-date{
                         font-size: 14px;
                         color:gray;
@@ -167,17 +179,6 @@ a{
             }
         }
 
-        .checker-arrow{
-            display: inline-block;
-            vertical-align: top;
-            position: relative;
-            width: 14px;
-            height: 14px;
-            border-top: 10px solid black;
-            border-right: 10px solid;
-            transform: rotate(45deg);
-            margin: 50px 20px;
-        }
     }
     .add-checker-button{
         cursor: pointer;
