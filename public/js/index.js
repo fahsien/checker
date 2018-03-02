@@ -5,7 +5,6 @@ angular.module('index', [])
               method  : 'GET',
               url     : '/api/checkers'
         }).success(function(data) {
-            console.log(data);
             $scope.checkers = data.checkers;
             for(var i=0; i<$scope.checkers.length; i++){
                 for(var j=0; j<$scope.checkers[i].tasks.length; j++){

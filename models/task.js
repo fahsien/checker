@@ -16,6 +16,10 @@ var TaskSchema = new Schema({
 	due_date: {
 		type: Date
 	},
+	remind: {
+		type: String,
+		default: 'on_duedate'
+	},
 	checker: {
 		type: Schema.Types.ObjectId,
 		ref: 'Checker'

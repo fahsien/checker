@@ -43,13 +43,14 @@ body(ng-controller="indexController")
                             .pure-u-5-6
                                 .pure-g
                                     .pure-u-1-6
-                                        input(type="checkbox", ng-model="task.finished", ng-click="taskFunc.updateFinished(checker, task)")
+                                        input(id="{{task._id}}" type="checkbox", ng-model="task.finished", ng-click="taskFunc.updateFinished(checker, task)")
+                                        label(for="{{task._id}}")
                                         img.icon-button(src="../img/core/alarm.png" ng-click="taskFunc.switchDateSet(task._id)", ng-hide="taskFunc.duedate_input_display[task._id]||!task.owner")
 
                                     .pure-u-5-6
-                                        div(ng-click="taskFunc.modify(task._id)", ng-hide="taskFunc.name_input_display[task._id]") {{task.name}}
+                                        div(ng-class="{finished: task.finished}" ng-click="taskFunc.modify(task._id)", ng-hide="taskFunc.name_input_display[task._id]") {{task.name}}
                                         textarea(ng-model="task.name", ng-blur="taskFunc.update(task)", ng-hide="!taskFunc.name_input_display[task._id]")
-                                        span.due-date(ng-class="{overtime: (task.due_date < now)&&task.due_date}", ng-hide="taskFunc.duedate_input_display[task._id]||task.finished") {{task.due_date.toLocaleDateString()}}
+                                        span.due-date(ng-class="{overtime: (task.due_date < now)&&task.due_date}", ng-hide="taskFunc.duedate_input_display[task._id]||task.finished") {{task.due_date.toLocaleDateString()}} {{task.due_date.toLocaleTimeString([],{hour: '2-digit', minute:'2-digit'})}}
                                     
                             .pure-u-1-6
                                 a.task-delete-button(ng-click="taskFunc.delete(checker, task, $index)") x
@@ -61,8 +62,16 @@ body(ng-controller="indexController")
                                             span {{user.name}}
                                     
                         .date-set-block(ng-hide="!taskFunc.duedate_input_display[task._id]")
-                            input(type="date" ng-model="task.due_date" ng-change="taskFunc.setDueDate(task)")
-                            a.task-delete-button(ng-click="taskFunc.switchDateSet(task._id)") x
+                            input(type="datetime-local" ng-model="task.due_date")
+                            .pure-g
+                                .pure-u-1-2
+                                    select(ng-model="task.remind")
+                                        option(value="on_duedate") 當天提醒
+                                        option(value="one_week") 提前一週提醒
+                                .pure-u-1-4
+                                    a.save-button(ng-click="taskFunc.setDueDate(task)") 儲存
+                                .pure-u-1-4
+                                    a.save-button(ng-click="taskFunc.switchDateSet(task._id)") 關閉
                     
                         .task-arrow(ng-class="{blink: !task.finished && blink_animation}", ng-if="$index!==checker.tasks.length-1")
 
