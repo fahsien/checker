@@ -43,17 +43,17 @@ body(ng-controller="indexController")
                             .pure-u-5-6
                                 .pure-g
                                     .pure-u-1-6
-                                        input(id="{{task._id}}" type="checkbox", ng-model="task.finished", ng-click="taskFunc.updateFinished(checker, task)")
+                                        input(id="{{task._id}}" type="checkbox", ng-model="task.finished", ng-click="taskFunc.updateFinished(checker, task)" ng-disabled="task.owner._id !== user._id")
                                         label(for="{{task._id}}")
-                                        img.icon-button(src="../img/core/alarm.png" ng-click="taskFunc.switchDateSet(task._id)", ng-hide="taskFunc.duedate_input_display[task._id]||!task.owner")
+                                        img.icon-button(src="../img/core/alarm.png" ng-click="taskFunc.switchDateSet(task._id)", ng-hide="taskFunc.duedate_input_display[task._id]||!task.owner" ng-if="task.owner._id === user._id")
 
                                     .pure-u-5-6
-                                        div(ng-class="{finished: task.finished}" ng-click="taskFunc.modify(task._id)", ng-hide="taskFunc.name_input_display[task._id]") {{task.name}}
+                                        div(ng-class="{finished: task.finished}" ng-click="task.owner._id !== user._id || taskFunc.modify(task._id)", ng-hide="taskFunc.name_input_display[task._id]") {{task.name}}
                                         textarea(ng-model="task.name", ng-blur="taskFunc.update(task)", ng-hide="!taskFunc.name_input_display[task._id]")
                                         span.due-date(ng-class="{overtime: (task.due_date < now)&&task.due_date}", ng-hide="taskFunc.duedate_input_display[task._id]||task.finished") {{task.due_date.toLocaleDateString()}} {{task.due_date.toLocaleTimeString([],{hour: '2-digit', minute:'2-digit'})}}
                                     
                             .pure-u-1-6
-                                a.task-delete-button(ng-click="taskFunc.delete(checker, task, $index)") x
+                                a.task-delete-button(ng-click="task.owner._id !== user._id || taskFunc.delete(checker, task, $index)") x
                                 .dropdown
                                     img.drop-button(ng-src="{{task.owner.profile_photo||'../img/core/user-black.png'}}")
                                     .dropdown-content

@@ -16,11 +16,20 @@ angular.module('index', [])
         });
         $scope.blink_animation = true;
         $scope.now = new Date();
+        //**Get all users**//
         $http({
               method  : 'GET',
               url     : '/api/users'
         }).success(function(data) {
             $scope.users = data.users;
+        });
+        //**Get account user**//
+        $http({
+              method  : 'GET',
+              url     : '/api/me'
+        }).success(function(data) {
+            $scope.user = data.user;
+            console.log($scope.user);
         });
 
         $scope.logout = function(){

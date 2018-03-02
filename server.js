@@ -70,7 +70,7 @@ app.route('/api/login')
 	.post(login.loginValidator);
 app.route('/api/logout')
 	.post(login.logout);
-	
+
 /** Checkers API **/
 app.route('/api/checkers')
 	.get(api.getCheckers);
@@ -95,6 +95,8 @@ app.route('/api/setTaskOwner')
 
 app.route('/api/users')
 	.get(api.getUsers);
+app.route('/api/me')
+	.get(api.getAccountUser);
 server.listen(port,'localhost',function(){
     console.log('port on ' + port);
 });

@@ -15,7 +15,9 @@ var Checker = require('../../models/checker.js'),
 	},
 	transporter = nodemailer.createTransport(smtpPool(mail_pool_options));
 
-
+exports.getAccountUser = function(req, res) {
+	res.send({user: req.user});
+}
 exports.getUsers = function(req, res) {
 	User.find({})
 	.exec(function(err, users) {
