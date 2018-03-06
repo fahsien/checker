@@ -48,11 +48,9 @@ angular.module('index', [])
             name_input_display : [],
             add : function(){
                 this.content_input_display = true;
-                $scope.blink_animation = false;
             },
             cancel : function(){
                 this.content_input_display = !this.content_input_display;
-                $scope.blink_animation = true;
             },
             save : function(){
                 if(!this.content_input) return;
@@ -66,7 +64,6 @@ angular.module('index', [])
                     $scope.checkers.push(data.checker);
                     $scope.checkerFunc.content_input = null;
                     $scope.checkerFunc.content_input_display = false;
-                    $scope.blink_animation = true;
                 });
 
             },
@@ -101,6 +98,7 @@ angular.module('index', [])
             duedate_input_display : [],
             add : function(id){
                 this.content_input_display[id] = true;
+                $scope.blink_animation = false;
             },
             cancel : function(id){
                 this.content_input_display[id] = !this.content_input_display[id];
@@ -118,6 +116,7 @@ angular.module('index', [])
                     checker.tasks.push(data.task);
                     $scope.taskFunc.content_input[checker._id] = null;
                     $scope.taskFunc.content_input_display[checker._id] = false;
+                    $scope.blink_animation = true;
                 });
 
             },
