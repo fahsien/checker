@@ -20,20 +20,22 @@ head
     <!-- Angularjs -->
     script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js")
     script(src="../js/index.js")
+    
+    link(rel="stylesheet" href="/bower_components/ng-dialog/css/ngDialog.min.css")
+    link(rel="stylesheet" href="/bower_components/ng-dialog/css/ngDialog-theme-default.min.css")
+    script(src="/bower_components/ng-dialog/js/ngDialog.min.js")
 
 
 body(ng-controller="indexController")
     .checker-layout
         .header
             .logout-button(ng-click="logout()") 登出
-        .checker(ng-repeat="checker in checkers track by $index")
+        .checker(ng-repeat="checker in checkers track by $index" ng-class="{blue : checker.color === 'blue', red : checker.color === 'red', green : checker.color === 'green' }")
             .checker-content
                 .checker-head
                     .pure-g
                         .pure-u-5-6
-                            div(ng-click="checkerFunc.modify(checker._id)", ng-hide="checkerFunc.name_input_display[checker._id]") {{checker.name}}
-                            input.checker-name(type="text" ng-model="checker.name", ng-blur="checkerFunc.update(checker)", ng-hide="!checkerFunc.name_input_display[checker._id]")
-                        
+                            div(ng-click="checkerFunc.clickToOpen(checker)") {{checker.name}}
                         .pure-u-1-6
                             a.delete-button(ng-click="checkerFunc.delete(checker, $index)") x
                         
@@ -48,8 +50,8 @@ body(ng-controller="indexController")
                                         img.icon-button(src="../img/core/alarm.png" ng-click="taskFunc.switchDateSet(task._id)", ng-hide="taskFunc.duedate_input_display[task._id]||!task.owner" ng-if="task.owner._id === user._id")
 
                                     .pure-u-5-6
-                                        div(ng-class="{finished: task.finished}" ng-click="task.owner._id !== user._id || taskFunc.modify(task._id)", ng-hide="taskFunc.name_input_display[task._id]") {{task.name}}
-                                        textarea(ng-model="task.name", ng-blur="taskFunc.update(task)", ng-hide="!taskFunc.name_input_display[task._id]")
+                                        div(ng-class="{finished: task.finished}", ng-click="taskFunc.clickToOpen(task)") {{task.name}}
+                                        //- textarea(ng-model="task.name", ng-blur="taskFunc.update(task)", ng-hide="!taskFunc.name_input_display[task._id]")
                                         span.due-date(ng-class="{overtime: (task.due_date < now)&&task.due_date}", ng-hide="taskFunc.duedate_input_display[task._id]||task.finished") {{task.due_date.toLocaleDateString()}} {{task.due_date.toLocaleTimeString([],{hour: '2-digit', minute:'2-digit'})}}
                                     
                             .pure-u-1-6
@@ -97,3 +99,16 @@ body(ng-controller="indexController")
             
         a(ng-click="checkerFunc.add()" ng-hide="checkerFunc.content_input_display")
             .add-checker-button 新增專案
+
+script(type="text/ng-template" id="task-template")
+    input(ng-model="task.name", ng-blur="update(task)")
+    textarea(ng-model="task.describe", ng-blur="update(task)")
+script(type="text/ng-template" id="checker-template")
+    input(type="text" ng-model="checker.name", ng-blur="update(checker)" )
+    .pure-g.choose-color
+        .pure-u-1-3
+            .choose-blue(ng-click="updateColor(checker, 'blue')")
+        .pure-u-1-3
+            .choose-red(ng-click="updateColor(checker, 'red')")
+        .pure-u-1-3
+            .choose-green(ng-click="updateColor(checker, 'green')") 

@@ -64,6 +64,13 @@ exports.putChecker = function(req, res) {
         res.send({message: {success:'成功！'}});
     });
 }
+exports.putCheckerColor = function(req, res) {
+	Checker.update({_id:req.body._id}, {$set: {color: req.body.color}},
+    function (err, checker) {
+        if (err) return res.status(400).send(err);
+        res.send({message: {success:'成功！'}});
+    });
+}
 
 exports.deleteChecker = function(req, res) {
 	async.parallel([
@@ -93,7 +100,7 @@ exports.postTask = function(req, res) {
 }
 
 exports.putTask = function(req, res) {
-	Task.update({_id:req.body._id}, {$set: {name: req.body.name, finished: req.body.finished}},
+	Task.update({_id:req.body._id}, {$set: {name: req.body.name, describe: req.body.describe,finished: req.body.finished}},
     function (err, task ,test) {
         if (err) return res.status(400).send(err);
         res.send({message: {success:'成功！'}});

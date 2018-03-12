@@ -26,6 +26,7 @@ mongoose.connect('mongodb://localhost/checker', { useMongoClient: true }, functi
 //static files' location
 // app.use(express.static(__dirname + '/public'));
 app.use(express.static(path.resolve('./public')));
+app.use('/bower_components',  express.static(__dirname + '/bower_components'));
 
 // Request body parsing middleware should be above methodOverride
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
@@ -74,6 +75,9 @@ app.route('/api/logout')
 /** Checkers API **/
 app.route('/api/checkers')
 	.get(api.getCheckers);
+
+app.route('/api/checkerColor')
+	.put(api.putCheckerColor);
 
 app.route('/api/checker')
 	.post(api.postChecker)

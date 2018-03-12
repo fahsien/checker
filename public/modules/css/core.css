@@ -5,7 +5,7 @@ body {
   height: 100%;
 }
 body {
-  background-color: #3c8dbc;
+  background-color: #f7f7f7;
 }
 a {
   cursor: pointer;
@@ -56,13 +56,13 @@ input[type="checkbox"]:checked + label:after {
   margin-top: 9px;
 }
 .logout-button {
-  color: white;
+  color: black;
   padding: 9px 50px;
   cursor: pointer;
   float: right;
 }
 .logout-button:hover {
-  background-color: #3c8dbc;
+  background-color: #f7f7f7;
 }
 .checker-layout {
   height: auto !important;
@@ -71,10 +71,10 @@ input[type="checkbox"]:checked + label:after {
   /* real browsers */
   min-width: 100%;
   width: max-content;
-  background-color: #3c8dbc;
+  background-color: #f7f7f7;
 }
 .checker-layout .header {
-  background-color: #026aa7;
+  background-color: #ddd;
   height: 40px;
   position: fixed;
   top: 0;
@@ -108,7 +108,7 @@ input[type="checkbox"]:checked + label:after {
   display: inline-block;
   line-height: 50px;
   width: 300px;
-  border: 2px solid;
+  border: 1px solid;
   vertical-align: top;
   margin: 10px 24px;
 }
@@ -116,9 +116,6 @@ input[type="checkbox"]:checked + label:after {
   padding: 10px;
   background-color: #026aa7;
   color: white;
-}
-.checker-layout .checker .checker-content .checker-head .checker-name {
-  background-color: #565454;
 }
 .checker-layout .checker .checker-content .checker-head .delete-button {
   cursor: pointer;
@@ -210,6 +207,24 @@ input[type="checkbox"]:checked + label:after {
 .checker-layout .checker .checker-content .add-task-button:hover {
   background-color: #026aa7;
 }
+.checker-layout .checker.blue .checker-content .checker-head {
+  background-color: #539be8;
+}
+.checker-layout .checker.blue .checker-content .add-task-button {
+  background-color: #8fbef0;
+}
+.checker-layout .checker.red .checker-content .checker-head {
+  background-color: #fe6261;
+}
+.checker-layout .checker.red .checker-content .add-task-button {
+  background-color: #fea5a5;
+}
+.checker-layout .checker.green .checker-content .checker-head {
+  background-color: #50ca95;
+}
+.checker-layout .checker.green .checker-content .add-task-button {
+  background-color: #9ee2c5;
+}
 .checker-layout .add-checker-button {
   cursor: pointer;
   display: inline-block;
@@ -218,8 +233,38 @@ input[type="checkbox"]:checked + label:after {
   margin: 71px 27px;
   border: 1px solid;
   padding: 54px;
-  color: white;
+  color: #777;
 }
 .checker-layout .add-checker-button:hover {
-  background-color: #026aa7;
+  background-color: #fff;
+}
+.choose-color {
+  padding: 60px;
+}
+.choose-color .choose-blue {
+  background-color: #539be8;
+  border-radius: 100%;
+  width: 35px;
+  height: 35px;
+}
+.choose-color .choose-blue:hover {
+  box-shadow: 0 0 27px rgba(0, 0, 255, 0.5);
+}
+.choose-color .choose-red {
+  background-color: #fe6261;
+  border-radius: 100%;
+  width: 35px;
+  height: 35px;
+}
+.choose-color .choose-red:hover {
+  box-shadow: 0 0 27px rgba(255, 0, 0, 0.5);
+}
+.choose-color .choose-green {
+  background-color: #50ca95;
+  border-radius: 100%;
+  width: 35px;
+  height: 35px;
+}
+.choose-color .choose-green:hover {
+  box-shadow: 0 0 27px rgba(0, 255, 0, 0.5);
 }

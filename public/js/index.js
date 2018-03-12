@@ -1,5 +1,5 @@
-angular.module('index', [])
-    .controller('indexController', function($scope, $http) {
+angular.module('index', ['ngDialog'])
+    .controller('indexController', function($scope, $http, ngDialog) {
         //** Initialize **//
         $http({
               method  : 'GET',
@@ -67,9 +67,9 @@ angular.module('index', [])
                 });
 
             },
-            modify : function(id){
-                this.name_input_display[id] = true;
-            },
+            // modify : function(id){
+            //     this.name_input_display[id] = true;
+            // },
             update : function(checker){
                 $http({
                       method  : 'PUT',
@@ -79,6 +79,18 @@ angular.module('index', [])
                     $scope.checkerFunc.name_input_display[checker._id] = false;
                 });
             },
+            updateColor : function(checker, color){
+                $http({
+                      method  : 'PUT',
+                      url     : '/api/checkerColor',
+                      data    : {
+                          _id : checker._id,
+                          color : color
+                      }
+                }).success(function(data) {
+                    checker.color = color
+                });
+            },
             delete : function(checker, order){
                 $http({
                       method  : 'POST',
@@ -86,6 +98,18 @@ angular.module('index', [])
                       data    : checker
                 }).success(function(data) {
                     $scope.checkers.splice(order,1);
+                });
+            },
+            clickToOpen : function (checker) {
+                var update = this.update,
+                    updateColor = this.updateColor;
+                ngDialog.open({
+                    template: 'checker-template',
+                    controller: ['$scope', $scope => {
+                        $scope.checker = checker;
+                        $scope.update = update;
+                        $scope.updateColor = updateColor;
+                    }]
                 });
             }
         };
@@ -120,16 +144,16 @@ angular.module('index', [])
                 });
 
             },
-            modify : function(id){
-                this.name_input_display[id] = true;
-            },
+            // modify : function(id){
+            //     this.name_input_display[id] = true;
+            // },
             update : function(task){
                 $http({
                       method  : 'PUT',
                       url     : '/api/task',
                       data    : task
                 }).success(function(data) {
-                    $scope.taskFunc.name_input_display[task._id] = false;
+                    // $scope.taskFunc.name_input_display[task._id] = false;
                     $scope.blink_animation = true;
                 });
             },
@@ -178,6 +202,16 @@ angular.module('index', [])
                                 }
                 }).success(function(data) {
                     task.owner = user;
+                });
+            },
+            clickToOpen : function (task) {
+                var update = this.update;
+                ngDialog.open({
+                    template: 'task-template',
+                    controller: ['$scope', $scope => {
+                        $scope.task = task;
+                        $scope.update = update;
+                    }]
                 });
             }
         };

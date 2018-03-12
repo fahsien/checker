@@ -9,6 +9,10 @@ var TaskSchema = new Schema({
 		type: String,
 		default: null
 	},
+	describe: {
+		type: String,
+		default: ''
+	},
 	finished: {
 		type: Boolean,
 		default: false

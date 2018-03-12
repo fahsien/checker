@@ -9,9 +9,17 @@ var CheckerSchema = new Schema({
 		type: String,
 		default: null
 	},
+	color: {
+		type: String,
+		default: 'blue'
+	},
 	tasks: {
 		type: Schema.Types.Mixed,
 		default: []
+	},
+	board: {
+		type: Schema.Types.ObjectId,
+		ref: 'Board'
 	}
 
 });
