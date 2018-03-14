@@ -9,10 +9,6 @@ var TaskSchema = new Schema({
 		type: String,
 		default: null
 	},
-	describe: {
-		type: String,
-		default: ''
-	},
 	finished: {
 		type: Boolean,
 		default: false
@@ -23,6 +19,10 @@ var TaskSchema = new Schema({
 	remind: {
 		type: String,
 		default: 'on_duedate'
+	},
+	messages: {
+		type: Array,
+		default: []
 	},
 	checker: {
 		type: Schema.Types.ObjectId,

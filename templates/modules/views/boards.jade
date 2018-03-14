@@ -1,0 +1,20 @@
+.pure-g
+    .board.pure-u-1-2(ng-repeat="board in boards" ) 
+        .pure-g
+            .pure-u-23-24
+                span {{board.name}}
+            .pure-u-1-24
+                .delete-button(ng-click="boardFunc.delete(board, $index)") x
+        a(href="/{{board._id}}")
+            .enter-board 進入看板
+
+    .board.pure-u-1-2(ng-hide="!boardFunc.content_input_display")
+        .board-content
+            .pure-g
+                .pure-u-5-6
+                    input(type="text" ng-model="boardFunc.content_input")
+                .pure-u-1-6
+                    a.cancel-button(ng-click="boardFunc.cancel()") x
+            a.save-button(ng-click="boardFunc.save()") 儲存
+
+    a.board.pure-u-1-2(ng-click="boardFunc.add()" ng-hide="boardFunc.content_input_display") 新增看板

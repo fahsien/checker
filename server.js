@@ -26,7 +26,7 @@ mongoose.connect('mongodb://localhost/checker', { useMongoClient: true }, functi
 //static files' location
 // app.use(express.static(__dirname + '/public'));
 app.use(express.static(path.resolve('./public')));
-app.use('/bower_components',  express.static(__dirname + '/bower_components'));
+
 
 // Request body parsing middleware should be above methodOverride
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
@@ -54,15 +54,6 @@ app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 app.set('views', './public/modules/views');
 
-// Routes
-app.get('/',function(req, res){
-	if (req.user) {
-		res.render('index', {});
-	}else{
-		res.render('loginpage', {});
-	}
-});
-
 // set up the RESTful API, handler methods are defined in api.js
 var api = require('./app/controllers/api.js'),
 	login = require('./app/controllers/login.js');
@@ -73,6 +64,14 @@ app.route('/api/logout')
 	.post(login.logout);
 
 /** Checkers API **/
+app.route('/api/board')
+	.post(api.postBoard);
+app.route('/api/boards')
+	.get(api.getBoards);
+
+app.route('/api/deleteBoard')
+	.post(api.deleteBoard);
+
 app.route('/api/checkers')
 	.get(api.getCheckers);
 
@@ -90,6 +89,8 @@ app.route('/api/deleteChecker')
 app.route('/api/task')
 	.post(api.postTask)
 	.put(api.putTask);
+app.route('/api/taskMessages')
+	.put(api.putTaskMessages);
 app.route('/api/deleteTask')
 	.post(api.deleteTask);
 app.route('/api/setDueDate')
@@ -101,6 +102,17 @@ app.route('/api/users')
 	.get(api.getUsers);
 app.route('/api/me')
 	.get(api.getAccountUser);
+
+
+// Routes
+app.get('/*',function(req, res){
+	if (req.user) {
+		res.render('layout', {});
+	}else{
+		res.render('loginpage', {});
+	}
+});
+
 server.listen(port,'localhost',function(){
     console.log('port on ' + port);
 });

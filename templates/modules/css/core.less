@@ -8,7 +8,9 @@ body{
 }
 
 a{
+    text-decoration: none;
     cursor: pointer;
+    color: inherit;
 }
 
 input[type="checkbox"] {
@@ -54,8 +56,17 @@ input[type="checkbox"]:checked + label:after {
 .logout-button{
     color: black;
     padding: 9px 50px;
-    cursor: pointer;
     float: right;
+    cursor: pointer;
+    &:hover {
+        background-color: #f7f7f7;
+    }
+}
+.board-button{
+    color: black;
+    padding: 9px 50px;
+    float: left;
+    cursor: pointer;
     &:hover {
         background-color: #f7f7f7;
     }
@@ -75,6 +86,71 @@ input[type="checkbox"]:checked + label:after {
         left: 0;
         right: 0;
         z-index: 1000;
+    }
+    
+
+    .board{
+        display: inline-block;
+        font-size: 16px;
+        text-align:center;
+        vertical-align: top;
+        word-wrap: break-word;
+        margin-top: 175px;
+        width: 300px;
+        height: 250px;
+        padding: 50px;
+        vertical-align: top;
+        border: 1px solid;
+        color: #777;
+        
+        .save-button{
+            padding: 3px;
+            display: block;
+            border: 1px solid;
+            cursor:pointer;
+            &:hover{
+                background-color: #fff;
+            }
+        }
+
+        .cancel-button{
+            cursor:pointer;
+        }
+
+        .board-content{
+            display: inline-block;
+            line-height: 50px;
+            width: 300px;
+            vertical-align: top;
+            margin: 10px 24px;
+        }
+
+        .delete-button{
+            cursor: pointer;
+            padding: 5px;
+            font-size: 1px;
+        }
+        .enter-board{
+            padding: 40px;
+            margin: 40px;
+            &:hover{
+                background-color: #fff;
+            }
+        }
+    }
+    .add-board-button{
+        cursor: pointer;
+        display: inline-block;
+        text-align: center;
+        vertical-align: top;
+        margin: 221px 27px;
+        border: 1px solid;
+        padding: 54px;
+        color: #777;
+
+        &:hover{
+            background-color: #fff;
+        }
     }
     .checker{
         display: inline-block;
@@ -107,6 +183,9 @@ input[type="checkbox"]:checked + label:after {
             border: 1px solid;
             vertical-align: top;
             margin: 10px 24px;
+            &:hover{
+                box-shadow: 1px 2px 5px #888888;
+            } 
 
             .checker-head{
                 padding: 10px;
@@ -262,7 +341,14 @@ input[type="checkbox"]:checked + label:after {
         }
     }
 }
-
+.message-enter{
+    padding: 13px 0;
+}
+.message{
+    background-color: white;
+    padding: 15px;
+    margin: 22px 0;
+}
 .choose-color{
     padding: 60px;
     .choose-blue{

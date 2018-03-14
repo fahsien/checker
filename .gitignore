@@ -1,6 +1,6 @@
 .DS_Store
 node_modules
-
+bower_components
 # compiled files
 public/modules/*/views
 public/modules/*/css

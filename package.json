@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "async": "^2.6.0",
+    "babel": "^6.23.0",
     "body-parser": "~1.5.2",
     "ejs": "^2.5.7",
     "express": "^4.16.2",
@@ -27,10 +28,14 @@
     "serve-favicon": "^2.4.5"
   },
   "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.4",
     "browser-sync": "^2.23.6",
     "grunt": "^1.0.2",
+    "grunt-babel": "^7.0.0",
     "grunt-concurrent": "^2.3.1",
     "grunt-contrib-jade": "^1.0.0",
+    "grunt-contrib-jshint": "^1.1.0",
     "grunt-contrib-less": "^1.4.1",
     "grunt-contrib-watch": "^1.0.0",
     "grunt-nodemon": "^0.4.2",

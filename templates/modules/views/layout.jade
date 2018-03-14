@@ -1,0 +1,61 @@
+doctype html
+html(lang="en" ng-app="index")
+
+head
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible" content="IE=edge")
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    meta(name="description" content="")
+    meta(name="author" content="")
+
+    title Checkers
+    <!-- Core CSS -->
+    link(href="../modules/css/core.css" rel="stylesheet")
+
+    <!-- Pure -->
+    link(rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css")
+
+
+
+    <!-- Angularjs -->
+    script(src="/lib/angular/angular.js")
+    script(src="/lib/angular-ui-router/release/angular-ui-router.js")
+    script(src="/lib/ui-router-extras/release/ct-ui-router-extras.js")
+    script(src="../modules/js/route.js")
+    script(src="../modules/js/core.js")
+    script(src="../modules/js/index.js")
+    script(src="../modules/js/boards.js")
+    
+
+    
+    link(rel="stylesheet" href="/lib/ng-dialog/css/ngDialog.min.css")
+    link(rel="stylesheet" href="/lib/ng-dialog/css/ngDialog-theme-default.min.css")
+    script(src="/lib/ng-dialog/js/ngDialog.min.js")
+
+
+body(ng-controller="coreController")
+    .checker-layout
+        .header
+            a(href="/")
+                .board-button 看板
+            .logout-button(ng-click="logout()") 登出
+        div(ui-view="")
+
+script(type="text/ng-template" id="task-template")
+    input(ng-model="task.name", ng-blur="update(task)")
+    .message-enter
+        .pure-g
+            .pure-u-1-2
+                textarea(ng-model="message")
+            .pure-u-1-2
+                a(ng-click="enterMessage()") 輸入
+    .message(ng-repeat="message in task.messages track by $index") {{message}}
+script(type="text/ng-template" id="checker-template")
+    input(type="text" ng-model="checker.name", ng-blur="update(checker)" )
+    .pure-g.choose-color
+        .pure-u-1-3
+            .choose-blue(ng-click="updateColor(checker, 'blue')")
+        .pure-u-1-3
+            .choose-red(ng-click="updateColor(checker, 'red')")
+        .pure-u-1-3
+            .choose-green(ng-click="updateColor(checker, 'green')") 

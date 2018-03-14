@@ -8,7 +8,9 @@ body {
   background-color: #f7f7f7;
 }
 a {
+  text-decoration: none;
   cursor: pointer;
+  color: inherit;
 }
 input[type="checkbox"] {
   display: none;
@@ -58,10 +60,19 @@ input[type="checkbox"]:checked + label:after {
 .logout-button {
   color: black;
   padding: 9px 50px;
-  cursor: pointer;
   float: right;
+  cursor: pointer;
 }
 .logout-button:hover {
+  background-color: #f7f7f7;
+}
+.board-button {
+  color: black;
+  padding: 9px 50px;
+  float: left;
+  cursor: pointer;
+}
+.board-button:hover {
   background-color: #f7f7f7;
 }
 .checker-layout {
@@ -81,6 +92,63 @@ input[type="checkbox"]:checked + label:after {
   left: 0;
   right: 0;
   z-index: 1000;
+}
+.checker-layout .board {
+  display: inline-block;
+  font-size: 16px;
+  text-align: center;
+  word-wrap: break-word;
+  margin-top: 175px;
+  width: 300px;
+  height: 250px;
+  padding: 50px;
+  vertical-align: top;
+  border: 1px solid;
+  color: #777;
+}
+.checker-layout .board .save-button {
+  padding: 3px;
+  display: block;
+  border: 1px solid;
+  cursor: pointer;
+}
+.checker-layout .board .save-button:hover {
+  background-color: #fff;
+}
+.checker-layout .board .cancel-button {
+  cursor: pointer;
+}
+.checker-layout .board .board-content {
+  display: inline-block;
+  line-height: 50px;
+  width: 300px;
+  vertical-align: top;
+  margin: 10px 24px;
+}
+.checker-layout .board .delete-button {
+  cursor: pointer;
+  padding: 5px;
+  font-size: 1px;
+}
+.checker-layout .board .enter-board {
+  padding: 40px;
+  margin: 40px;
+}
+.checker-layout .board .enter-board:hover {
+  background-color: #fff;
+}
+.checker-layout .add-board-button {
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+  vertical-align: top;
+  margin: 221px 27px;
+  border: 1px solid;
+  padding: 54px;
+  color: #777;
+}
+.checker-layout .add-board-button:hover {
+  background-color: #fff;
 }
 .checker-layout .checker {
   display: inline-block;
@@ -111,6 +179,9 @@ input[type="checkbox"]:checked + label:after {
   border: 1px solid;
   vertical-align: top;
   margin: 10px 24px;
+}
+.checker-layout .checker .checker-content:hover {
+  box-shadow: 1px 2px 5px #888888;
 }
 .checker-layout .checker .checker-content .checker-head {
   padding: 10px;
@@ -237,6 +308,14 @@ input[type="checkbox"]:checked + label:after {
 }
 .checker-layout .add-checker-button:hover {
   background-color: #fff;
+}
+.message-enter {
+  padding: 13px 0;
+}
+.message {
+  background-color: white;
+  padding: 15px;
+  margin: 22px 0;
 }
 .choose-color {
   padding: 60px;

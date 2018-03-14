@@ -2,6 +2,7 @@ module.exports = function (grunt) {
     // Unified Watch Object
     var watchFiles = {
         serverJS: ['gruntfile.js', 'server.js', 'config/**/*.js', 'app/**/*.js'],
+        clientJS: ['templates/modules/**/*.js'],
         clientViews: ['templates/**/views/**/*.jade'],
         clientLESS: ['templates/**/*.less'],
     },
@@ -17,6 +18,13 @@ module.exports = function (grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         watch: {
+            clientJS: {
+                files: watchFiles.clientJS,
+                tasks: ['jshint', 'babel'],
+                options: {
+                    livereload: true
+                }
+            },
             clientViews: {
                 files: watchFiles.clientViews,
                 tasks: ['jade'],
@@ -31,6 +39,34 @@ module.exports = function (grunt) {
                     livereload: true
                 }
             },
+        },
+        jshint: {
+            all: {
+                // src: watchFiles.clientJS.concat(watchFiles.serverJS),
+                src: [
+                    'templates/*.js',
+                    'templates/**/*.js'
+                ],
+                options: {
+                    jshintrc: true,
+                    esnext: true,
+                }
+            }
+        },
+        babel: {
+            dist: {
+                files: [{
+                    expand: true,
+                    cwd: 'templates/modules/',
+                    src: ['**/*.js'],
+                    dest: 'public/modules/'
+                }, {
+                    expand: true,
+                    cwd: 'templates/',
+                    src: ['*.js'],
+                    dest: 'public/'
+                }]
+            }
         },
         jade: {
             compile: {
@@ -83,7 +119,14 @@ module.exports = function (grunt) {
     require('load-grunt-tasks')(grunt);
 
     // Default task(s).
-    grunt.registerTask('default', ['jade','less:dev','concurrent:default']);
+    grunt.registerTask('default', ['jade','less:dev','lint','babeljs','concurrent:default']);
+
+    // Lint task(s).
+    // disable csslint
+    grunt.registerTask('lint', ['jshint']);
+
+    // babel: es6 to es5
+    grunt.registerTask('babeljs', ['babel']);
 
     // Build task(s).
     grunt.registerTask('build', ['jade','less:prod']);
