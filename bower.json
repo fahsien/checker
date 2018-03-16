@@ -1,0 +1,23 @@
+{
+  "name": "checker",
+  "description": "",
+  "main": "app.js",
+  "authors": [
+    "fahsien <fahsine0815@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/fahsien/checker",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-ui-router": "^1.0.15",
+    "ng-dialog": "^1.4.0",
+    "ui-router-extras": "^0.1.3"
+  }
+}
