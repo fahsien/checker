@@ -9,9 +9,6 @@ head
     meta(name="author" content="")
 
     title Checkers
-    <!-- Core CSS -->
-    link(href="../modules/css/core.css" rel="stylesheet")
-
     <!-- Pure -->
     link(rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css")
 
@@ -32,12 +29,15 @@ head
     link(rel="stylesheet" href="/lib/ng-dialog/css/ngDialog-theme-default.min.css")
     script(src="/lib/ng-dialog/js/ngDialog.min.js")
 
+    <!-- Core CSS -->
+    link(href="../modules/css/core.css" rel="stylesheet")
+
+
 
 body(ng-controller="coreController")
-    .checker-layout
-        .header
-            a(href="/")
-                .board-button 看板
-            .logout-button(ng-click="logout()") 登出
-        div(ui-view="")
+    .header
+        a(href="/")
+            .board-button 看板
+        .logout-button(ng-click="logout()") 登出
+    .web-layout(ui-view="")
 

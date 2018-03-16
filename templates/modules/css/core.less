@@ -75,251 +75,287 @@ input[type="checkbox"]:checked + label:after {
         background-color: #f7f7f7;
     }
 }
-.checker-layout{
-    height: auto !important; /* real browsers */
-    min-height: 100%; /* real browsers */
-    min-width: 100%;
-    width: max-content;
-    background-color: #f7f7f7;
-
-    .header{
+.header{
         background-color: #ddd;
         height: 26px;
-        position: fixed;
         top: 0;
         left: 0;
         right: 0;
         z-index: 1000;
     }
-    
+.web-layout{
+    height: auto !important; /* real browsers */
+    min-height: 100%; /* real browsers */
+    min-width: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: #f7f7f7;
 
-    .board{
-        display: inline-block;
-        font-size: 16px;
-        text-align:center;
-        vertical-align: top;
-        word-wrap: break-word;
-        margin-top: 175px;
-        width: 300px;
-        height: 250px;
-        padding: 50px;
-        vertical-align: top;
-        border: 1px solid;
-        color: #777;
-        
-        .save-button{
-            padding: 3px;
-            display: block;
-            border: 1px solid;
-            cursor:pointer;
-            &:hover{
-                background-color: #fff;
-            }
-        }
-
-        .cancel-button{
-            cursor:pointer;
-        }
-
-        .board-content{
+    .board-layout{
+        width: max-content; 
+        .board{
+            width: max-content; 
             display: inline-block;
-            line-height: 50px;
-            width: 300px;
+            font-size: 16px;
+            text-align:center;
             vertical-align: top;
-            margin: 10px 24px;
-        }
-
-        .delete-button{
-            cursor: pointer;
-            padding: 5px;
-            font-size: 1px;
-        }
-        .enter-board{
-            padding: 40px;
-            margin: 40px;
-            &:hover{
-                background-color: #fff;
-            }
-        }
-    }
-    .add-board-button{
-        cursor: pointer;
-        display: inline-block;
-        text-align: center;
-        vertical-align: top;
-        margin: 221px 27px;
-        border: 1px solid;
-        padding: 54px;
-        color: #777;
-
-        &:hover{
-            background-color: #fff;
-        }
-    }
-    .checker{
-        display: inline-block;
-        font-size: 16px;
-        text-align:center;
-        vertical-align: top;
-        word-wrap: break-word;
-        margin-top: 27px;
-
-        .save-button{
-            padding: 3px;
-            display: block;
-            border: 1px solid;
-            background-color: #f2f8fc;
-            cursor:pointer;
-            &:hover{
-                background-color: #026aa7;
-                color:white;
-            }
-        }
-
-        .cancel-button{
-            cursor:pointer;
-        }
-
-        .checker-content{
-            display: inline-block;
-            line-height: 24px;
+            word-wrap: break-word;
+            margin-top: 175px;
             width: 300px;
-            border: 1px solid;
+            height: 250px;
+            padding: 50px;
             vertical-align: top;
-            margin: 7px 24px;
-            &:hover{
-                box-shadow: 1px 2px 5px #888888;
-            } 
-
-            .checker-head{
-                background-color: #026aa7;
-                color: white;
-
-                .delete-button{
-                    cursor: pointer;
-                    padding: 5px;
-                    font-size: 1px;
-                    &:hover{
-                        background-color: #3c8dbc;
-                    }
+            border: 1px solid;
+            color: #777;
+            
+            .save-button{
+                padding: 3px;
+                display: block;
+                border: 1px solid;
+                cursor:pointer;
+                &:hover{
+                    background-color: #fff;
                 }
             }
 
-            .task-list{
-                .task{
-                    padding: 5px;
-                    background-color: #f2f8fc;
-                    line-height: 19px;
+            .cancel-button{
+                cursor:pointer;
+            }
 
-                    .finished{
-                        text-decoration: line-through;
-                        opacity: 0.5;
-                        font-style:italic;
-                    }
-                    .task-arrow{
-                        display: inline-block;
-                        vertical-align: top;
-                        position: relative;
-                        width: 10px;
-                        height: 10px;
-                        border-top: 2px solid black;
-                        border-right: 2px solid;
-                        transform: rotate(135deg);
-                        margin: 14px;
-                    }
+            .board-content{
+                display: inline-block;
+                line-height: 50px;
+                width: 300px;
+                vertical-align: top;
+                margin: 10px 24px;
+            }
 
+            .delete-button{
+                cursor: pointer;
+                padding: 5px;
+                font-size: 1px;
+            }
+            .enter-board{
+                padding: 40px;
+                margin: 40px;
+                &:hover{
+                    background-color: #fff;
+                }
+            }
+        }
+        .add-board-button{
+            cursor: pointer;
+            display: inline-block;
+            text-align: center;
+            vertical-align: top;
+            margin: 221px 27px;
+            border: 1px solid;
+            padding: 54px;
+            color: #777;
 
-                    .task-delete-button{
+            &:hover{
+                background-color: #fff;
+            }
+        }
+    }
+
+    .checker-layout{
+        width: max-content; 
+        .checker{
+            display: inline-block;
+            font-size: 16px;
+            text-align:center;
+            vertical-align: top;
+            word-wrap: break-word;
+            margin-top: 27px;
+
+            .save-button{
+                padding: 3px;
+                display: block;
+                border: 1px solid;
+                background-color: #f2f8fc;
+                cursor:pointer;
+                &:hover{
+                    background-color: #026aa7;
+                    color:white;
+                }
+            }
+
+            .cancel-button{
+                cursor:pointer;
+            }
+
+            .checker-content{
+                display: inline-block;
+                line-height: 24px;
+                width: 300px;
+                border: 1px solid;
+                vertical-align: top;
+                margin: 7px 24px;
+                &:hover{
+                    box-shadow: 1px 2px 5px #888888;
+                } 
+
+                .checker-head{
+                    background-color: #026aa7;
+                    color: white;
+
+                    .delete-button{
                         cursor: pointer;
                         padding: 5px;
                         font-size: 1px;
                         &:hover{
-                            background-color: #f7f7f7;
+                            background-color: #3c8dbc;
                         }
                     }
-                    .dropdown{
-                        .drop-button{
-                            width: 20px;
-                            cursor: pointer;
+                }
+
+                .task-list{
+                    .task{
+                        padding: 5px;
+                        background-color: #f2f8fc;
+                        line-height: 19px;
+
+                        .finished{
+                            text-decoration: line-through;
+                            opacity: 0.5;
+                            font-style:italic;
                         }
-                        .dropdown-content {
-                            display: none;
-                            position: absolute;
-                            background-color: #f1f1f1;
-                            min-width: 160px;
-                            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-                            z-index: 1;
+                        .task-arrow{
+                            display: inline-block;
+                            vertical-align: top;
+                            position: relative;
+                            width: 10px;
+                            height: 10px;
+                            border-top: 2px solid black;
+                            border-right: 2px solid;
+                            transform: rotate(135deg);
+                            margin: 14px;
+                        }
 
-                            a {
-                                color: black;
-                                padding: 12px 16px;
-                                text-decoration: none;
-                                display: block;
-                                text-align: left;
-                                cursor: pointer;
 
-                                &:hover {background-color: #ddd;}
+                        .task-delete-button{
+                            cursor: pointer;
+                            padding: 5px;
+                            font-size: 1px;
+                            &:hover{
+                                background-color: #f7f7f7;
                             }
                         }
-                        &:hover .dropdown-content{
-                            display: block;
+                        .dropdown{
+                            .drop-button{
+                                width: 20px;
+                                cursor: pointer;
+                            }
+                            .dropdown-content {
+                                display: none;
+                                position: absolute;
+                                background-color: #f1f1f1;
+                                min-width: 160px;
+                                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                                z-index: 1;
+
+                                a {
+                                    color: black;
+                                    padding: 12px 16px;
+                                    text-decoration: none;
+                                    display: block;
+                                    text-align: left;
+                                    cursor: pointer;
+
+                                    &:hover {background-color: #ddd;}
+                                }
+                            }
+                            &:hover .dropdown-content{
+                                display: block;
+                            }
                         }
                     }
                 }
-            }
-            .add-task-button{
-                cursor: pointer;
-                color: white;
-                width: 100%;
-                &:hover{
-                    background-color: #026aa7;
+                .add-task-button{
+                    cursor: pointer;
+                    color: white;
+                    width: 100%;
+                    &:hover{
+                        background-color: #026aa7;
+                    }
                 }
             }
-        }
 
-        &.blue{
-            .checker-content{
-                .checker-head{
-                    background-color: #539be8;
+            &.blue{
+                .checker-content{
+                    .checker-head{
+                        background-color: #539be8;
+                    }
+                    .add-task-button{
+                        background-color: #8fbef0;
+                    }
                 }
-                .add-task-button{
-                    background-color: #8fbef0;
+            }
+            &.red{
+                .checker-content{
+                    .checker-head{
+                        background-color: #fe6261;
+                    }
+                    .add-task-button{
+                        background-color: #fea5a5;
+                    }
+                }
+            }
+            &.green{
+                .checker-content{
+                    .checker-head{
+                        background-color: #50ca95;
+                    }
+                    .add-task-button{
+                        background-color: #9ee2c5;
+                    }
+                }
+            }
+            &.coffee{
+                .checker-content{
+                    .checker-head{
+                        background-color: #d29034;
+                    }
+                    .add-task-button{
+                        background-color: #d29034ad;
+                    }
+                }
+            }
+            &.purple{
+                .checker-content{
+                    .checker-head{
+                        background-color: #937fa7;
+                    }
+                    .add-task-button{
+                        background-color: #937fa7ab;
+                    }
+                }
+            }
+            &.pink{
+                .checker-content{
+                    .checker-head{
+                        background-color: #ec9eac;
+                    }
+                    .add-task-button{
+                        background-color: #ec9eaca6;
+                    }
                 }
             }
         }
-        &.red{
-            .checker-content{
-                .checker-head{
-                    background-color: #fe6261;
-                }
-                .add-task-button{
-                    background-color: #fea5a5;
-                }
-            }
-        }
-        &.green{
-            .checker-content{
-                .checker-head{
-                    background-color: #50ca95;
-                }
-                .add-task-button{
-                    background-color: #9ee2c5;
-                }
-            }
-        }
-    }
-    .add-checker-button{
-        cursor: pointer;
-        display: inline-block;
-        text-align: center;
-        vertical-align: top;
-        margin: 71px 27px;
-        border: 1px solid;
-        padding: 54px;
-        color: #777;
+        .add-checker-button{
+            cursor: pointer;
+            display: inline-block;
+            text-align: center;
+            vertical-align: top;
+            margin: 71px 27px;
+            border: 1px solid;
+            padding: 54px;
+            color: #777;
 
-        &:hover{
-            background-color: #fff;
+            &:hover{
+                background-color: #fff;
+            }
         }
     }
 }
@@ -363,7 +399,7 @@ input[type="checkbox"]:checked + label:after {
         width: 35px;
         height: 35px;
         &:hover{
-            box-shadow: 0 0 27px rgba(0, 0, 255, 0.5);
+            box-shadow: 0 0 27px rgba(0, 0, 0, 0.5);
         }
     }
     .choose-red{
@@ -372,7 +408,7 @@ input[type="checkbox"]:checked + label:after {
         width: 35px;
         height: 35px;
         &:hover{
-            box-shadow: 0 0 27px rgba(255, 0, 0, 0.5);
+            box-shadow: 0 0 27px rgba(0, 0, 0, 0.5);
         }
     }
     .choose-green{
@@ -381,7 +417,34 @@ input[type="checkbox"]:checked + label:after {
         width: 35px;
         height: 35px;
         &:hover{
-            box-shadow: 0 0 27px rgba(0, 255, 0, 0.5);
+            box-shadow: 0 0 27px rgba(0, 0, 0, 0.5);
+        }
+    }
+    .choose-coffee{
+        background-color: #d29034;
+        border-radius: 100%;
+        width: 35px;
+        height: 35px;
+        &:hover{
+            box-shadow: 0 0 27px rgba(0, 0, 0, 0.5);
+        }
+    }
+    .choose-purple{
+        background-color: #937fa7;
+        border-radius: 100%;
+        width: 35px;
+        height: 35px;
+        &:hover{
+            box-shadow: 0 0 27px rgba(0, 0, 0, 0.5);
+        }
+    }
+    .choose-pink{
+        background-color: #ec9eac;
+        border-radius: 100%;
+        width: 35px;
+        height: 35px;
+        &:hover{
+            box-shadow: 0 0 27px rgba(0, 0, 0, 0.5);
         }
     }
 }

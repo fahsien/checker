@@ -1,71 +1,72 @@
-.checker(ng-repeat="checker in checkers track by $index" ng-class="{blue : checker.color === 'blue', red : checker.color === 'red', green : checker.color === 'green' }")
-    .checker-content
-        .checker-head
+.checker-layout
+    .checker(ng-repeat="checker in checkers track by $index" ng-class="{blue : checker.color === 'blue', red : checker.color === 'red', green : checker.color === 'green', coffee : checker.color === 'coffee', purple : checker.color === 'purple', pink : checker.color === 'pink' }")
+        .checker-content
+            .checker-head
+                .pure-g
+                    .pure-u-5-6
+                        div(ng-click="checkerFunc.clickToOpen(checker)") {{checker.name}}
+                    .pure-u-1-6
+                        a.delete-button(ng-click="checkerFunc.delete(checker, $index)") x
+                    
+            .task-list
+                .task(ng-repeat="task in checker.tasks track by $index")
+                    .pure-g
+                        .pure-u-5-6
+                            .pure-g
+                                .pure-u-1-6
+                                    input(id="{{task._id}}" type="checkbox", ng-model="task.finished", ng-click="taskFunc.updateFinished(checker, task)" ng-disabled="task.owner._id !== user._id")
+                                    label(for="{{task._id}}")
+                                    img.small-icon-button(src="../img/core/alarm.png" ng-if="task.due_date")
+
+                                .pure-u-5-6
+                                    div(ng-class="{finished: task.finished}", ng-click="taskFunc.clickToOpen(task)") {{task.name}}
+                                    .task-arrow(ng-class="{blink: !task.finished && blink_animation}", ng-if="$index!==checker.tasks.length-1")
+                                    //- textarea(ng-model="task.name", ng-blur="taskFunc.update(task)", ng-hide="!taskFunc.name_input_display[task._id]")
+                                    //- span.due-date(ng-class="{overtime: (task.due_date < now)&&task.due_date}", ng-hide="taskFunc.duedate_input_display[task._id]||task.finished") {{task.due_date.toLocaleDateString()}} {{task.due_date.toLocaleTimeString([],{hour: '2-digit', minute:'2-digit'})}}
+                                
+                        .pure-u-1-6
+                            a.task-delete-button(ng-click="task.owner._id !== user._id || taskFunc.delete(checker, task, $index)") x
+                            .dropdown
+                                img.drop-button(ng-src="{{task.owner.profile_photo||'../img/core/user-black.png'}}")
+                                .dropdown-content
+                                    a(ng-click="taskFunc.setTaskOwner(task, user)" ng-repeat="user in users track by $index")
+                                        img.icon-button(ng-src="{{user.profile_photo}}")
+                                        span {{user.name}}
+                                
+                    //- .date-set-block(ng-hide="!taskFunc.duedate_input_display[task._id]")
+                    //-     input(type="datetime-local" ng-model="task.due_date")
+                    //-     .pure-g
+                    //-         .pure-u-1-2
+                    //-             select(ng-model="task.remind")
+                    //-                 option(value="on_duedate") 當天提醒
+                    //-                 option(value="one_week") 提前一週提醒
+                    //-         .pure-u-1-4
+                    //-             a.save-button(ng-click="taskFunc.setDueDate(task)") 儲存
+                    //-         .pure-u-1-4
+                    //-             a.save-button(ng-click="taskFunc.switchDateSet(task._id)") 關閉
+
+                .task(ng-hide="!taskFunc.content_input_display[checker._id]")
+                    .pure-g
+                        .pure-u-5-6
+                            textarea(type="text" ng-model="taskFunc.content_input[checker._id]")
+                        .pure-u-1-6
+                            a.cancel-button(ng-click="taskFunc.cancel(checker._id)") x
+                            a.save-button(ng-click="taskFunc.save(checker)") 儲存
+                
+            a(ng-click="taskFunc.add(checker._id)", ng-hide="taskFunc.content_input_display[checker._id]")
+                .add-task-button 新增任務
+
+    .checker(ng-hide="!checkerFunc.content_input_display")
+        .checker-content
             .pure-g
                 .pure-u-5-6
-                    div(ng-click="checkerFunc.clickToOpen(checker)") {{checker.name}}
+                    input(type="text" ng-model="checkerFunc.content_input")
                 .pure-u-1-6
-                    a.delete-button(ng-click="checkerFunc.delete(checker, $index)") x
-                
-        .task-list
-            .task(ng-repeat="task in checker.tasks track by $index")
-                .pure-g
-                    .pure-u-5-6
-                        .pure-g
-                            .pure-u-1-6
-                                input(id="{{task._id}}" type="checkbox", ng-model="task.finished", ng-click="taskFunc.updateFinished(checker, task)" ng-disabled="task.owner._id !== user._id")
-                                label(for="{{task._id}}")
-                                img.small-icon-button(src="../img/core/alarm.png" ng-if="task.due_date")
-
-                            .pure-u-5-6
-                                div(ng-class="{finished: task.finished}", ng-click="taskFunc.clickToOpen(task)") {{task.name}}
-                                .task-arrow(ng-class="{blink: !task.finished && blink_animation}", ng-if="$index!==checker.tasks.length-1")
-                                //- textarea(ng-model="task.name", ng-blur="taskFunc.update(task)", ng-hide="!taskFunc.name_input_display[task._id]")
-                                //- span.due-date(ng-class="{overtime: (task.due_date < now)&&task.due_date}", ng-hide="taskFunc.duedate_input_display[task._id]||task.finished") {{task.due_date.toLocaleDateString()}} {{task.due_date.toLocaleTimeString([],{hour: '2-digit', minute:'2-digit'})}}
-                            
-                    .pure-u-1-6
-                        a.task-delete-button(ng-click="task.owner._id !== user._id || taskFunc.delete(checker, task, $index)") x
-                        .dropdown
-                            img.drop-button(ng-src="{{task.owner.profile_photo||'../img/core/user-black.png'}}")
-                            .dropdown-content
-                                a(ng-click="taskFunc.setTaskOwner(task, user)" ng-repeat="user in users track by $index")
-                                    img.icon-button(ng-src="{{user.profile_photo}}")
-                                    span {{user.name}}
-                            
-                //- .date-set-block(ng-hide="!taskFunc.duedate_input_display[task._id]")
-                //-     input(type="datetime-local" ng-model="task.due_date")
-                //-     .pure-g
-                //-         .pure-u-1-2
-                //-             select(ng-model="task.remind")
-                //-                 option(value="on_duedate") 當天提醒
-                //-                 option(value="one_week") 提前一週提醒
-                //-         .pure-u-1-4
-                //-             a.save-button(ng-click="taskFunc.setDueDate(task)") 儲存
-                //-         .pure-u-1-4
-                //-             a.save-button(ng-click="taskFunc.switchDateSet(task._id)") 關閉
-
-            .task(ng-hide="!taskFunc.content_input_display[checker._id]")
-                .pure-g
-                    .pure-u-5-6
-                        textarea(type="text" ng-model="taskFunc.content_input[checker._id]")
-                    .pure-u-1-6
-                        a.cancel-button(ng-click="taskFunc.cancel(checker._id)") x
-                        a.save-button(ng-click="taskFunc.save(checker)") 儲存
-            
-        a(ng-click="taskFunc.add(checker._id)", ng-hide="taskFunc.content_input_display[checker._id]")
-            .add-task-button 新增任務
-
-.checker(ng-hide="!checkerFunc.content_input_display")
-    .checker-content
-        .pure-g
-            .pure-u-5-6
-                input(type="text" ng-model="checkerFunc.content_input")
-            .pure-u-1-6
-                a.cancel-button(ng-click="checkerFunc.cancel(checker._id)") x
-        a.save-button(ng-click="checkerFunc.save()") 儲存
-    
-a(ng-click="checkerFunc.add()" ng-hide="checkerFunc.content_input_display")
-    .add-checker-button 新增專案
+                    a.cancel-button(ng-click="checkerFunc.cancel(checker._id)") x
+            a.save-button(ng-click="checkerFunc.save()") 儲存
+        
+    a(ng-click="checkerFunc.add()" ng-hide="checkerFunc.content_input_display")
+        .add-checker-button 新增專案
 
 
 script(type="text/ng-template" id="task-template")
@@ -107,9 +108,15 @@ script(type="text/ng-template" id="task-template")
 script(type="text/ng-template" id="checker-template")
     input(type="text" ng-model="checker.name", ng-blur="update(checker)" )
     .pure-g.choose-color
-        .pure-u-1-3
+        .pure-u-1-6
             .choose-blue(ng-click="updateColor(checker, 'blue')")
-        .pure-u-1-3
+        .pure-u-1-6
             .choose-red(ng-click="updateColor(checker, 'red')")
-        .pure-u-1-3
+        .pure-u-1-6
             .choose-green(ng-click="updateColor(checker, 'green')") 
+        .pure-u-1-6
+            .choose-coffee(ng-click="updateColor(checker, 'coffee')") 
+        .pure-u-1-6
+            .choose-purple(ng-click="updateColor(checker, 'purple')")
+        .pure-u-1-6
+            .choose-pink(ng-click="updateColor(checker, 'pink')")

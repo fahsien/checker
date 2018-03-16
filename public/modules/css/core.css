@@ -79,25 +79,29 @@ input[type="checkbox"]:checked + label:after {
 .board-button:hover {
   background-color: #f7f7f7;
 }
-.checker-layout {
-  height: auto !important;
-  /* real browsers */
-  min-height: 100%;
-  /* real browsers */
-  min-width: 100%;
-  width: max-content;
-  background-color: #f7f7f7;
-}
-.checker-layout .header {
+.header {
   background-color: #ddd;
   height: 26px;
-  position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 1000;
 }
-.checker-layout .board {
+.web-layout {
+  height: auto !important;
+  /* real browsers */
+  min-height: 100%;
+  /* real browsers */
+  min-width: 100%;
+  width: 100%;
+  overflow: auto;
+  background-color: #f7f7f7;
+}
+.web-layout .board-layout {
+  width: max-content;
+}
+.web-layout .board-layout .board {
+  width: max-content;
   display: inline-block;
   font-size: 16px;
   text-align: center;
@@ -110,38 +114,38 @@ input[type="checkbox"]:checked + label:after {
   border: 1px solid;
   color: #777;
 }
-.checker-layout .board .save-button {
+.web-layout .board-layout .board .save-button {
   padding: 3px;
   display: block;
   border: 1px solid;
   cursor: pointer;
 }
-.checker-layout .board .save-button:hover {
+.web-layout .board-layout .board .save-button:hover {
   background-color: #fff;
 }
-.checker-layout .board .cancel-button {
+.web-layout .board-layout .board .cancel-button {
   cursor: pointer;
 }
-.checker-layout .board .board-content {
+.web-layout .board-layout .board .board-content {
   display: inline-block;
   line-height: 50px;
   width: 300px;
   vertical-align: top;
   margin: 10px 24px;
 }
-.checker-layout .board .delete-button {
+.web-layout .board-layout .board .delete-button {
   cursor: pointer;
   padding: 5px;
   font-size: 1px;
 }
-.checker-layout .board .enter-board {
+.web-layout .board-layout .board .enter-board {
   padding: 40px;
   margin: 40px;
 }
-.checker-layout .board .enter-board:hover {
+.web-layout .board-layout .board .enter-board:hover {
   background-color: #fff;
 }
-.checker-layout .add-board-button {
+.web-layout .board-layout .add-board-button {
   cursor: pointer;
   display: inline-block;
   text-align: center;
@@ -151,10 +155,13 @@ input[type="checkbox"]:checked + label:after {
   padding: 54px;
   color: #777;
 }
-.checker-layout .add-board-button:hover {
+.web-layout .board-layout .add-board-button:hover {
   background-color: #fff;
 }
-.checker-layout .checker {
+.web-layout .checker-layout {
+  width: max-content;
+}
+.web-layout .checker-layout .checker {
   display: inline-block;
   font-size: 16px;
   text-align: center;
@@ -162,21 +169,21 @@ input[type="checkbox"]:checked + label:after {
   word-wrap: break-word;
   margin-top: 27px;
 }
-.checker-layout .checker .save-button {
+.web-layout .checker-layout .checker .save-button {
   padding: 3px;
   display: block;
   border: 1px solid;
   background-color: #f2f8fc;
   cursor: pointer;
 }
-.checker-layout .checker .save-button:hover {
+.web-layout .checker-layout .checker .save-button:hover {
   background-color: #026aa7;
   color: white;
 }
-.checker-layout .checker .cancel-button {
+.web-layout .checker-layout .checker .cancel-button {
   cursor: pointer;
 }
-.checker-layout .checker .checker-content {
+.web-layout .checker-layout .checker .checker-content {
   display: inline-block;
   line-height: 24px;
   width: 300px;
@@ -184,32 +191,32 @@ input[type="checkbox"]:checked + label:after {
   vertical-align: top;
   margin: 7px 24px;
 }
-.checker-layout .checker .checker-content:hover {
+.web-layout .checker-layout .checker .checker-content:hover {
   box-shadow: 1px 2px 5px #888888;
 }
-.checker-layout .checker .checker-content .checker-head {
+.web-layout .checker-layout .checker .checker-content .checker-head {
   background-color: #026aa7;
   color: white;
 }
-.checker-layout .checker .checker-content .checker-head .delete-button {
+.web-layout .checker-layout .checker .checker-content .checker-head .delete-button {
   cursor: pointer;
   padding: 5px;
   font-size: 1px;
 }
-.checker-layout .checker .checker-content .checker-head .delete-button:hover {
+.web-layout .checker-layout .checker .checker-content .checker-head .delete-button:hover {
   background-color: #3c8dbc;
 }
-.checker-layout .checker .checker-content .task-list .task {
+.web-layout .checker-layout .checker .checker-content .task-list .task {
   padding: 5px;
   background-color: #f2f8fc;
   line-height: 19px;
 }
-.checker-layout .checker .checker-content .task-list .task .finished {
+.web-layout .checker-layout .checker .checker-content .task-list .task .finished {
   text-decoration: line-through;
   opacity: 0.5;
   font-style: italic;
 }
-.checker-layout .checker .checker-content .task-list .task .task-arrow {
+.web-layout .checker-layout .checker .checker-content .task-list .task .task-arrow {
   display: inline-block;
   vertical-align: top;
   position: relative;
@@ -220,19 +227,19 @@ input[type="checkbox"]:checked + label:after {
   transform: rotate(135deg);
   margin: 14px;
 }
-.checker-layout .checker .checker-content .task-list .task .task-delete-button {
+.web-layout .checker-layout .checker .checker-content .task-list .task .task-delete-button {
   cursor: pointer;
   padding: 5px;
   font-size: 1px;
 }
-.checker-layout .checker .checker-content .task-list .task .task-delete-button:hover {
+.web-layout .checker-layout .checker .checker-content .task-list .task .task-delete-button:hover {
   background-color: #f7f7f7;
 }
-.checker-layout .checker .checker-content .task-list .task .dropdown .drop-button {
+.web-layout .checker-layout .checker .checker-content .task-list .task .dropdown .drop-button {
   width: 20px;
   cursor: pointer;
 }
-.checker-layout .checker .checker-content .task-list .task .dropdown .dropdown-content {
+.web-layout .checker-layout .checker .checker-content .task-list .task .dropdown .dropdown-content {
   display: none;
   position: absolute;
   background-color: #f1f1f1;
@@ -240,7 +247,7 @@ input[type="checkbox"]:checked + label:after {
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
 }
-.checker-layout .checker .checker-content .task-list .task .dropdown .dropdown-content a {
+.web-layout .checker-layout .checker .checker-content .task-list .task .dropdown .dropdown-content a {
   color: black;
   padding: 12px 16px;
   text-decoration: none;
@@ -248,39 +255,57 @@ input[type="checkbox"]:checked + label:after {
   text-align: left;
   cursor: pointer;
 }
-.checker-layout .checker .checker-content .task-list .task .dropdown .dropdown-content a:hover {
+.web-layout .checker-layout .checker .checker-content .task-list .task .dropdown .dropdown-content a:hover {
   background-color: #ddd;
 }
-.checker-layout .checker .checker-content .task-list .task .dropdown:hover .dropdown-content {
+.web-layout .checker-layout .checker .checker-content .task-list .task .dropdown:hover .dropdown-content {
   display: block;
 }
-.checker-layout .checker .checker-content .add-task-button {
+.web-layout .checker-layout .checker .checker-content .add-task-button {
   cursor: pointer;
   color: white;
   width: 100%;
 }
-.checker-layout .checker .checker-content .add-task-button:hover {
+.web-layout .checker-layout .checker .checker-content .add-task-button:hover {
   background-color: #026aa7;
 }
-.checker-layout .checker.blue .checker-content .checker-head {
+.web-layout .checker-layout .checker.blue .checker-content .checker-head {
   background-color: #539be8;
 }
-.checker-layout .checker.blue .checker-content .add-task-button {
+.web-layout .checker-layout .checker.blue .checker-content .add-task-button {
   background-color: #8fbef0;
 }
-.checker-layout .checker.red .checker-content .checker-head {
+.web-layout .checker-layout .checker.red .checker-content .checker-head {
   background-color: #fe6261;
 }
-.checker-layout .checker.red .checker-content .add-task-button {
+.web-layout .checker-layout .checker.red .checker-content .add-task-button {
   background-color: #fea5a5;
 }
-.checker-layout .checker.green .checker-content .checker-head {
+.web-layout .checker-layout .checker.green .checker-content .checker-head {
   background-color: #50ca95;
 }
-.checker-layout .checker.green .checker-content .add-task-button {
+.web-layout .checker-layout .checker.green .checker-content .add-task-button {
   background-color: #9ee2c5;
 }
-.checker-layout .add-checker-button {
+.web-layout .checker-layout .checker.coffee .checker-content .checker-head {
+  background-color: #d29034;
+}
+.web-layout .checker-layout .checker.coffee .checker-content .add-task-button {
+  background-color: #d29034ad;
+}
+.web-layout .checker-layout .checker.purple .checker-content .checker-head {
+  background-color: #937fa7;
+}
+.web-layout .checker-layout .checker.purple .checker-content .add-task-button {
+  background-color: #937fa7ab;
+}
+.web-layout .checker-layout .checker.pink .checker-content .checker-head {
+  background-color: #ec9eac;
+}
+.web-layout .checker-layout .checker.pink .checker-content .add-task-button {
+  background-color: #ec9eaca6;
+}
+.web-layout .checker-layout .add-checker-button {
   cursor: pointer;
   display: inline-block;
   text-align: center;
@@ -290,7 +315,7 @@ input[type="checkbox"]:checked + label:after {
   padding: 54px;
   color: #777;
 }
-.checker-layout .add-checker-button:hover {
+.web-layout .checker-layout .add-checker-button:hover {
   background-color: #fff;
 }
 .due-date {
@@ -333,7 +358,7 @@ input[type="checkbox"]:checked + label:after {
   height: 35px;
 }
 .choose-color .choose-blue:hover {
-  box-shadow: 0 0 27px rgba(0, 0, 255, 0.5);
+  box-shadow: 0 0 27px rgba(0, 0, 0, 0.5);
 }
 .choose-color .choose-red {
   background-color: #fe6261;
@@ -342,7 +367,7 @@ input[type="checkbox"]:checked + label:after {
   height: 35px;
 }
 .choose-color .choose-red:hover {
-  box-shadow: 0 0 27px rgba(255, 0, 0, 0.5);
+  box-shadow: 0 0 27px rgba(0, 0, 0, 0.5);
 }
 .choose-color .choose-green {
   background-color: #50ca95;
@@ -351,5 +376,32 @@ input[type="checkbox"]:checked + label:after {
   height: 35px;
 }
 .choose-color .choose-green:hover {
-  box-shadow: 0 0 27px rgba(0, 255, 0, 0.5);
+  box-shadow: 0 0 27px rgba(0, 0, 0, 0.5);
+}
+.choose-color .choose-coffee {
+  background-color: #d29034;
+  border-radius: 100%;
+  width: 35px;
+  height: 35px;
+}
+.choose-color .choose-coffee:hover {
+  box-shadow: 0 0 27px rgba(0, 0, 0, 0.5);
+}
+.choose-color .choose-purple {
+  background-color: #937fa7;
+  border-radius: 100%;
+  width: 35px;
+  height: 35px;
+}
+.choose-color .choose-purple:hover {
+  box-shadow: 0 0 27px rgba(0, 0, 0, 0.5);
+}
+.choose-color .choose-pink {
+  background-color: #ec9eac;
+  border-radius: 100%;
+  width: 35px;
+  height: 35px;
+}
+.choose-color .choose-pink:hover {
+  box-shadow: 0 0 27px rgba(0, 0, 0, 0.5);
 }
