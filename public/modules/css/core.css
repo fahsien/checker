@@ -22,11 +22,11 @@ input[type="checkbox"] + label:before {
   border: 1px solid;
   content: "\00a0";
   display: inline-block;
-  font-size: 20px;
-  height: 28px;
+  font-size: 15px;
+  height: 25px;
   padding: 0;
   vertical-align: top;
-  width: 28px;
+  width: 25px;
   background-color: white;
 }
 input[type="checkbox"]:checked + label:before {
@@ -52,6 +52,10 @@ input[type="checkbox"]:checked + label:after {
 .blink {
   animation: blink 1s infinite;
 }
+.small-icon-button {
+  width: 14px;
+  margin-top: 9px;
+}
 .icon-button {
   width: 20px;
   cursor: pointer;
@@ -59,7 +63,7 @@ input[type="checkbox"]:checked + label:after {
 }
 .logout-button {
   color: black;
-  padding: 9px 50px;
+  padding: 2px 50px;
   float: right;
   cursor: pointer;
 }
@@ -68,7 +72,7 @@ input[type="checkbox"]:checked + label:after {
 }
 .board-button {
   color: black;
-  padding: 9px 50px;
+  padding: 2px 50px;
   float: left;
   cursor: pointer;
 }
@@ -86,7 +90,7 @@ input[type="checkbox"]:checked + label:after {
 }
 .checker-layout .header {
   background-color: #ddd;
-  height: 40px;
+  height: 26px;
   position: fixed;
   top: 0;
   left: 0;
@@ -156,7 +160,7 @@ input[type="checkbox"]:checked + label:after {
   text-align: center;
   vertical-align: top;
   word-wrap: break-word;
-  margin-top: 50px;
+  margin-top: 27px;
 }
 .checker-layout .checker .save-button {
   padding: 3px;
@@ -174,17 +178,16 @@ input[type="checkbox"]:checked + label:after {
 }
 .checker-layout .checker .checker-content {
   display: inline-block;
-  line-height: 50px;
+  line-height: 24px;
   width: 300px;
   border: 1px solid;
   vertical-align: top;
-  margin: 10px 24px;
+  margin: 7px 24px;
 }
 .checker-layout .checker .checker-content:hover {
   box-shadow: 1px 2px 5px #888888;
 }
 .checker-layout .checker .checker-content .checker-head {
-  padding: 10px;
   background-color: #026aa7;
   color: white;
 }
@@ -197,9 +200,9 @@ input[type="checkbox"]:checked + label:after {
   background-color: #3c8dbc;
 }
 .checker-layout .checker .checker-content .task-list .task {
-  padding: 10px;
+  padding: 5px;
   background-color: #f2f8fc;
-  line-height: 30px;
+  line-height: 19px;
 }
 .checker-layout .checker .checker-content .task-list .task .finished {
   text-decoration: line-through;
@@ -210,31 +213,12 @@ input[type="checkbox"]:checked + label:after {
   display: inline-block;
   vertical-align: top;
   position: relative;
-  width: 14px;
-  height: 14px;
-  border-top: 5px solid black;
-  border-right: 5px solid;
+  width: 10px;
+  height: 10px;
+  border-top: 2px solid black;
+  border-right: 2px solid;
   transform: rotate(135deg);
-  margin: 2px 20px;
-}
-.checker-layout .checker .checker-content .task-list .task .due-date {
-  font-size: 14px;
-  color: gray;
-}
-.checker-layout .checker .checker-content .task-list .task .due-date.overtime {
-  background-color: #ec9488;
-  color: white;
-  padding: 3px 9px;
-  border-radius: 9px;
-}
-.checker-layout .checker .checker-content .task-list .task .date-set-block {
-  padding: 10px 7px 10px 4px;
-  background-color: #e0eff9;
-}
-.checker-layout .checker .checker-content .task-list .task .date-set-block .save-button {
-  padding: 0;
-  width: 47px;
-  border-radius: 20px;
+  margin: 14px;
 }
 .checker-layout .checker .checker-content .task-list .task .task-delete-button {
   cursor: pointer;
@@ -309,6 +293,25 @@ input[type="checkbox"]:checked + label:after {
 .checker-layout .add-checker-button:hover {
   background-color: #fff;
 }
+.due-date {
+  font-size: 14px;
+  color: gray;
+}
+.due-date.overtime {
+  background-color: #ec9488;
+  color: white;
+  padding: 3px 9px;
+  border-radius: 9px;
+}
+.date-set-block {
+  padding: 10px 7px 10px 4px;
+  background-color: #e0eff9;
+}
+.date-set-block .save-button {
+  padding: 0;
+  width: 47px;
+  border-radius: 20px;
+}
 .message-enter {
   padding: 13px 0;
 }
@@ -316,6 +319,9 @@ input[type="checkbox"]:checked + label:after {
   background-color: white;
   padding: 15px;
   margin: 22px 0;
+}
+.message span {
+  word-wrap: break-word;
 }
 .choose-color {
   padding: 60px;

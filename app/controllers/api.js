@@ -1,5 +1,6 @@
 var Board = require('../../models/board.js'),
     Checker = require('../../models/checker.js'),
+    Message = require('../../models/message.js'),
     Task = require('../../models/task.js'),
     User = require('../../models/user.js'),
     _ = require('lodash'),
@@ -54,10 +55,20 @@ exports.getCheckers = function(req, res) {
             .exec(function(err, tasks) {
                 callback(err, tasks)
             });
+        },
+        function(callback){
+            Message.find({})
+            .exec(function(err, messages) {
+                callback(err, messages)
+            });
         }
     ],function(err, results){
         if (err) return res.status(400).send(err);
         var findChecker;
+        for(var i = 0 ; i < results[2].length ; i++){
+            findTask = _.find(results[1],{_id : results[2][i].task});
+            if(findTask) findTask.messages.push(results[2][i]);
+        }
         for(var i = 0 ; i < results[1].length ; i++){
             findChecker = _.find(results[0],{_id : results[1][i].checker});
             if(findChecker) findChecker.tasks.push(results[1][i]);
@@ -160,23 +171,39 @@ exports.postTask = function(req, res) {
 
 exports.putTask = function(req, res) {
     Task.update({_id:req.body._id}, {$set: {name: req.body.name, finished: req.body.finished}},
-    function (err, task ,test) {
+    function (err, task) {
         if (err) return res.status(400).send(err);
         res.send({message: {success:'成功！'}});
     });
 }
-exports.putTaskMessages = function(req, res) {
-    var messages = req.body.messages || [],
-        message = req.body.message;
-    messages.push(message);
-    Task.update({_id:req.body._id}, {$set: {messages: messages}},
-    function (err, task ,test) {
+exports.postMessage = function(req, res) {
+    var message = req.body.message;
+
+    new Message({
+                name: req.body.message,
+                task: req.body.task
+            }).save(function(err, message){
+                if(err) return res.status(400).send(err);
+                res.send({message: message});
+            });
+}
+exports.putMessage = function(req, res) {
+    var message = req.body.message;
+
+    Message.update({_id:req.body.message._id}, {$set: {name: req.body.message.name}},
+    function (err, message) {
         if (err) return res.status(400).send(err);
         res.send({message: {success:'成功！'}});
     });
 }
 exports.deleteTask = function(req, res) {
     Task.remove({_id:req.body._id}, function (err) {
+        if (err) return res.status(400).send(err);
+        res.send({message: {success:'成功！'}});
+    });
+}
+exports.deleteMessage = function(req, res) {
+    Message.remove({_id:req.body._id}, function (err) {
         if (err) return res.status(400).send(err);
         res.send({message: {success:'成功！'}});
     });

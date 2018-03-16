@@ -89,8 +89,11 @@ app.route('/api/deleteChecker')
 app.route('/api/task')
 	.post(api.postTask)
 	.put(api.putTask);
-app.route('/api/taskMessages')
-	.put(api.putTaskMessages);
+app.route('/api/message')
+	.post(api.postMessage)
+	.put(api.putMessage);
+app.route('/api/deleteMessage')
+	.post(api.deleteMessage);
 app.route('/api/deleteTask')
 	.post(api.deleteTask);
 app.route('/api/setDueDate')

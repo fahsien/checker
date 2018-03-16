@@ -20,13 +20,13 @@ var TaskSchema = new Schema({
 		type: String,
 		default: 'on_duedate'
 	},
-	messages: {
-		type: Array,
-		default: []
-	},
 	checker: {
 		type: Schema.Types.ObjectId,
 		ref: 'Checker'
+	},
+	messages: {
+		type: Schema.Types.Mixed,
+		default: []
 	},
 	owner: {
 		type: Schema.Types.ObjectId,

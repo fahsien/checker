@@ -193,26 +193,55 @@ angular.module('checker').controller('indexController', ['$scope', '$http', 'ngD
             });
         },
         clickToOpen: function (task) {
-            var update = this.update;
+            var update = this.update,
+                switchDateSet = this.switchDateSet,
+                duedate_input_display = this.duedate_input_display,
+                setDueDate = this.setDueDate,
+                user = $scope.user;
             ngDialog.open({
                 template: 'task-template',
                 controller: ['$scope', '$http', ($scope, $http) => {
                     $scope.task = task;
+                    $scope.user = user;
                     $scope.update = update;
-                    $scope.enterMessage = function () {
+                    $scope.setDueDate = setDueDate;
+                    $scope.switchDateSet = switchDateSet;
+                    $scope.duedate_input_display = duedate_input_display;
+                    $scope.message_input_display = [];
+                    $scope.modify = function (id) {
+                        this.message_input_display[id] = true;
+                    };
+                    $scope.updateMessage = function (message) {
                         $http({
                             method: 'PUT',
-                            url: '/api/taskMessages',
+                            url: '/api/message',
                             data: {
-                                _id: task._id,
-                                messages: task.messages,
-                                message: $scope.message
+                                message: message
                             }
                         }).then(function (res) {
-                            if (!$scope.task.messages) $scope.task.messages = [];
-                            $scope.task.messages.push($scope.message);
-                            $scope.message = '';
-                            console.log($scope.task.messages);
+                            $scope.message_input_display[message._id] = false;
+                        });
+                    };
+                    $scope.enterMessage = function () {
+                        $http({
+                            method: 'POST',
+                            url: '/api/message',
+                            data: {
+                                task: task._id,
+                                message: $scope.enter_message
+                            }
+                        }).then(function (res) {
+                            $scope.task.messages.push(res.data.message);
+                            $scope.enter_message = '';
+                        });
+                    };
+                    $scope.delete = function (task, message, order) {
+                        $http({
+                            method: 'POST',
+                            url: '/api/deleteMessage',
+                            data: message
+                        }).then(function (res) {
+                            task.messages.splice(order, 1);
                         });
                     };
                 }]
