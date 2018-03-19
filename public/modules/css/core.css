@@ -214,7 +214,6 @@ input[type="checkbox"]:checked + label:after {
   cursor: pointer;
 }
 .web-layout .checker-layout .checker .checker-content .checker-head .dropdown .dropdown-content {
-  display: none;
   position: relative;
   left: -136px;
   background-color: #f1f1f1;
@@ -232,9 +231,6 @@ input[type="checkbox"]:checked + label:after {
 }
 .web-layout .checker-layout .checker .checker-content .checker-head .dropdown .dropdown-content a:hover {
   background-color: #ddd;
-}
-.web-layout .checker-layout .checker .checker-content .checker-head .dropdown:hover .dropdown-content {
-  display: block;
 }
 .web-layout .checker-layout .checker .checker-content .task-list .task {
   padding: 5px;
@@ -270,7 +266,6 @@ input[type="checkbox"]:checked + label:after {
   cursor: pointer;
 }
 .web-layout .checker-layout .checker .checker-content .task-list .task .dropdown .dropdown-content {
-  display: none;
   position: relative;
   left: -136px;
   background-color: #f1f1f1;
@@ -288,9 +283,6 @@ input[type="checkbox"]:checked + label:after {
 }
 .web-layout .checker-layout .checker .checker-content .task-list .task .dropdown .dropdown-content a:hover {
   background-color: #ddd;
-}
-.web-layout .checker-layout .checker .checker-content .task-list .task .dropdown:hover .dropdown-content {
-  display: block;
 }
 .web-layout .checker-layout .checker .checker-content .add-task-button {
   cursor: pointer;

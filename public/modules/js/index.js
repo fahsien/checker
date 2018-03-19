@@ -35,6 +35,7 @@ angular.module('checker').controller('indexController', ['$scope', '$http', 'ngD
         content_input_display: false,
         content_input: null,
         name_input_display: [],
+        owner_display: [],
         add: function () {
             this.content_input_display = true;
         },
@@ -105,6 +106,13 @@ angular.module('checker').controller('indexController', ['$scope', '$http', 'ngD
                 }]
             });
         },
+        openCheckerOwner: function (checker) {
+            if (this.owner_display[checker._id]) {
+                this.owner_display[checker._id] = !this.owner_display[checker._id];
+            } else {
+                this.owner_display[checker._id] = true;
+            }
+        },
         setCheckerOwner: function (checker, user) {
             $http({
                 method: 'POST',
@@ -115,6 +123,7 @@ angular.module('checker').controller('indexController', ['$scope', '$http', 'ngD
                 }
             }).then(function (res) {
                 checker.owner = user;
+                $scope.checkerFunc.owner_display[checker._id] = false;
             });
         }
     };
@@ -125,6 +134,7 @@ angular.module('checker').controller('indexController', ['$scope', '$http', 'ngD
         content_input: [],
         name_input_display: [],
         duedate_input_display: [],
+        owner_display: [],
         add: function (checker) {
             if (!checker.owner) return;
             if (checker.owner._id !== $scope.user._id) return;
@@ -199,6 +209,13 @@ angular.module('checker').controller('indexController', ['$scope', '$http', 'ngD
                 $scope.taskFunc.duedate_input_display[task._id] = false;
             });
         },
+        openTaskOwner: function (task) {
+            if (this.owner_display[task._id]) {
+                this.owner_display[task._id] = !this.owner_display[task._id];
+            } else {
+                this.owner_display[task._id] = true;
+            }
+        },
         setTaskOwner: function (checker, task, user) {
             if (!checker.owner) return;
             if (checker.owner._id !== $scope.user._id) return;
@@ -211,6 +228,7 @@ angular.module('checker').controller('indexController', ['$scope', '$http', 'ngD
                 }
             }).then(function (res) {
                 task.owner = user;
+                $scope.taskFunc.owner_display[task._id] = false;
             });
         },
         clickToOpen: function (checker, task) {
