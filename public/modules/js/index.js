@@ -209,7 +209,9 @@ angular.module('checker').controller('indexController', ['$scope', '$http', 'ngD
                 $scope.taskFunc.duedate_input_display[task._id] = false;
             });
         },
-        openTaskOwner: function (task) {
+        openTaskOwner: function (checker, task) {
+            if (!checker.owner) return;
+            if (checker.owner._id !== $scope.user._id) return;
             if (this.owner_display[task._id]) {
                 this.owner_display[task._id] = !this.owner_display[task._id];
             } else {

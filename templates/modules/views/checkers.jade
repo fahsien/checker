@@ -37,7 +37,7 @@
                         .pure-u-1-6
                             a.task-delete-button(ng-click="taskFunc.delete(checker, task, $index)") x
                             .dropdown
-                                img.drop-button(ng-src="{{task.owner.profile_photo||'../img/core/user-black.png'}}", ng-click="taskFunc.openTaskOwner(task)")
+                                img.drop-button(ng-src="{{task.owner.profile_photo||'../img/core/user-black.png'}}", ng-click="taskFunc.openTaskOwner(checker, task)")
                                 .dropdown-content(ng-if="taskFunc.owner_display[task._id]")
                                     a(ng-click="taskFunc.setTaskOwner(checker, task, user)" ng-repeat="user in users track by $index")
                                         img.icon-button(ng-src="{{user.profile_photo}}")
