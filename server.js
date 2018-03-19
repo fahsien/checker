@@ -91,6 +91,11 @@ app.route('/api/setCheckerOwner')
 app.route('/api/task')
 	.post(api.postTask)
 	.put(api.putTask);
+app.route('/api/checklist')
+	.post(api.postChecklist)
+	.put(api.putChecklist);
+app.route('/api/deleteChecklist')
+	.post(api.deleteChecklist);
 app.route('/api/message')
 	.post(api.postMessage)
 	.put(api.putMessage);

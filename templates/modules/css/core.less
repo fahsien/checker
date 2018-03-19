@@ -245,11 +245,6 @@ input[type="checkbox"]:checked + label:after {
                         background-color: #f2f8fc;
                         line-height: 19px;
 
-                        .finished{
-                            text-decoration: line-through;
-                            opacity: 0.5;
-                            font-style:italic;
-                        }
                         .task-arrow{
                             display: inline-block;
                             vertical-align: top;
@@ -418,6 +413,24 @@ input[type="checkbox"]:checked + label:after {
 
     span {
         word-wrap: break-word;
+    }
+}
+.checklist-enter{
+    padding: 13px 0;
+}
+.checklist{
+    background-color: white;
+    padding: 3px;
+    margin: 6px 0;
+
+    .finished{
+        text-decoration: line-through;
+        opacity: 0.5;
+        font-style:italic;
+    }
+    span {
+        word-wrap: break-word;
+        padding: 18px;
     }
 }
 .choose-color{

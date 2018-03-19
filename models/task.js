@@ -28,9 +28,17 @@ var TaskSchema = new Schema({
 		type: Schema.Types.Mixed,
 		default: []
 	},
+	checklists: {
+		type: Schema.Types.Mixed,
+		default: []
+	},
 	owner: {
 		type: Schema.Types.ObjectId,
 		ref: 'User'
+	},
+	create_time: {
+		type: Date,
+		default: Date.now
 	}
 
 });

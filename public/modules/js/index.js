@@ -250,7 +250,8 @@ angular.module('checker').controller('indexController', ['$scope', '$http', 'ngD
                     $scope.switchDateSet = switchDateSet;
                     $scope.duedate_input_display = duedate_input_display;
                     $scope.message_input_display = [];
-                    $scope.modify = function (id) {
+                    $scope.checklist_input_display = [];
+                    $scope.modifyMessage = function (id) {
                         this.message_input_display[id] = true;
                     };
                     $scope.updateMessage = function (message) {
@@ -273,17 +274,54 @@ angular.module('checker').controller('indexController', ['$scope', '$http', 'ngD
                                 message: $scope.enter_message
                             }
                         }).then(function (res) {
-                            $scope.task.messages.push(res.data.message);
+                            $scope.task.messages.unshift(res.data.message);
                             $scope.enter_message = '';
                         });
                     };
-                    $scope.delete = function (task, message, order) {
+                    $scope.deleteMessage = function (task, message, order) {
                         $http({
                             method: 'POST',
                             url: '/api/deleteMessage',
                             data: message
                         }).then(function (res) {
                             task.messages.splice(order, 1);
+                        });
+                    };
+
+                    $scope.modifyChecklist = function (id) {
+                        this.checklist_input_display[id] = true;
+                    };
+                    $scope.updateChecklist = function (checklist) {
+                        $http({
+                            method: 'PUT',
+                            url: '/api/checklist',
+                            data: {
+                                checklist: checklist
+                            }
+                        }).then(function (res) {
+                            $scope.checklist_input_display[checklist._id] = false;
+                        });
+                    };
+                    $scope.enterChecklist = function () {
+                        $http({
+                            method: 'POST',
+                            url: '/api/checklist',
+                            data: {
+                                task: task._id,
+                                checklist: $scope.enter_checklist
+                            }
+                        }).then(function (res) {
+                            $scope.task.checklists.push(res.data.checklist);
+                            $scope.enter_checklist = '';
+                        });
+                    };
+                    $scope.deleteChecklist = function (task, checklist, order) {
+                        $http({
+                            method: 'POST',
+                            url: '/api/deleteChecklist',
+                            data: checklist
+                        }).then(function (res) {
+                            task.checklists.splice(order, 1);
                         });
                     };
                 }]

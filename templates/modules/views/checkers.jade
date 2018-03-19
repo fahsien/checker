@@ -100,7 +100,27 @@ script(type="text/ng-template" id="task-template")
                 a.save-button(ng-click="setDueDate(task)") 儲存
             .pure-u-1-4
                 a.save-button(ng-click="switchDateSet(task._id)") 關閉
+    h3 待辦事項
+    .checklist(ng-repeat="checklist in task.checklists track by $index") 
+        .pure-g
+            .pure-u-19-24
+                input(id="{{checklist._id}}" type="checkbox", ng-model="checklist.finished", ng-click="updateChecklist(checklist)")
+                label(for="{{checklist._id}}")
+                span(ng-class="{finished: checklist.finished}",ng-hide="checklist_input_display[checklist._id]" ng-click="modifyChecklist(checklist._id)") {{checklist.name}}
+                textarea(ng-model="checklist.name" ng-hide="!checklist_input_display[checklist._id]" ng-blur="updateChecklist(checklist)")
+            .pure-u-1-6
+            .pure-u-1-24
+                a.cancel-button(ng-click="deleteChecklist(task, checklist, $index)") x
+    
+    .checklist-enter
+        .pure-g
+            .pure-u-1-2
+                textarea(ng-model="enter_checklist")
+            .pure-u-1-2
+                a(ng-click="enterChecklist()") 輸入
+
     .message-enter
+        h3 留言板
         .pure-g
             .pure-u-1-2
                 textarea(ng-model="enter_message")
@@ -109,11 +129,11 @@ script(type="text/ng-template" id="task-template")
     .message(ng-repeat="message in task.messages track by $index") 
         .pure-g
             .pure-u-19-24
-                span(ng-hide="message_input_display[message._id]" ng-click="modify(message._id)") {{message.name}}
+                span(ng-hide="message_input_display[message._id]" ng-click="modifyMessage(message._id)") {{message.name}}
                 textarea(ng-model="message.name" ng-hide="!message_input_display[message._id]" ng-blur="updateMessage(message)")
             .pure-u-1-6
             .pure-u-1-24
-                a.cancel-button(ng-click="delete(task, message, $index)") x
+                a.cancel-button(ng-click="deleteMessage(task, message, $index)") x
 
 script(type="text/ng-template" id="checker-template")
     input(type="text" ng-model="checker.name", ng-blur="update(checker)" )

@@ -24,6 +24,10 @@ var CheckerSchema = new Schema({
 	owner: {
 		type: Schema.Types.ObjectId,
 		ref: 'User'
+	},
+	create_time: {
+		type: Date,
+		default: Date.now
 	}
 
 });

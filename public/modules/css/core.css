@@ -237,11 +237,6 @@ input[type="checkbox"]:checked + label:after {
   background-color: #f2f8fc;
   line-height: 19px;
 }
-.web-layout .checker-layout .checker .checker-content .task-list .task .finished {
-  text-decoration: line-through;
-  opacity: 0.5;
-  font-style: italic;
-}
 .web-layout .checker-layout .checker .checker-content .task-list .task .task-arrow {
   display: inline-block;
   vertical-align: top;
@@ -370,6 +365,23 @@ input[type="checkbox"]:checked + label:after {
 }
 .message span {
   word-wrap: break-word;
+}
+.checklist-enter {
+  padding: 13px 0;
+}
+.checklist {
+  background-color: white;
+  padding: 3px;
+  margin: 6px 0;
+}
+.checklist .finished {
+  text-decoration: line-through;
+  opacity: 0.5;
+  font-style: italic;
+}
+.checklist span {
+  word-wrap: break-word;
+  padding: 18px;
 }
 .choose-color {
   padding: 60px;

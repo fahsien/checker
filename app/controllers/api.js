@@ -1,6 +1,7 @@
 var Board = require('../../models/board.js'),
     Checker = require('../../models/checker.js'),
     Message = require('../../models/message.js'),
+    Checklist = require('../../models/checklist.js'),
     Task = require('../../models/task.js'),
     User = require('../../models/user.js'),
     _ = require('lodash'),
@@ -57,18 +58,31 @@ exports.getCheckers = function(req, res) {
             });
         },
         function(callback){
-            Message.find({})
+            Message.find({}).sort('-create_time')
             .exec(function(err, messages) {
                 callback(err, messages)
+            });
+        },
+        function(callback){
+            Checklist.find({})
+            .exec(function(err, checklists) {
+                callback(err, checklists)
             });
         }
     ],function(err, results){
         if (err) return res.status(400).send(err);
-        var findChecker;
+        var findChecker,findTask;
+
+        for(var i = 0 ; i < results[3].length ; i++){
+            findTask = _.find(results[1],{_id : results[3][i].task});
+            if(findTask) findTask.checklists.push(results[3][i]);
+        }
+
         for(var i = 0 ; i < results[2].length ; i++){
             findTask = _.find(results[1],{_id : results[2][i].task});
             if(findTask) findTask.messages.push(results[2][i]);
         }
+
         for(var i = 0 ; i < results[1].length ; i++){
             findChecker = _.find(results[0],{_id : results[1][i].checker});
             if(findChecker) findChecker.tasks.push(results[1][i]);
@@ -176,6 +190,33 @@ exports.putTask = function(req, res) {
         res.send({message: {success:'成功！'}});
     });
 }
+exports.postChecklist = function(req, res) {
+    var checklist = req.body.checklist;
+
+    new Checklist({
+                name: req.body.checklist,
+                task: req.body.task,
+            }).save(function(err, checklist){
+                if(err) return res.status(400).send(err);
+                res.send({checklist: checklist});
+            });
+}
+exports.putChecklist = function(req, res) {
+    var checklist = req.body.checklist;
+
+    Checklist.update({_id:req.body.checklist._id}, {$set: {name: req.body.checklist.name, finished: req.body.checklist.finished}},
+    function (err, checklist) {
+        if (err) return res.status(400).send(err);
+        res.send({message: {success:'成功！'}});
+    });
+}
+exports.deleteChecklist= function(req, res) {
+    Checklist.remove({_id:req.body._id}, function (err) {
+        if (err) return res.status(400).send(err);
+        res.send({message: {success:'成功！'}});
+    });
+}
+
 exports.postMessage = function(req, res) {
     var message = req.body.message;
 
@@ -196,14 +237,15 @@ exports.putMessage = function(req, res) {
         res.send({message: {success:'成功！'}});
     });
 }
-exports.deleteTask = function(req, res) {
-    Task.remove({_id:req.body._id}, function (err) {
+exports.deleteMessage = function(req, res) {
+    Message.remove({_id:req.body._id}, function (err) {
         if (err) return res.status(400).send(err);
         res.send({message: {success:'成功！'}});
     });
 }
-exports.deleteMessage = function(req, res) {
-    Message.remove({_id:req.body._id}, function (err) {
+
+exports.deleteTask = function(req, res) {
+    Task.remove({_id:req.body._id}, function (err) {
         if (err) return res.status(400).send(err);
         res.send({message: {success:'成功！'}});
     });

@@ -20,6 +20,10 @@ var UserSchema = new Schema({
 	profile_photo: {
 		type: String,
 		default: "../img/core/user-black.png"
+	},
+	create_time: {
+		type: Date,
+		default: Date.now
 	}
 });
 

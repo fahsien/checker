@@ -4,10 +4,14 @@
 var mongoose = require('mongoose'),
 	Schema = mongoose.Schema;
 
-var MessageSchema = new Schema({
+var ChecklistSchema = new Schema({
 	name: {
 		type: String,
 		default: ''
+	},
+	finished: {
+		type: Boolean,
+		default: false
 	},
 	task: {
 		type: Schema.Types.ObjectId,
@@ -20,4 +24,4 @@ var MessageSchema = new Schema({
 
 });
 
-module.exports = mongoose.model('Message', MessageSchema);
+module.exports = mongoose.model('Checklist', ChecklistSchema);
