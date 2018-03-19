@@ -20,6 +20,10 @@ var CheckerSchema = new Schema({
 	board: {
 		type: Schema.Types.ObjectId,
 		ref: 'Board'
+	},
+	owner: {
+		type: Schema.Types.ObjectId,
+		ref: 'User'
 	}
 
 });

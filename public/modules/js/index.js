@@ -81,6 +81,8 @@ angular.module('checker').controller('indexController', ['$scope', '$http', 'ngD
             });
         },
         delete: function (checker, order) {
+            if (!checker.owner) return;
+            if (checker.owner._id !== $scope.user._id) return;
             $http({
                 method: 'POST',
                 url: '/api/deleteChecker',
@@ -90,6 +92,8 @@ angular.module('checker').controller('indexController', ['$scope', '$http', 'ngD
             });
         },
         clickToOpen: function (checker) {
+            if (!checker.owner) return;
+            if (checker.owner._id !== $scope.user._id) return;
             var update = this.update,
                 updateColor = this.updateColor;
             ngDialog.open({
@@ -100,6 +104,18 @@ angular.module('checker').controller('indexController', ['$scope', '$http', 'ngD
                     $scope.updateColor = updateColor;
                 }]
             });
+        },
+        setCheckerOwner: function (checker, user) {
+            $http({
+                method: 'POST',
+                url: '/api/setCheckerOwner',
+                data: {
+                    checker: checker,
+                    user: user
+                }
+            }).then(function (res) {
+                checker.owner = user;
+            });
         }
     };
 
@@ -109,8 +125,10 @@ angular.module('checker').controller('indexController', ['$scope', '$http', 'ngD
         content_input: [],
         name_input_display: [],
         duedate_input_display: [],
-        add: function (id) {
-            this.content_input_display[id] = true;
+        add: function (checker) {
+            if (!checker.owner) return;
+            if (checker.owner._id !== $scope.user._id) return;
+            this.content_input_display[checker._id] = true;
             $scope.blink_animation = false;
         },
         cancel: function (id) {
@@ -150,6 +168,7 @@ angular.module('checker').controller('indexController', ['$scope', '$http', 'ngD
             this.update(task);
         },
         delete: function (checker, task, order) {
+            if (checker.owner._id !== $scope.user._id) return;
             $http({
                 method: 'POST',
                 url: '/api/deleteTask',
@@ -180,7 +199,9 @@ angular.module('checker').controller('indexController', ['$scope', '$http', 'ngD
                 $scope.taskFunc.duedate_input_display[task._id] = false;
             });
         },
-        setTaskOwner: function (task, user) {
+        setTaskOwner: function (checker, task, user) {
+            if (!checker.owner) return;
+            if (checker.owner._id !== $scope.user._id) return;
             $http({
                 method: 'POST',
                 url: '/api/setTaskOwner',
@@ -192,7 +213,7 @@ angular.module('checker').controller('indexController', ['$scope', '$http', 'ngD
                 task.owner = user;
             });
         },
-        clickToOpen: function (task) {
+        clickToOpen: function (checker, task) {
             var update = this.update,
                 switchDateSet = this.switchDateSet,
                 duedate_input_display = this.duedate_input_display,
@@ -202,6 +223,7 @@ angular.module('checker').controller('indexController', ['$scope', '$http', 'ngD
                 template: 'task-template',
                 controller: ['$scope', '$http', ($scope, $http) => {
                     $scope.task = task;
+                    $scope.checker = checker;
                     $scope.user = user;
                     $scope.update = update;
                     $scope.setDueDate = setDueDate;

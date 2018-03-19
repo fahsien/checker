@@ -46,7 +46,7 @@ exports.getCheckers = function(req, res) {
     var boardId = req.query.board;
     async.parallel([
         function(callback){
-            Checker.find({board : boardId})
+            Checker.find({board : boardId}).populate('owner')
             .exec(function(err, checkers) {
                 callback(err, checkers)
             });
@@ -259,6 +259,14 @@ exports.setDueDate = function(req, res){
 exports.setTaskOwner = function(req, res) {
     Task.update({_id:req.body.task._id}, {$set: {owner: req.body.user}},
     function (err, task) {
+        if (err) return res.status(400).send(err);
+        res.send({success: true});
+    });
+}
+
+exports.setCheckerOwner = function(req, res) {
+    Checker.update({_id:req.body.checker._id}, {$set: {owner: req.body.user}},
+    function (err, checker) {
         if (err) return res.status(400).send(err);
         res.send({success: true});
     });

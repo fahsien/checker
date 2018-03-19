@@ -84,6 +84,8 @@ app.route('/api/checker')
 
 app.route('/api/deleteChecker')
 	.post(api.deleteChecker);
+app.route('/api/setCheckerOwner')
+	.post(api.setCheckerOwner);
 
 /** Tasks API **/
 app.route('/api/task')
