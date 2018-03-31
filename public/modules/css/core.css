@@ -6,6 +6,7 @@ body {
 }
 body {
   background-color: #f7f7f7;
+  height: 100%;
 }
 /**
  * The dnd-list should always have a min-height,
@@ -128,15 +129,16 @@ input[type="checkbox"]:checked + label:after {
   left: 0;
   right: 0;
   z-index: 1000;
+  position: absolute;
 }
 .web-layout {
-  height: auto !important;
-  /* real browsers */
+  height: 100%;
   min-height: 100%;
   /* real browsers */
   min-width: 100%;
   width: 100%;
-  overflow: auto;
+  overflow-x: auto;
+  overflow-y: hidden;
   background-color: #f7f7f7;
 }
 .web-layout .board-layout {
@@ -201,6 +203,7 @@ input[type="checkbox"]:checked + label:after {
   background-color: #fff;
 }
 .web-layout .checker-layout {
+  height: 100%;
   width: max-content;
 }
 .web-layout .checker-layout .checker {
@@ -210,6 +213,8 @@ input[type="checkbox"]:checked + label:after {
   vertical-align: top;
   word-wrap: break-word;
   margin-top: 27px;
+  overflow: scroll;
+  height: 100%;
 }
 .web-layout .checker-layout .checker .save-button {
   padding: 3px;
