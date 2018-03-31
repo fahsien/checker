@@ -29,7 +29,20 @@ angular.module('checker').controller('indexController', ['$scope', '$http', 'ngD
             window.location = '/';
         });
     };
-
+    $scope.updateOrder = function (checker) {
+        var tasks = [];
+        for (var i = 0; i < checker.tasks.length; i++) {
+            tasks.push(checker.tasks[i]._id);
+        }
+        $http({
+            method: 'PUT',
+            url: '/api/checker',
+            data: {
+                _id: checker._id,
+                tasks: tasks
+            }
+        }).then(function (res) {});
+    };
     //** Checker **//
     $scope.checkerFunc = {
         content_input_display: false,
@@ -63,7 +76,7 @@ angular.module('checker').controller('indexController', ['$scope', '$http', 'ngD
         update: function (checker) {
             $http({
                 method: 'PUT',
-                url: '/api/checker',
+                url: '/api/checkerName',
                 data: checker
             }).then(function (res) {
                 $scope.checkerFunc.name_input_display[checker._id] = false;
@@ -184,7 +197,20 @@ angular.module('checker').controller('indexController', ['$scope', '$http', 'ngD
                 url: '/api/deleteTask',
                 data: task
             }).then(function (res) {
+
                 checker.tasks.splice(order, 1);
+                var tasks = [];
+                for (var i = 0; i < checker.tasks.length; i++) {
+                    tasks.push(checker.tasks[i]._id);
+                }
+                $http({
+                    method: 'PUT',
+                    url: '/api/checker',
+                    data: {
+                        _id: checker._id,
+                        tasks: tasks
+                    }
+                }).then(function (res) {});
             });
         },
         switchDateSet: function (id) {

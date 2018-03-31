@@ -48,6 +48,7 @@ exports.getCheckers = function(req, res) {
     async.parallel([
         function(callback){
             Checker.find({board : boardId}).populate('owner')
+            .sort('create_time')
             .exec(function(err, checkers) {
                 callback(err, checkers)
             });
@@ -73,19 +74,38 @@ exports.getCheckers = function(req, res) {
         if (err) return res.status(400).send(err);
         var findChecker,findTask;
 
+        //push checklist
         for(var i = 0 ; i < results[3].length ; i++){
             findTask = _.find(results[1],{_id : results[3][i].task});
             if(findTask) findTask.checklists.push(results[3][i]);
         }
-
+        //push message
         for(var i = 0 ; i < results[2].length ; i++){
             findTask = _.find(results[1],{_id : results[2][i].task});
             if(findTask) findTask.messages.push(results[2][i]);
         }
 
-        for(var i = 0 ; i < results[1].length ; i++){
-            findChecker = _.find(results[0],{_id : results[1][i].checker});
-            if(findChecker) findChecker.tasks.push(results[1][i]);
+        // for(var i = 0 ; i < results[1].length ; i++){
+        //     findChecker = _.find(results[0],{_id : results[1][i].checker});
+        //     if(findChecker) findChecker.tasks.push(results[1][i]);
+        // }
+
+        for(var i = 0 ; i < results[0].length ; i++){
+            if(results[0][i].tasks.length <= 0){
+                findTask = _.filter(results[1],{checker : results[0][i]._id});
+                if(findTask) results[0][i].tasks = findTask;
+            }else{
+                var tasks = results[0][i].tasks;
+                results[0][i].tasks = [];
+
+                for(var j = 0 ; j < tasks.length ; j++){
+                    findTask = _.find(results[1], task =>{
+                        return task._id.equals(tasks[j]);
+                    });
+                    if(findTask) results[0][i].tasks.push(findTask);
+                }
+            }
+            
         }
         res.send({checkers: results[0]});
     })
@@ -101,6 +121,13 @@ exports.postChecker = function(req, res) {
 }
 
 exports.putChecker = function(req, res) {
+    Checker.update({_id:req.body._id}, {$set: {tasks: req.body.tasks}},
+    function (err, checker) {
+        if (err) return res.status(400).send(err);
+        res.send({message: {success:'成功！'}});
+    });
+}
+exports.putCheckerName = function(req, res) {
     Checker.update({_id:req.body._id}, {$set: {name: req.body.name}},
     function (err, checker) {
         if (err) return res.status(400).send(err);

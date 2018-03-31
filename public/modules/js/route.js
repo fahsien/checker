@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('index', ['ui.router', 'ngDialog']);
+angular.module('index', ['ui.router', 'ngDialog', 'dndLists']);
 angular.module('checker', []);
 angular.module('index').requires.push('checker');
 

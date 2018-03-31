@@ -17,31 +17,32 @@
                                             span {{user.name}}
                             .pure-u-1-2
                                 a.delete-button(ng-click="checkerFunc.delete(checker, $index)") x
-                    
-            .task-list
-                .task(ng-repeat="task in checker.tasks track by $index")
-                    .pure-g
-                        .pure-u-5-6
-                            .pure-g
-                                .pure-u-1-6
-                                    input(id="{{task._id}}" type="checkbox", ng-model="task.finished", ng-click="taskFunc.updateFinished(checker, task)" ng-disabled="checker.owner._id !== user._id")
-                                    label(for="{{task._id}}")
-                                    img.small-icon-button(src="../img/core/alarm.png" ng-if="task.due_date")
 
-                                .pure-u-5-6
-                                    div(ng-class="{finished: task.finished}", ng-click="taskFunc.clickToOpen(checker, task)") {{task.name}}
-                                    .task-arrow(ng-class="{blink: !task.finished && blink_animation}", ng-if="$index!==checker.tasks.length-1")
-                                    //- textarea(ng-model="task.name", ng-blur="taskFunc.update(task)", ng-hide="!taskFunc.name_input_display[task._id]")
-                                    //- span.due-date(ng-class="{overtime: (task.due_date < now)&&task.due_date}", ng-hide="taskFunc.duedate_input_display[task._id]||task.finished") {{task.due_date.toLocaleDateString()}} {{task.due_date.toLocaleTimeString([],{hour: '2-digit', minute:'2-digit'})}}
-                                
-                        .pure-u-1-6
-                            a.task-delete-button(ng-click="taskFunc.delete(checker, task, $index)") x
-                            .dropdown
-                                img.drop-button(ng-src="{{task.owner.profile_photo||'../img/core/user-black.png'}}", ng-click="taskFunc.openTaskOwner(checker, task)")
-                                .dropdown-content(ng-if="taskFunc.owner_display[task._id]")
-                                    a(ng-click="taskFunc.setTaskOwner(checker, task, user)" ng-repeat="user in users track by $index")
-                                        img.icon-button(ng-src="{{user.profile_photo}}")
-                                        span {{user.name}}
+            .task-list
+                ul(dnd-list="checker.tasks", dnd-allowed-types="[checker._id]")
+                    li.task(ng-repeat="task in checker.tasks", dnd-draggable="task", dnd-moved="checker.tasks.splice($index, 1); updateOrder(checker)", dnd-effect-allowed="move", dnd-selected="models.selected = task", ng-class="{'selected': models.selected === task}", dnd-type="task.checker")
+                        .pure-g
+                            .pure-u-5-6
+                                .pure-g
+                                    .pure-u-1-6
+                                        input(id="{{task._id}}" type="checkbox", ng-model="task.finished", ng-click="taskFunc.updateFinished(checker, task)" ng-disabled="checker.owner._id !== user._id")
+                                        label(for="{{task._id}}")
+                                        img.small-icon-button(src="../img/core/alarm.png" ng-if="task.due_date")
+
+                                    .pure-u-5-6
+                                        div(ng-class="{finished: task.finished}", ng-click="taskFunc.clickToOpen(checker, task)") {{task.name}}
+                                        .task-arrow(ng-class="{blink: !task.finished && blink_animation}", ng-if="$index!==checker.tasks.length-1")
+                                        //- textarea(ng-model="task.name", ng-blur="taskFunc.update(task)", ng-hide="!taskFunc.name_input_display[task._id]")
+                                        //- span.due-date(ng-class="{overtime: (task.due_date < now)&&task.due_date}", ng-hide="taskFunc.duedate_input_display[task._id]||task.finished") {{task.due_date.toLocaleDateString()}} {{task.due_date.toLocaleTimeString([],{hour: '2-digit', minute:'2-digit'})}}
+                                    
+                            .pure-u-1-6
+                                a.task-delete-button(ng-click="taskFunc.delete(checker, task, $index)") x
+                                .dropdown
+                                    img.drop-button(ng-src="{{task.owner.profile_photo||'../img/core/user-black.png'}}", ng-click="taskFunc.openTaskOwner(checker, task)")
+                                    .dropdown-content(ng-if="taskFunc.owner_display[task._id]")
+                                        a(ng-click="taskFunc.setTaskOwner(checker, task, user)" ng-repeat="user in users track by $index")
+                                            img.icon-button(ng-src="{{user.profile_photo}}")
+                                            span {{user.name}}
                                 
                     //- .date-set-block(ng-hide="!taskFunc.duedate_input_display[task._id]")
                     //-     input(type="datetime-local" ng-model="task.due_date")

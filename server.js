@@ -11,7 +11,7 @@ var http = require('http'),
 	favicon = require('serve-favicon');
 
 //set port
-var port = process.env.PORT || 8080;
+var port = process.env.PORT || 8000;
 
 //connect database
 mongoose.Promise = global.Promise;
@@ -82,6 +82,8 @@ app.route('/api/checker')
 	.post(api.postChecker)
 	.put(api.putChecker);
 
+app.route('/api/checkerName')
+	.put(api.putCheckerName);
 app.route('/api/deleteChecker')
 	.post(api.deleteChecker);
 app.route('/api/setCheckerOwner')
