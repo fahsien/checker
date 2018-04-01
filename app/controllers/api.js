@@ -113,7 +113,8 @@ exports.getCheckers = function(req, res) {
 exports.postChecker = function(req, res) {
     new Checker({
                 name: req.body.name,
-                board: req.body.board
+                board: req.body.board,
+                owner: req.user
             }).save(function (err, checker) {
                 if (err) return res.status(400).send(err);
                 res.send({checker: checker});
@@ -334,7 +335,7 @@ exports.setTaskOwner = function(req, res) {
 }
 
 exports.setCheckerOwner = function(req, res) {
-    Checker.update({_id:req.body.checker._id}, {$set: {owner: req.body.user}},
+    Checker.update({_id:req.body._id}, {$set: {partners: req.body.partners}},
     function (err, checker) {
         if (err) return res.status(400).send(err);
         res.send({success: true});

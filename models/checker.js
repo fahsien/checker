@@ -25,6 +25,10 @@ var CheckerSchema = new Schema({
 		type: Schema.Types.ObjectId,
 		ref: 'User'
 	},
+	partners: {
+		type: Array,
+		default: []
+	},
 	create_time: {
 		type: Date,
 		default: Date.now

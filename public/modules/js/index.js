@@ -48,7 +48,6 @@ angular.module('checker').controller('indexController', ['$scope', '$http', 'ngD
         content_input_display: false,
         content_input: null,
         name_input_display: [],
-        owner_display: [],
         add: function () {
             this.content_input_display = true;
         },
@@ -109,34 +108,48 @@ angular.module('checker').controller('indexController', ['$scope', '$http', 'ngD
             if (!checker.owner) return;
             if (checker.owner._id !== $scope.user._id) return;
             var update = this.update,
-                updateColor = this.updateColor;
+                updateColor = this.updateColor,
+                users = $scope.users;
             ngDialog.open({
                 template: 'checker-template',
                 controller: ['$scope', $scope => {
                     $scope.checker = checker;
                     $scope.update = update;
                     $scope.updateColor = updateColor;
+                    $scope.users = users;
+                    $scope.owner_display = false;
+                    $scope.userFilter = function (user) {
+                        return user._id !== $scope.checker.owner._id && $scope.checker.partners.findIndex(function (partner) {
+                            return partner === user._id;
+                        }) < 0;
+                    };
+                    $scope.partnerFilter = function (user) {
+                        return $scope.checker.partners.findIndex(function (partner) {
+                            return partner === user._id;
+                        }) >= 0;
+                    };
+                    $scope.openCheckerOwner = function () {
+                        if ($scope.owner_display) {
+                            $scope.owner_display = false;
+                        } else {
+                            $scope.owner_display = true;
+                        }
+                    };
+                    $scope.setCheckerOwner = function (checker, user) {
+                        if (!checker.partners) checker.partners = [];
+                        checker.partners.push(user._id);
+                        $http({
+                            method: 'POST',
+                            url: '/api/setCheckerOwner',
+                            data: {
+                                _id: checker._id,
+                                partners: checker.partners
+                            }
+                        }).then(function (res) {
+                            $scope.owner_display = false;
+                        });
+                    };
                 }]
-            });
-        },
-        openCheckerOwner: function (checker) {
-            if (this.owner_display[checker._id]) {
-                this.owner_display[checker._id] = !this.owner_display[checker._id];
-            } else {
-                this.owner_display[checker._id] = true;
-            }
-        },
-        setCheckerOwner: function (checker, user) {
-            $http({
-                method: 'POST',
-                url: '/api/setCheckerOwner',
-                data: {
-                    checker: checker,
-                    user: user
-                }
-            }).then(function (res) {
-                checker.owner = user;
-                $scope.checkerFunc.owner_display[checker._id] = false;
             });
         }
     };
@@ -148,9 +161,19 @@ angular.module('checker').controller('indexController', ['$scope', '$http', 'ngD
         name_input_display: [],
         duedate_input_display: [],
         owner_display: [],
+        taskAuth: function (checker) {
+            var not_partner = checker.partners.findIndex(function (partner) {
+                return partner === $scope.user._id;
+            }) < 0,
+                not_owner = $scope.user._id !== checker.owner._id;
+            if (not_partner && not_owner) {
+                return false;
+            } else {
+                return true;
+            }
+        },
         add: function (checker) {
-            if (!checker.owner) return;
-            if (checker.owner._id !== $scope.user._id) return;
+            if (!this.taskAuth(checker)) return;
             this.content_input_display[checker._id] = true;
             $scope.blink_animation = false;
         },
@@ -260,6 +283,7 @@ angular.module('checker').controller('indexController', ['$scope', '$http', 'ngD
             });
         },
         clickToOpen: function (checker, task) {
+            if (!this.taskAuth(checker)) return;
             var update = this.update,
                 switchDateSet = this.switchDateSet,
                 duedate_input_display = this.duedate_input_display,

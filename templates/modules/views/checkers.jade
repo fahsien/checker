@@ -10,17 +10,17 @@
                         .pure-g
                             .pure-u-1-2
                                 .dropdown
-                                    img.drop-button(ng-src="{{checker.owner.profile_photo||'../img/core/user-black.png'}}", ng-click="checkerFunc.openCheckerOwner(checker)")
-                                    .dropdown-content(ng-if="checkerFunc.owner_display[checker._id]")
-                                        a(ng-click="checkerFunc.setCheckerOwner(checker, user)" ng-repeat="user in users track by $index")
-                                            img.icon-button(ng-src="{{user.profile_photo}}")
-                                            span {{user.name}}
+                                    img.drop-button(ng-src="{{checker.owner.profile_photo||'../img/core/user-black.png'}}")
+                                    //- .dropdown-content(ng-if="checkerFunc.owner_display[checker._id]")
+                                    //-     a(ng-click="checkerFunc.setCheckerOwner(checker, user)" ng-repeat="user in users track by $index")
+                                    //-         img.icon-button(ng-src="{{user.profile_photo}}")
+                                    //-         span {{user.name}}
                             .pure-u-1-2
                                 a.delete-button(ng-click="checkerFunc.delete(checker, $index)") x
 
             .task-list
                 ul(dnd-list="checker.tasks", dnd-allowed-types="[checker._id]")
-                    li.task(ng-repeat="task in checker.tasks", dnd-draggable="task", dnd-moved="checker.tasks.splice($index, 1); updateOrder(checker)", dnd-effect-allowed="move", dnd-selected="models.selected = task", ng-class="{'selected': models.selected === task}", dnd-type="task.checker")
+                    li.task(ng-repeat="task in checker.tasks", dnd-draggable="task", dnd-moved="checker.tasks.splice($index, 1); updateOrder(checker)", dnd-effect-allowed="move", dnd-selected="models.selected = task", ng-class="{'selected': models.selected === task}", dnd-type="task.checker", dnd-disable-if="checker.owner._id !== user._id")
                         .pure-g
                             .pure-u-5-6
                                 .pure-g
@@ -37,12 +37,12 @@
                                     
                             .pure-u-1-6
                                 a.task-delete-button(ng-click="taskFunc.delete(checker, task, $index)") x
-                                .dropdown
-                                    img.drop-button(ng-src="{{task.owner.profile_photo||'../img/core/user-black.png'}}", ng-click="taskFunc.openTaskOwner(checker, task)")
-                                    .dropdown-content(ng-if="taskFunc.owner_display[task._id]")
-                                        a(ng-click="taskFunc.setTaskOwner(checker, task, user)" ng-repeat="user in users track by $index")
-                                            img.icon-button(ng-src="{{user.profile_photo}}")
-                                            span {{user.name}}
+                                //- .dropdown
+                                //-     img.drop-button(ng-src="{{task.owner.profile_photo||'../img/core/user-black.png'}}", ng-click="taskFunc.openTaskOwner(checker, task)")
+                                //-     .dropdown-content(ng-if="taskFunc.owner_display[task._id]")
+                                //-         a(ng-click="taskFunc.setTaskOwner(checker, task, user)" ng-repeat="user in users track by $index")
+                                //-             img.icon-button(ng-src="{{user.profile_photo}}")
+                                //-             span {{user.name}}
                                 
                     //- .date-set-block(ng-hide="!taskFunc.duedate_input_display[task._id]")
                     //-     input(type="datetime-local" ng-model="task.due_date")
@@ -151,3 +151,15 @@ script(type="text/ng-template" id="checker-template")
             .choose-purple(ng-click="updateColor(checker, 'purple')")
         .pure-u-1-6
             .choose-pink(ng-click="updateColor(checker, 'pink')")
+
+    
+    h3 專案成員
+    div(ng-repeat="user in users|filter: partnerFilter") 
+        img.icon-button(ng-src="{{user.profile_photo}}")
+        span {{user.name}}
+    .dropdown
+        a(ng-click="openCheckerOwner()") 新增成員
+        .dropdown-content(ng-if="owner_display")
+            a(ng-click="setCheckerOwner(checker, user)" ng-repeat="user in users|filter: userFilter track by $index")
+                img.icon-button(ng-src="{{user.profile_photo}}")
+                span {{user.name}}

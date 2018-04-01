@@ -253,32 +253,6 @@ input[type="checkbox"]:checked + label:after {
 .web-layout .checker-layout .checker .checker-content .checker-head .delete-button:hover {
   background-color: #3c8dbc;
 }
-.web-layout .checker-layout .checker .checker-content .checker-head .dropdown {
-  padding: 4px;
-}
-.web-layout .checker-layout .checker .checker-content .checker-head .dropdown .drop-button {
-  width: 100%;
-  cursor: pointer;
-}
-.web-layout .checker-layout .checker .checker-content .checker-head .dropdown .dropdown-content {
-  position: relative;
-  left: -136px;
-  background-color: #f1f1f1;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
-}
-.web-layout .checker-layout .checker .checker-content .checker-head .dropdown .dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  text-align: left;
-  cursor: pointer;
-}
-.web-layout .checker-layout .checker .checker-content .checker-head .dropdown .dropdown-content a:hover {
-  background-color: #ddd;
-}
 .web-layout .checker-layout .checker .checker-content .task-list .task {
   padding: 5px;
   background-color: #f2f8fc;
@@ -382,6 +356,31 @@ input[type="checkbox"]:checked + label:after {
 }
 .web-layout .checker-layout .add-checker-button:hover {
   background-color: #fff;
+}
+.dropdown {
+  padding: 4px;
+}
+.dropdown .drop-button {
+  width: 100%;
+  cursor: pointer;
+}
+.dropdown .dropdown-content {
+  position: relative;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+.dropdown .dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+  cursor: pointer;
+}
+.dropdown .dropdown-content a:hover {
+  background-color: #ddd;
 }
 .due-date {
   font-size: 14px;
