@@ -1,5 +1,6 @@
 .checker-layout
-    .checker(ng-repeat="checker in checkers track by $index" ng-class="{blue : checker.color === 'blue', red : checker.color === 'red', green : checker.color === 'green', coffee : checker.color === 'coffee', purple : checker.color === 'purple', pink : checker.color === 'pink' }")
+    img(ng-src="../img/core/gantt.png"  ng-show="gantt_display")
+    .checker(ng-repeat="checker in checkers track by $index" ng-class="{blue : checker.color === 'blue', red : checker.color === 'red', green : checker.color === 'green', coffee : checker.color === 'coffee', purple : checker.color === 'purple', pink : checker.color === 'pink' , color_a : checker.color === 'color_a', color_b : checker.color === 'color_b', color_c : checker.color === 'color_c', color_d : checker.color === 'color_d', color_e : checker.color === 'color_e', color_f : checker.color === 'color_f', color_g : checker.color === 'color_g', color_h : checker.color === 'color_h', color_i : checker.color === 'color_i'}")
         .checker-content
             .checker-head
                 .pure-g
@@ -139,18 +140,39 @@ script(type="text/ng-template" id="task-template")
 script(type="text/ng-template" id="checker-template")
     input(type="text" ng-model="checker.name", ng-blur="update(checker)" )
     .pure-g.choose-color
-        .pure-u-1-6
-            .choose-blue(ng-click="updateColor(checker, 'blue')")
-        .pure-u-1-6
-            .choose-red(ng-click="updateColor(checker, 'red')")
-        .pure-u-1-6
-            .choose-green(ng-click="updateColor(checker, 'green')") 
-        .pure-u-1-6
-            .choose-coffee(ng-click="updateColor(checker, 'coffee')") 
-        .pure-u-1-6
-            .choose-purple(ng-click="updateColor(checker, 'purple')")
-        .pure-u-1-6
-            .choose-pink(ng-click="updateColor(checker, 'pink')")
+        .pure-u-1-5
+            .choose.choose-blue(ng-click="updateColor(checker, 'blue')")
+        .pure-u-1-5
+            .choose.choose-red(ng-click="updateColor(checker, 'red')")
+        .pure-u-1-5
+            .choose.choose-green(ng-click="updateColor(checker, 'green')") 
+        .pure-u-1-5
+            .choose.choose-coffee(ng-click="updateColor(checker, 'coffee')") 
+        .pure-u-1-5
+            .choose.choose-purple(ng-click="updateColor(checker, 'purple')")
+    .pure-g.choose-color
+        .pure-u-1-5
+            .choose.choose-pink(ng-click="updateColor(checker, 'pink')")
+        .pure-u-1-5
+            .choose.choose-color-a(ng-click="updateColor(checker, 'color_a')")
+        .pure-u-1-5
+            .choose.choose-color-b(ng-click="updateColor(checker, 'color_b')") 
+        .pure-u-1-5
+            .choose.choose-color-c(ng-click="updateColor(checker, 'color_c')") 
+        .pure-u-1-5
+            .choose.choose-color-d(ng-click="updateColor(checker, 'color_d')")
+    .pure-g.choose-color
+        .pure-u-1-5
+            .choose.choose-color-e(ng-click="updateColor(checker, 'color_e')")
+        .pure-u-1-5
+            .choose.choose-color-f(ng-click="updateColor(checker, 'color_f')")
+        .pure-u-1-5
+            .choose.choose-color-g(ng-click="updateColor(checker, 'color_g')") 
+        .pure-u-1-5
+            .choose.choose-color-h(ng-click="updateColor(checker, 'color_h')") 
+        .pure-u-1-5
+            .choose.choose-color-i(ng-click="updateColor(checker, 'color_i')")
+            
 
     
     h3 專案成員

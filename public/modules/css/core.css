@@ -242,7 +242,6 @@ input[type="checkbox"]:checked + label:after {
   box-shadow: 1px 2px 5px #888888;
 }
 .web-layout .checker-layout .checker .checker-content .checker-head {
-  background-color: #026aa7;
   color: white;
 }
 .web-layout .checker-layout .checker .checker-content .checker-head .delete-button {
@@ -304,45 +303,6 @@ input[type="checkbox"]:checked + label:after {
   cursor: pointer;
   color: white;
   width: 100%;
-}
-.web-layout .checker-layout .checker .checker-content .add-task-button:hover {
-  background-color: #026aa7;
-}
-.web-layout .checker-layout .checker.blue .checker-content .checker-head {
-  background-color: #539be8;
-}
-.web-layout .checker-layout .checker.blue .checker-content .add-task-button {
-  background-color: #8fbef0;
-}
-.web-layout .checker-layout .checker.red .checker-content .checker-head {
-  background-color: #fe6261;
-}
-.web-layout .checker-layout .checker.red .checker-content .add-task-button {
-  background-color: #fea5a5;
-}
-.web-layout .checker-layout .checker.green .checker-content .checker-head {
-  background-color: #50ca95;
-}
-.web-layout .checker-layout .checker.green .checker-content .add-task-button {
-  background-color: #9ee2c5;
-}
-.web-layout .checker-layout .checker.coffee .checker-content .checker-head {
-  background-color: #d29034;
-}
-.web-layout .checker-layout .checker.coffee .checker-content .add-task-button {
-  background-color: #d29034ad;
-}
-.web-layout .checker-layout .checker.purple .checker-content .checker-head {
-  background-color: #937fa7;
-}
-.web-layout .checker-layout .checker.purple .checker-content .add-task-button {
-  background-color: #937fa7ab;
-}
-.web-layout .checker-layout .checker.pink .checker-content .checker-head {
-  background-color: #ec9eac;
-}
-.web-layout .checker-layout .checker.pink .checker-content .add-task-button {
-  background-color: #ec9eaca6;
 }
 .web-layout .checker-layout .add-checker-button {
   cursor: pointer;
@@ -429,60 +389,149 @@ input[type="checkbox"]:checked + label:after {
   word-wrap: break-word;
   padding: 18px;
 }
+.blue .checker-content .checker-head {
+  background-color: #539be8;
+}
+.blue .checker-content .add-task-button {
+  background-color: #8fbef0;
+}
+.red .checker-content .checker-head {
+  background-color: #fe6261;
+}
+.red .checker-content .add-task-button {
+  background-color: #fea5a5;
+}
+.green .checker-content .checker-head {
+  background-color: #50ca95;
+}
+.green .checker-content .add-task-button {
+  background-color: #9ee2c5;
+}
+.coffee .checker-content .checker-head {
+  background-color: #d29034;
+}
+.coffee .checker-content .add-task-button {
+  background-color: #d29034ad;
+}
+.purple .checker-content .checker-head {
+  background-color: #937fa7;
+}
+.purple .checker-content .add-task-button {
+  background-color: #937fa7ab;
+}
+.pink .checker-content .checker-head {
+  background-color: #ec9eac;
+}
+.pink .checker-content .add-task-button {
+  background-color: #ec9eaca6;
+}
+.color_a .checker-content .checker-head {
+  background-color: #91c976;
+}
+.color_a .checker-content .add-task-button {
+  background-color: #91c975b3;
+}
+.color_b .checker-content .checker-head {
+  background-color: #c97676;
+}
+.color_b .checker-content .add-task-button {
+  background-color: #c97676a3;
+}
+.color_c .checker-content .checker-head {
+  background-color: #e2da25;
+}
+.color_c .checker-content .add-task-button {
+  background-color: #e2da2887;
+}
+.color_d .checker-content .checker-head {
+  background-color: #ed8d1e;
+}
+.color_d .checker-content .add-task-button {
+  background-color: #ed8d1e9e;
+}
+.color_e .checker-content .checker-head {
+  background-color: #76c9c0;
+}
+.color_e .checker-content .add-task-button {
+  background-color: #75c9c0bd;
+}
+.color_f .checker-content .checker-head {
+  background-color: #7695c9;
+}
+.color_f .checker-content .add-task-button {
+  background-color: #7694caab;
+}
+.color_g .checker-content .checker-head {
+  background-color: #c9769a;
+}
+.color_g .checker-content .add-task-button {
+  background-color: #c9759abf;
+}
+.color_h .checker-content .checker-head {
+  background-color: #283484;
+}
+.color_h .checker-content .add-task-button {
+  background-color: #283483c2;
+}
+.color_i .checker-content .checker-head {
+  background-color: #751616;
+}
+.color_i .checker-content .add-task-button {
+  background-color: #741616c2;
+}
 .choose-color {
-  padding: 60px;
+  padding: 20px;
+}
+.choose-color .choose {
+  border-radius: 100%;
+  width: 35px;
+  height: 35px;
+}
+.choose-color .choose:hover {
+  box-shadow: 0 0 27px rgba(0, 0, 0, 0.5);
 }
 .choose-color .choose-blue {
   background-color: #539be8;
-  border-radius: 100%;
-  width: 35px;
-  height: 35px;
-}
-.choose-color .choose-blue:hover {
-  box-shadow: 0 0 27px rgba(0, 0, 0, 0.5);
 }
 .choose-color .choose-red {
   background-color: #fe6261;
-  border-radius: 100%;
-  width: 35px;
-  height: 35px;
-}
-.choose-color .choose-red:hover {
-  box-shadow: 0 0 27px rgba(0, 0, 0, 0.5);
 }
 .choose-color .choose-green {
   background-color: #50ca95;
-  border-radius: 100%;
-  width: 35px;
-  height: 35px;
-}
-.choose-color .choose-green:hover {
-  box-shadow: 0 0 27px rgba(0, 0, 0, 0.5);
 }
 .choose-color .choose-coffee {
   background-color: #d29034;
-  border-radius: 100%;
-  width: 35px;
-  height: 35px;
-}
-.choose-color .choose-coffee:hover {
-  box-shadow: 0 0 27px rgba(0, 0, 0, 0.5);
 }
 .choose-color .choose-purple {
   background-color: #937fa7;
-  border-radius: 100%;
-  width: 35px;
-  height: 35px;
-}
-.choose-color .choose-purple:hover {
-  box-shadow: 0 0 27px rgba(0, 0, 0, 0.5);
 }
 .choose-color .choose-pink {
   background-color: #ec9eac;
-  border-radius: 100%;
-  width: 35px;
-  height: 35px;
 }
-.choose-color .choose-pink:hover {
-  box-shadow: 0 0 27px rgba(0, 0, 0, 0.5);
+.choose-color .choose-color-a {
+  background-color: #91c976;
+}
+.choose-color .choose-color-b {
+  background-color: #c97676;
+}
+.choose-color .choose-color-c {
+  background-color: #e2da25;
+}
+.choose-color .choose-color-d {
+  background-color: #ed8d1e;
+}
+.choose-color .choose-color-e {
+  background-color: #76c9c0;
+}
+.choose-color .choose-color-f {
+  background-color: #7695c9;
+}
+.choose-color .choose-color-g {
+  background-color: #c9769a;
+}
+.choose-color .choose-color-h {
+  background-color: #283484;
+}
+.choose-color .choose-color-i {
+  background-color: #751616;
 }
