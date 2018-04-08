@@ -26,7 +26,7 @@ angular.module('checker').controller('indexController', [
         }).then(function(res) {
             $scope.user = res.data.user;
         });
-
+        
         $scope.logout = function(){
             $http({
                   method  : 'POST',

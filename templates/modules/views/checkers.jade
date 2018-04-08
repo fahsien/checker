@@ -1,5 +1,5 @@
 .checker-layout
-    img(ng-src="../img/core/gantt.png"  ng-show="gantt_display")
+    img.gantt(ng-src="{{main_img}}"  ng-show="main_display")
     .checker(ng-repeat="checker in checkers track by $index" ng-class="{blue : checker.color === 'blue', red : checker.color === 'red', green : checker.color === 'green', coffee : checker.color === 'coffee', purple : checker.color === 'purple', pink : checker.color === 'pink' , color_a : checker.color === 'color_a', color_b : checker.color === 'color_b', color_c : checker.color === 'color_c', color_d : checker.color === 'color_d', color_e : checker.color === 'color_e', color_f : checker.color === 'color_f', color_g : checker.color === 'color_g', color_h : checker.color === 'color_h', color_i : checker.color === 'color_i'}")
         .checker-content
             .checker-head
@@ -79,7 +79,9 @@
         
     a(ng-click="checkerFunc.add()" ng-hide="checkerFunc.content_input_display")
         .add-checker-button 新增專案
-
+    .pure-g.reports
+        .pure-u-1-24.report(ng-repeat="user in users") 
+            a(ng-click="mainDisplay(user.report)" ){{user.name}}
 
 script(type="text/ng-template" id="task-template")
     .pure-g

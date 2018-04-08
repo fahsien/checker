@@ -39,7 +39,7 @@ body(ng-controller="coreController")
     .header
         a(href="/")
             .board-button 看板
-        a(ng-click="gantt_display = !gantt_display")
+        a(ng-click="mainDisplay('../img/core/gantt.png')")
             .board-button 甘特圖
         .logout-button(ng-click="logout()") 登出
     .web-layout(ui-view="")
