@@ -2,7 +2,13 @@
 
 angular.module('checker').controller('boardsController', ['$scope', '$http', 'r_boards', function ($scope, $http, r_boards) {
     $scope.boards = r_boards;
-
+    //**Get account user**//
+    $http({
+        method: 'GET',
+        url: '/api/me'
+    }).then(function (res) {
+        $scope.user = res.data.user;
+    });
     $scope.boardFunc = {
         content_input_display: false,
         content_input: null,
@@ -28,6 +34,11 @@ angular.module('checker').controller('boardsController', ['$scope', '$http', 'r_
             });
         },
         delete: function (board, order) {
+            if ($scope.user.role !== 'admin') {
+                alert('需要有管理者權限才能做刪除唷！');
+                return;
+            }
+
             $http({
                 method: 'POST',
                 url: '/api/deleteBoard',

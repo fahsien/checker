@@ -25,6 +25,10 @@ var UserSchema = new Schema({
 		type: String,
 		default: "../img/core/report.png"
 	},
+	role: {
+		type: String,
+		default: "user"
+	}
 	create_time: {
 		type: Date,
 		default: Date.now
