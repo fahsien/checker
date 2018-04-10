@@ -28,7 +28,7 @@ var UserSchema = new Schema({
 	role: {
 		type: String,
 		default: "user"
-	}
+	},
 	create_time: {
 		type: Date,
 		default: Date.now
