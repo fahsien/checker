@@ -6,7 +6,7 @@
                 span {{board.name}}
             .pure-u-1-24
                 .delete-button(ng-click="boardFunc.delete(board, $index)") x
-        a(href="/{{board._id}}")
+        a(href="/{{board._id}}" target="_blank")
             .enter-board 進入看板
 
     .board.pure-u-1-2(ng-hide="!boardFunc.content_input_display")
