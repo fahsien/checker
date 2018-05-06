@@ -8,15 +8,23 @@ body{
 label{
     width: 10px;
 }
+input{
+    background-color: rgba(0,0,0,0);
+}
 .login-block{
     margin: 103px 248px;
     padding: 62px;
     background-color: white;
     height: 300px;
     line-height: 3;
-
-    .login-input{
-        text-align: left;
+    @media (max-width: 480px){
+        margin: 0;
+    }
+    @media (min-width: 768px){
+        .login-input{
+            position: relative;
+            left: 28%;
+        }
     }
 
     .login-button{

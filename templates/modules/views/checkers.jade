@@ -80,8 +80,8 @@
         
     a(ng-click="checkerFunc.add()" ng-hide="checkerFunc.content_input_display")
         .add-checker-button 新增專案
-    .pure-g.reports
-        .pure-u-1-24.report(ng-repeat="user in users") 
+    .reports
+        .report(ng-repeat="user in users") 
             a(ng-click="mainDisplay(user.report)" ){{user.name}}
 
 script(type="text/ng-template" id="task-template")
@@ -118,19 +118,13 @@ script(type="text/ng-template" id="task-template")
                 a.cancel-button(ng-click="deleteChecklist(task, checklist, $index)") x
     
     .checklist-enter
-        .pure-g
-            .pure-u-1-2
-                textarea(ng-model="enter_checklist")
-            .pure-u-1-2
-                a(ng-click="enterChecklist()") 輸入
+        textarea(ng-model="enter_checklist")
+        a(ng-click="enterChecklist()") 輸入
 
     .message-enter
         h3 留言板
-        .pure-g
-            .pure-u-1-2
-                textarea(ng-model="enter_message")
-            .pure-u-1-2
-                a(ng-click="enterMessage()") 輸入
+        textarea(ng-model="enter_message")
+        a(ng-click="enterMessage()") 輸入
     .message(ng-repeat="message in task.messages track by $index") 
         .pure-g
             .pure-u-19-24

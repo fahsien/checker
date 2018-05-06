@@ -115,7 +115,7 @@ input[type="checkbox"]:checked + label:after {
 }
 .board-button {
   color: black;
-  padding: 2px 50px;
+  padding: 2px 30px;
   float: left;
   cursor: pointer;
 }
@@ -146,7 +146,7 @@ input[type="checkbox"]:checked + label:after {
   background-color: rgba(255, 255, 255, 0.6);
 }
 .reports {
-  bottom: 20px;
+  bottom: 6%;
   left: 0;
   right: 0;
   z-index: 1000;
@@ -154,6 +154,7 @@ input[type="checkbox"]:checked + label:after {
 }
 .reports .report {
   padding: 0 15px;
+  display: inline-block;
 }
 .web-layout {
   height: 100%;
@@ -170,17 +171,21 @@ input[type="checkbox"]:checked + label:after {
 }
 .web-layout .board-layout .board {
   width: max-content;
-  display: inline-block;
   font-size: 16px;
   text-align: center;
   word-wrap: break-word;
-  margin-top: 175px;
   width: 300px;
   height: 250px;
   padding: 50px;
   vertical-align: top;
   border: 1px solid;
   color: #777;
+}
+@media (min-width: 768px) {
+  .web-layout .board-layout .board {
+    display: inline-block;
+    margin-top: 175px;
+  }
 }
 .web-layout .board-layout .board .save-button {
   padding: 3px;
@@ -238,7 +243,7 @@ input[type="checkbox"]:checked + label:after {
   word-wrap: break-word;
   margin-top: 27px;
   overflow: scroll;
-  height: 90%;
+  height: 82%;
 }
 .web-layout .checker-layout .checker .save-button {
   padding: 3px;
@@ -390,6 +395,9 @@ input[type="checkbox"]:checked + label:after {
 .message-enter {
   padding: 13px 0;
 }
+.message-enter a {
+  padding: 20px;
+}
 .message {
   background-color: white;
   padding: 15px;
@@ -400,6 +408,9 @@ input[type="checkbox"]:checked + label:after {
 }
 .checklist-enter {
   padding: 13px 0;
+}
+.checklist-enter a {
+  padding: 20px;
 }
 .checklist {
   background-color: white;
