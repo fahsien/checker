@@ -12,6 +12,10 @@ var BoardSchema = new Schema({
 	create_time: {
 		type: Date,
 		default: Date.now
+	},
+	ban_users: {
+		type: Schema.Types.Mixed,
+		default: []
 	}
 });
 

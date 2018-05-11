@@ -1,14 +1,9 @@
 'use strict';
 
-angular.module('checker').controller('boardsController', ['$scope', '$http', 'r_boards', function ($scope, $http, r_boards) {
+angular.module('checker').controller('boardsController', ['$scope', '$http', 'r_boards', 'r_user', function ($scope, $http, r_boards, r_user) {
     $scope.boards = r_boards;
     //**Get account user**//
-    $http({
-        method: 'GET',
-        url: '/api/me'
-    }).then(function (res) {
-        $scope.user = res.data.user;
-    });
+    $scope.user = r_user;
     $scope.boardFunc = {
         content_input_display: false,
         content_input: null,
@@ -47,5 +42,13 @@ angular.module('checker').controller('boardsController', ['$scope', '$http', 'r_
                 $scope.boards.splice(order, 1);
             });
         }
+    };
+
+    $scope.find = function (board) {
+        if (!board.ban_users) return false;
+        var is_ban = board.ban_users.find(function (ban_user) {
+            return ban_user === $scope.user._id;
+        });
+        return is_ban;
     };
 }]);

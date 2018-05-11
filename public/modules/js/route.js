@@ -21,6 +21,11 @@ angular.module('index').config(['$stateProvider', '$urlRouterProvider', '$urlMat
 					var boards = res.data.boards;
 					return boards;
 				});
+			},
+			r_user: function ($http) {
+				return $http({ method: 'GET', url: '/api/me' }).then(function (res) {
+					return res.data.user;
+				});
 			}
 		},
 		templateUrl: 'modules/views/boards.html'

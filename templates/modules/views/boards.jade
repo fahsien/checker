@@ -1,6 +1,6 @@
 
 .board-layout.pure-g
-    .board.pure-u-1-2(ng-repeat="board in boards" ) 
+    .board.pure-u-1-2(ng-repeat="board in boards" ng-if="!find(board)") 
         .pure-g
             .pure-u-23-24
                 span {{board.name}}

@@ -60,6 +60,8 @@ var api = require('./app/controllers/api.js'),
 /** Login API **/
 app.route('/api/login')
 	.post(login.loginValidator);
+app.route('/api/findPassword')
+	.post(login.findPassword);
 app.route('/api/logout')
 	.post(login.logout);
 

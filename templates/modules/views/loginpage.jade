@@ -21,6 +21,10 @@ head
     script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js")
     script(src="../modules/js/login.js")
 
+    link(rel="stylesheet" href="/lib/ng-dialog/css/ngDialog.min.css")
+    link(rel="stylesheet" href="/lib/ng-dialog/css/ngDialog-theme-default.min.css")
+    script(src="/lib/ng-dialog/js/ngDialog.min.js")
+
 
 body
     .login-block(ng-controller="loginController")
@@ -36,4 +40,12 @@ body
                     .pure-u-5-6
                         input(type="password" ng-model="password")
                 input.login-button(type="submit" value="登入")
+                input.login-button(ng-click="forgetPassword()" value="忘記密碼")
                 p(ng-if="fail_message") {{fail_message}}
+
+script(type="text/ng-template" id="forget-password-template")
+    h3 尋找你的密碼
+    form(ng-submit="submit()")
+        input(type="text" ng-model="email" placeholder="輸入你的電子郵件")
+        input(type="submit" value="傳送密碼到信箱")
+    p(ng-if="message") {{message}}
