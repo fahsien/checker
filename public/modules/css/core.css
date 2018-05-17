@@ -163,8 +163,44 @@ input[type="checkbox"]:checked + label:after {
   position: absolute;
 }
 .reports .report {
+  width: 7%;
+  text-align: center;
   padding: 0 15px;
   display: inline-block;
+  /*.hover-show-month{
+            display: none;
+        }*/
+}
+.reports .report .hover-show-evaluation,
+.reports .report .hover-show-month {
+  display: none;
+}
+.reports .report:hover .hover-hide {
+  display: none;
+}
+.reports .report:hover .hover-show-month {
+  display: block;
+}
+.reports .report:hover .hover-show-month:hover {
+  border-bottom: 2px solid gray;
+}
+.reports .report.active {
+  background-color: #ffff0030;
+}
+.reports .report.active:hover .hover-hide {
+  display: none;
+}
+.reports .report.active:hover .hover-show-evaluation {
+  display: block;
+}
+.reports .report.active:hover .hover-show-evaluation:hover {
+  border-bottom: 2px solid gray;
+}
+.reports .report.active:hover .hover-show-month {
+  display: block;
+}
+.reports .report.active:hover .hover-show-month:hover {
+  border-bottom: 2px solid gray;
 }
 .web-layout {
   height: 100%;

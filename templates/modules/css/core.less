@@ -158,8 +158,47 @@ input[type="checkbox"]:checked + label:after {
     position: absolute;
 
     .report{
+        width: 7%;
+        text-align: center;
         padding: 0 15px;
         display: inline-block;
+        .hover-show-evaluation,.hover-show-month{
+            display: none;
+        }
+        /*.hover-show-month{
+            display: none;
+        }*/
+        &:hover {
+            .hover-hide{
+                display: none;
+            }
+            .hover-show-month{
+                display: block;
+                &:hover{
+                    border-bottom: 2px solid gray; 
+                }
+            }
+        }
+        &.active{
+            background-color: #ffff0030;
+            &:hover {
+                .hover-hide{
+                    display: none;
+                }
+                .hover-show-evaluation{
+                    display: block;
+                    &:hover{
+                        border-bottom: 2px solid gray; 
+                    }
+                }
+                .hover-show-month{
+                    display: block;
+                    &:hover{
+                        border-bottom: 2px solid gray; 
+                    }
+                }
+            }
+        }
     }
 }
 .web-layout{

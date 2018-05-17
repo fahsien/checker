@@ -23,7 +23,11 @@ var UserSchema = new Schema({
 	},
 	report: {
 		type: String,
-		default: "../img/core/report.png"
+		default: ""
+	},
+	evaluation: {
+		type: String,
+		default: ""
 	},
 	role: {
 		type: String,
