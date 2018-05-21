@@ -18,6 +18,56 @@ var Board = require('../../models/board.js'),
     },
     transporter = nodemailer.createTransport(smtpPool(mail_pool_options));
 
+(function(){
+    Task.find({due_date: { $ne: null}}).populate('owner')
+        .exec(function(err, tasks) {
+            tasks.forEach(function(current_task){
+                (function runAtDate(date) {
+                    var now = (new Date()).getTime();
+                    var then = new Date(date).getTime();
+                    var diff = Math.max((then - now), 1000);  //set one second to buffer
+
+                    if(current_task.remind === 'one_week'){
+                        diff = Math.max((diff - 7*86400000), 1000);
+                    }
+                    if (diff === 1000){
+                        return;
+                    }
+
+                    if (diff > 0x7FFFFFFF){//setTimeout limit is MAX_INT32=(2^31-1)
+                        setTimeout(function() {runAtDate(date);}, 0x7FFFFFFF);
+                    }else{
+                        setTimeout(function(){
+                            Task.find({_id:current_task._id})
+                            .exec(function(err, task) {
+                                //Make sure this is the newest data, and task is not finished.
+                                var dateCorrect = new Date(task[0].due_date).valueOf() === new Date(current_task.due_date).valueOf(),
+                                    remindCorrect = task[0].remind === current_task.remind,
+                                    notFinished = !current_task.finished;
+
+                                if(dateCorrect && remindCorrect && notFinished){
+                                    transporter.sendMail({
+                                      from: 'hg-no-reply <no-reply@hgcagroup.com>',
+                                      to: current_task.owner.email,
+                                      subject: '[通知]任務已達截止日期',
+                                      html: '<p>你好，</p><br><p>任務已達截止日期,請儘速完成任務</p>'
+                                    }, function(err){
+                                      if(err) {
+                                        console.log('Unable to send email: ' + err);
+                                        return res.status(400).send(err);
+                                      }
+                                      console.log('Sent mail success.')
+                                    });
+                                }
+                            });
+                        }, diff);
+                    }
+                })(current_task.due_date);
+            });
+            
+        });
+})()
+
 exports.getAccountUser = function(req, res) {
     res.send({user: req.user});
 }
