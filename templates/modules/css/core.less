@@ -149,6 +149,7 @@ input[type="checkbox"]:checked + label:after {
     background-attachment: fixed;
     background-position: center; 
     background-color: rgba(100%,100%,100%,0.6);
+    
 }
 .reports{
     bottom: 6%;
@@ -158,38 +159,55 @@ input[type="checkbox"]:checked + label:after {
     position: absolute;
 
     .report{
-        width: 7%;
-        text-align: center;
-        padding: 0 15px;
-        display: inline-block;
-        .hover-show-evaluation,.hover-show-month{
-            display: none;
-        }
-        /*.hover-show-month{
-            display: none;
-        }*/
-        &:hover {
-            .hover-hide{
-                display: none;
-            }
-            .hover-show-month{
-                display: block;
-                &:hover{
-                    border-bottom: 2px solid gray; 
-                }
-            }
-        }
-        &.active{
-            background-color: #ffff0030;
+        @media (max-width: 480px){
+            width: 25%;
             &:hover {
                 .hover-hide{
                     display: none;
                 }
-                .hover-show-evaluation{
+                .show-month-mobile{
                     display: block;
                     &:hover{
                         border-bottom: 2px solid gray; 
                     }
+                }
+            }
+            &.active{
+                background-color: #ffff0030;
+                &:hover {
+                    .hover-hide{
+                        display: none;
+                    }
+                    .show-evaluation-mobile{
+                        display: block;
+                        &:hover{
+                            border-bottom: 2px solid gray; 
+                        }
+                    }
+                    .show-month-mobile{
+                        display: block;
+                        &:hover{
+                            border-bottom: 2px solid gray; 
+                        }
+                    }
+                }
+            }
+        }
+        .show-evaluation-mobile,.show-month-mobile,.hover-show-evaluation,.hover-show-month{
+            display: none;
+        }
+        width: 7%;
+        text-align: center;
+        padding: 0 15px;
+        display: inline-block;
+        
+        /*.hover-show-month{
+            display: none;
+        }*/
+        @media (min-width:768px){
+            &:hover {
+                .hover-hide{
+                    display: none;
                 }
                 .hover-show-month{
                     display: block;
@@ -198,7 +216,28 @@ input[type="checkbox"]:checked + label:after {
                     }
                 }
             }
+            &.active{
+                background-color: #ffff0030;
+                &:hover {
+                    .hover-hide{
+                        display: none;
+                    }
+                    .hover-show-evaluation{
+                        display: block;
+                        &:hover{
+                            border-bottom: 2px solid gray; 
+                        }
+                    }
+                    .hover-show-month{
+                        display: block;
+                        &:hover{
+                            border-bottom: 2px solid gray; 
+                        }
+                    }
+                }
+            }
         }
+        
     }
 }
 .web-layout{
