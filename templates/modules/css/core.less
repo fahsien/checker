@@ -157,43 +157,11 @@ input[type="checkbox"]:checked + label:after {
     right: 0;
     z-index: 1000;
     position: absolute;
-
+    @media (max-width: 480px){
+        bottom: -32%;
+    }
     .report{
-        @media (max-width: 480px){
-            width: 25%;
-            &:hover {
-                .hover-hide{
-                    display: none;
-                }
-                .show-month-mobile{
-                    display: block;
-                    &:hover{
-                        border-bottom: 2px solid gray; 
-                    }
-                }
-            }
-            &.active{
-                background-color: #ffff0030;
-                &:hover {
-                    .hover-hide{
-                        display: none;
-                    }
-                    .show-evaluation-mobile{
-                        display: block;
-                        &:hover{
-                            border-bottom: 2px solid gray; 
-                        }
-                    }
-                    .show-month-mobile{
-                        display: block;
-                        &:hover{
-                            border-bottom: 2px solid gray; 
-                        }
-                    }
-                }
-            }
-        }
-        .show-evaluation-mobile,.show-month-mobile,.hover-show-evaluation,.hover-show-month{
+        .show-evaluation-mobile,.show-month-mobile,.hover-show-evaluation,.hover-show-month,.hover-hide-mobile{
             display: none;
         }
         width: 7%;
@@ -204,6 +172,25 @@ input[type="checkbox"]:checked + label:after {
         /*.hover-show-month{
             display: none;
         }*/
+        @media (max-width: 480px){
+            width: 37%;
+            .hover-hide{
+                display: none;
+            }
+            .show-month-mobile{
+                    display: block;
+                    padding: 10px 0;
+                }
+            &.active{
+                background-color: #ffff0030;
+                .show-evaluation-mobile, .show-month-mobile{
+                    display: block;
+                }
+            }
+            
+        }
+        
+        
         @media (min-width:768px){
             &:hover {
                 .hover-hide{
@@ -251,8 +238,10 @@ input[type="checkbox"]:checked + label:after {
 
     .board-layout{
         width: max-content; 
+        width: -webkit-max-content;
         .board{
             width: max-content; 
+            width: -webkit-max-content;
             font-size: 16px;
             text-align:center;
             vertical-align: top;
@@ -323,6 +312,7 @@ input[type="checkbox"]:checked + label:after {
     .checker-layout{
         height: 100%;
         width: max-content; 
+        width: -webkit-max-content;
         .checker{
             display: inline-block;
             font-size: 16px;

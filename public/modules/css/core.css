@@ -162,6 +162,11 @@ input[type="checkbox"]:checked + label:after {
   z-index: 1000;
   position: absolute;
 }
+@media (max-width: 480px) {
+  .reports {
+    bottom: -32%;
+  }
+}
 .reports .report {
   width: 7%;
   text-align: center;
@@ -171,43 +176,31 @@ input[type="checkbox"]:checked + label:after {
             display: none;
         }*/
 }
+.reports .report .show-evaluation-mobile,
+.reports .report .show-month-mobile,
+.reports .report .hover-show-evaluation,
+.reports .report .hover-show-month,
+.reports .report .hover-hide-mobile {
+  display: none;
+}
 @media (max-width: 480px) {
   .reports .report {
-    width: 25%;
+    width: 37%;
   }
-  .reports .report:hover .hover-hide {
+  .reports .report .hover-hide {
     display: none;
   }
-  .reports .report:hover .show-month-mobile {
+  .reports .report .show-month-mobile {
     display: block;
-  }
-  .reports .report:hover .show-month-mobile:hover {
-    border-bottom: 2px solid gray;
+    padding: 10px 0;
   }
   .reports .report.active {
     background-color: #ffff0030;
   }
-  .reports .report.active:hover .hover-hide {
-    display: none;
-  }
-  .reports .report.active:hover .show-evaluation-mobile {
+  .reports .report.active .show-evaluation-mobile,
+  .reports .report.active .show-month-mobile {
     display: block;
   }
-  .reports .report.active:hover .show-evaluation-mobile:hover {
-    border-bottom: 2px solid gray;
-  }
-  .reports .report.active:hover .show-month-mobile {
-    display: block;
-  }
-  .reports .report.active:hover .show-month-mobile:hover {
-    border-bottom: 2px solid gray;
-  }
-}
-.reports .report .show-evaluation-mobile,
-.reports .report .show-month-mobile,
-.reports .report .hover-show-evaluation,
-.reports .report .hover-show-month {
-  display: none;
 }
 @media (min-width: 768px) {
   .reports .report:hover .hover-hide {
@@ -250,9 +243,11 @@ input[type="checkbox"]:checked + label:after {
 }
 .web-layout .board-layout {
   width: max-content;
+  width: -webkit-max-content;
 }
 .web-layout .board-layout .board {
   width: max-content;
+  width: -webkit-max-content;
   font-size: 16px;
   text-align: center;
   word-wrap: break-word;
@@ -316,6 +311,7 @@ input[type="checkbox"]:checked + label:after {
 .web-layout .checker-layout {
   height: 100%;
   width: max-content;
+  width: -webkit-max-content;
 }
 .web-layout .checker-layout .checker {
   display: inline-block;
