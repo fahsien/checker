@@ -1,6 +1,15 @@
 .checker-layout
     //- img.gantt(ng-src="{{main_img}}"  ng-show="main_display")
     iframe.gantt(ng-src="{{main_iframe}}" ng-if="main_display")
+
+    .reports
+        .report(ng-repeat="u in users" ng-class="{active: u._id === user._id || user._id === '5aaf2706c093a108d80e15db' || user._id === '5ab4c372fd40042cee603d54' || user._id === '5ae96bfb1d94346e861b2d5a'}" ng-hide="u._id === '5aaf2706c093a108d80e15db' || u._id === '5ab4c372fd40042cee603d54' || u._id === '5ae96bfb1d94346e861b2d5a'") 
+            a.hover-hide {{u.name}}
+            a.hover-show-evaluation(ng-click="mainDisplay(u.evaluation)" ) 評鑑表
+            a.show-evaluation-mobile(href="{{u.evaluation}}") {{u.name}} - 評鑑表
+            a.hover-show-month(ng-click="mainDisplay(u.report)" ) 月報表
+            a.show-month-mobile(href="{{u.report}}") {{u.name}} - 月報表
+
     .checker(ng-repeat="checker in checkers track by $index" ng-class="{blue : checker.color === 'blue', red : checker.color === 'red', green : checker.color === 'green', coffee : checker.color === 'coffee', purple : checker.color === 'purple', pink : checker.color === 'pink' , color_a : checker.color === 'color_a', color_b : checker.color === 'color_b', color_c : checker.color === 'color_c', color_d : checker.color === 'color_d', color_e : checker.color === 'color_e', color_f : checker.color === 'color_f', color_g : checker.color === 'color_g', color_h : checker.color === 'color_h', color_i : checker.color === 'color_i'}")
     
         .checker-content
@@ -81,13 +90,7 @@
         
     a(ng-click="checkerFunc.add()" ng-hide="checkerFunc.content_input_display")
         .add-checker-button 新增專案
-    .reports
-        .report(ng-repeat="u in users" ng-class="{active: u._id === user._id || user._id === '5aaf2706c093a108d80e15db' || user._id === '5ab4c372fd40042cee603d54' || user._id === '5ae96bfb1d94346e861b2d5a'}" ng-hide="u._id === '5aaf2706c093a108d80e15db' || u._id === '5ab4c372fd40042cee603d54' || u._id === '5ae96bfb1d94346e861b2d5a'") 
-            a.hover-hide {{u.name}}
-            a.hover-show-evaluation(ng-click="mainDisplay(u.evaluation)" ) 評鑑表
-            a.show-evaluation-mobile(href="{{u.evaluation}}" target="_blank") {{u.name}} - 評鑑表
-            a.hover-show-month(ng-click="mainDisplay(u.report)" ) 月報表
-            a.show-month-mobile(href="{{u.report}}" target="_blank") {{u.name}} - 月報表
+    
             
 
 script(type="text/ng-template" id="task-template")

@@ -158,7 +158,12 @@ input[type="checkbox"]:checked + label:after {
     z-index: 1000;
     position: absolute;
     @media (max-width: 480px){
-        bottom: -32%;
+        width: 300px;
+        height: 82%;
+        margin-top: 27px;
+        display: inline-block;
+        position: inherit;
+        overflow: scroll;
     }
     .report{
         .show-evaluation-mobile,.show-month-mobile,.hover-show-evaluation,.hover-show-month,.hover-hide-mobile{
@@ -166,14 +171,13 @@ input[type="checkbox"]:checked + label:after {
         }
         width: 7%;
         text-align: center;
-        padding: 0 15px;
         display: inline-block;
         
         /*.hover-show-month{
             display: none;
         }*/
         @media (max-width: 480px){
-            width: 37%;
+            width: 100%;
             .hover-hide{
                 display: none;
             }
