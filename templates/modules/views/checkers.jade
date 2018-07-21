@@ -5,7 +5,7 @@
     .reports
         .report(ng-repeat="u in users" ng-class="{active: u._id === user._id || user._id === '5aaf2706c093a108d80e15db' || user._id === '5ab4c372fd40042cee603d54' || user._id === '5ae96bfb1d94346e861b2d5a'}" ng-hide="u._id === '5aaf2706c093a108d80e15db' || u._id === '5ab4c372fd40042cee603d54' || u._id === '5ae96bfb1d94346e861b2d5a'") 
             a.hover-hide {{u.name}}
-            a.hover-show-evaluation(ng-click="mainDisplay(u.evaluation)" ) 評鑑表
+            a.hover-show-evaluation(href="{{u.evaluation}}" target="_blank") 評鑑表
             a.show-evaluation-mobile(href="{{u.evaluation}}") {{u.name}} - 評鑑表
             a.hover-show-month(ng-click="mainDisplay(u.report)" ) 月報表
             a.show-month-mobile(href="{{u.report}}") {{u.name}} - 月報表
