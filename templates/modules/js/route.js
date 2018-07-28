@@ -63,6 +63,11 @@ angular.module('index').config([
 				},     
 			},
 			templateUrl: 'modules/views/checkers.html'
+		})
+		.state('social', {
+			url: '/social',
+			controller: 'socialController',
+			templateUrl: 'modules/views/social.html'
 		});
 }]);
 

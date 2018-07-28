@@ -54,5 +54,9 @@ angular.module('index').config(['$stateProvider', '$urlRouterProvider', '$urlMat
 			}
 		},
 		templateUrl: 'modules/views/checkers.html'
+	}).state('social', {
+		url: '/social',
+		controller: 'socialController',
+		templateUrl: 'modules/views/social.html'
 	});
 }]);

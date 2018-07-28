@@ -673,3 +673,9 @@ input[type="checkbox"]:checked + label:after {
 .choose-color .choose-color-i {
   background-color: #751616;
 }
+.social-block {
+  padding: 50px;
+}
+.social-block .content {
+  padding: 50px 0;
+}
