@@ -679,3 +679,6 @@ input[type="checkbox"]:checked + label:after {
 .social-block .content {
   padding: 50px 0;
 }
+.social-block .post_image {
+  width: 200px;
+}

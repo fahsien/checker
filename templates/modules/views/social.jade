@@ -1,31 +1,38 @@
 .social-block
-	h3 排程
-	.pure-g
-		.pure-u-1-8
-			span 週一
-			.content 內容
-			div 留言
-		.pure-u-1-8
-			span 週二
-			.content 內容
-			div 留言
-		.pure-u-1-8
-			span 週三
-			.content 內容
-			div 留言
-		.pure-u-1-8
-			span 週四
-			.content 內容
-			div 留言
-		.pure-u-1-8
-			span 週五
-			.content 內容
-			div 留言
-		.pure-u-1-8
-			span 週六
-			.content 內容
-			div 留言
-		.pure-u-1-8
-			span 週日
-			.content 內容
-			div 留言
+    h3 排程
+    .pure-g
+    .pure-u-1-4(ng-repeat="post in fbArray")
+     img.post_image(ng-src="{{post.full_picture}}")
+     div {{post.message}}
+     div {{convertTime(post.scheduled_publish_time)}}
+     a(href="{{post.permalink_url}}" target="_blank") 原文網址
+    //- .pure-g
+    //-     .pure-u-1-8
+    //-         span 週一
+    //-         .content 內容
+    //-         div 留言
+    //-     .pure-u-1-8
+    //-         span 週二
+    //-         .content 內容
+    //-         div 留言
+    //-     .pure-u-1-8
+    //-         span 週三
+    //-         .content 內容
+    //-         div 留言
+    //-     .pure-u-1-8
+    //-         span 週四
+    //-         .content 內容
+    //-         div 留言
+    //-     .pure-u-1-8
+    //-         span 週五
+    //-         .content 內容
+    //-         div 留言
+    //-     .pure-u-1-8
+    //-         span 週六
+    //-         .content 內容
+    //-         div 留言
+    //-     .pure-u-1-8
+    //-         span 週日
+    //-         .content 內容
+    //-         div 留言
+
