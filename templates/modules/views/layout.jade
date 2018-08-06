@@ -48,25 +48,25 @@ body(ng-controller="coreController")
     .web-layout(ui-view="")
 
 script.
-    //- var pageAccessToken = 'EAAINUgaZAImYBACRrzz2raj9UFer5znfZB9y0k4QLQZBeYPR2MiiVHX9np98t0cQkBj29WJulsTM3IA5QrJqxQxi3z61dpSmgh3ZCtuikdnEU3IiyzCsEwqksZC5UPRDQrnBMHHIT4mrtRLPUta4vVVxQmIGdSTdyfZBZCAnFhMpkNtCPkHPCcio6fRIZCZCr40Y1aFrDjLfa6wZDZD';
-    var pageAccessToken = 'EAAINUgaZAImYBADkU4heVNXlN0yhzpSgXurOoZCyia3vuEJzbdvf3VYCLZABPKBLUdGuHVSoZBzcicd1K4iYn5ALytSYKstZCxvpP3LsKhwMvWJD3ZBKxRZA83c6wFrESaXFcvlCVIZBtblOZBZCDXN7ZC7NX1fSgRxL07kGZAw8g3r8Djls4WZBq91shA9EqH9ZB0MdpTHZCdrZBa7s5gZDZD';
+    var pageAccessToken = 'EAAINUgaZAImYBACRrzz2raj9UFer5znfZB9y0k4QLQZBeYPR2MiiVHX9np98t0cQkBj29WJulsTM3IA5QrJqxQxi3z61dpSmgh3ZCtuikdnEU3IiyzCsEwqksZC5UPRDQrnBMHHIT4mrtRLPUta4vVVxQmIGdSTdyfZBZCAnFhMpkNtCPkHPCcio6fRIZCZCr40Y1aFrDjLfa6wZDZD';
+    //- var pageAccessToken = 'EAAINUgaZAImYBADkU4heVNXlN0yhzpSgXurOoZCyia3vuEJzbdvf3VYCLZABPKBLUdGuHVSoZBzcicd1K4iYn5ALytSYKstZCxvpP3LsKhwMvWJD3ZBKxRZA83c6wFrESaXFcvlCVIZBtblOZBZCDXN7ZC7NX1fSgRxL07kGZAw8g3r8Djls4WZBq91shA9EqH9ZB0MdpTHZCdrZBa7s5gZDZD';
     function init() {
-        //- FB.api(
-        //-   '/hanguang.org.tw/promotable_posts?fields=full_picture,message,scheduled_publish_time,permalink_url&is_published=false',
-        //-   {access_token : pageAccessToken},
-        //-   function(response) {
-        //-     window.fbArray = response.data;
-        //-     console.log(window.fbArray);
-        //-   }
-        //- );
         FB.api(
-          '289291027903142/promotable_posts?fields=full_picture,message,scheduled_publish_time,permalink_url&is_published=false',
+          '/hanguang.org.tw/promotable_posts?fields=full_picture,message,scheduled_publish_time,permalink_url&is_published=false',
           {access_token : pageAccessToken},
           function(response) {
             window.fbArray = response.data;
             console.log(window.fbArray);
           }
         );
+        //- FB.api(
+        //-   '289291027903142/promotable_posts?fields=full_picture,message,scheduled_publish_time,permalink_url&is_published=false',
+        //-   {access_token : pageAccessToken},
+        //-   function(response) {
+        //-     window.fbArray = response.data;
+        //-     console.log(window.fbArray);
+        //-   }
+        //- );
     }
 
     window.fbAsyncInit = function() {
