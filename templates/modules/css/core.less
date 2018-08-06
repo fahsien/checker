@@ -766,7 +766,26 @@ input[type="checkbox"]:checked + label:after {
     .content{
         padding: 50px 0;
     }
-    .post_image{
-        width: 200px;
+    .fb-post{
+        background-color: white;
+        padding: 24px;
+        margin: 8px;
+        border: 1px solid #dddfe2;
+        border-radius: 3px;
+        .post_image{
+            width: 100%;
+            padding: 22px 0;
+        } 
+        .post-time{
+            color: grey;
+        }
+        pre{
+            white-space: pre-wrap;       /* Since CSS 2.1 */
+            white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+            white-space: -pre-wrap;      /* Opera 4-6 */
+            white-space: -o-pre-wrap;    /* Opera 7 */
+            word-wrap: break-word;     
+        }
     }
+    
 }
