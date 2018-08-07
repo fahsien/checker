@@ -18,7 +18,7 @@ angular.module('checker').controller('socialController',[
     $scope.convertTime = function(UNIX_timestamp){
         var a = new Date(UNIX_timestamp * 1000);
         var year = a.getFullYear();
-        var month = a.getMonth();
+        var month = a.getMonth()+1; //0 is January
         var date = a.getDate();
         var hour = '0' + a.getHours();
         var min = '0' + a.getMinutes();
