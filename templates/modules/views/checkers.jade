@@ -7,7 +7,7 @@
             a.hover-hide {{u.name}}
             a.hover-show-evaluation(href="{{u.evaluation}}" target="_blank") 評鑑表
             a.show-evaluation-mobile(href="{{u.evaluation}}") {{u.name}} - 評鑑表
-            a.hover-show-month(ng-click="mainDisplay(u.report)" ) 月報表
+            a.hover-show-month(href="{{u.report}}" target="_blank") 月報表
             a.show-month-mobile(href="{{u.report}}") {{u.name}} - 月報表
 
     .checker(ng-repeat="checker in checkers track by $index" ng-class="{blue : checker.color === 'blue', red : checker.color === 'red', green : checker.color === 'green', coffee : checker.color === 'coffee', purple : checker.color === 'purple', pink : checker.color === 'pink' , color_a : checker.color === 'color_a', color_b : checker.color === 'color_b', color_c : checker.color === 'color_c', color_d : checker.color === 'color_d', color_e : checker.color === 'color_e', color_f : checker.color === 'color_f', color_g : checker.color === 'color_g', color_h : checker.color === 'color_h', color_i : checker.color === 'color_i'}")
